@@ -16,6 +16,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "push": "git push -u origin --all",
     "prepare": "husky install"
   },
   "dependencies": {
