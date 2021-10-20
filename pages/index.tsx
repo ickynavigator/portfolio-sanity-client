@@ -38,11 +38,11 @@ type Props = UnwrapPromise<ReturnType<typeof getStaticProps>>['props'];
 
 const Home: NextPage<Props> = props => {
   const { data } = props;
-
-  console.log(data.name);
+  // console.warn(data);
   return (
     <div className={styles.container}>
       <MetaHead title="Homepage" />
+      <h1>{data.name}</h1>
     </div>
   );
 };
