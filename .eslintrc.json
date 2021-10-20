@@ -39,13 +39,7 @@
       2,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
-    "react/jsx-props-no-spreading": [
-      1,
-      {
-        // "html": "ignore",
-        "custom": "enforce"
-      }
-    ],
+    "react/jsx-props-no-spreading": ["off"],
     "react/prop-types": ["off"]
   }
 }
