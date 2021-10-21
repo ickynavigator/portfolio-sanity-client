@@ -6,7 +6,6 @@ import type { NextPage } from 'next';
 import { getClient } from '../lib/sanity.server';
 
 import MetaHead from '../components/MetaHead';
-import styles from '../styles/Home.module.css';
 
 import { ProfileDetails } from '../api/queries';
 
@@ -24,10 +23,12 @@ const Home: NextPage<Props> = props => {
   const { data } = props;
   // console.warn(data);
   return (
-    <div className={styles.container}>
+    <>
       <MetaHead title="Homepage" />
-      <h1>{data.name}</h1>
-    </div>
+      <div className="">
+        <h1>{data.name}</h1>
+      </div>
+    </>
   );
 };
 
