@@ -12,13 +12,13 @@ export const ProfileName = groq`
   }[0]
 `;
 export const AllProjectDetails = groq`
-  *[_type == "project"]
+  *[_type == "project" && projectHide == false]
 `;
 export const projectDetails = groq`
-  *[_type == "project" && slug.current == $slug][0]
+  *[_type == "project" && projectHide == false && slug.current == $slug][0]
 `;
 export const projectSlugs = groq`
-  *[_type == "project"]{
+  *[_type == "project" && projectHide == false]{
     _id,
     slug
   }
