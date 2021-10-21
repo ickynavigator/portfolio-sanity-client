@@ -10,9 +10,11 @@ import { Project as ProjectTypes } from '../../schema';
 interface IParams extends ParsedUrlQuery {
   slug: string;
 }
-
+interface ProjectResponse extends ProjectTypes {
+  _id: string;
+}
 export const getStaticPaths = async () => {
-  const Projects: ProjectTypes[] = await getClient().fetch(projectSlugs);
+  const Projects: ProjectResponse[] = await getClient().fetch(projectSlugs);
   const paths = Projects.map(project => ({
     params: { slug: project.slug?.current },
   }));
@@ -25,7 +27,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const { slug } = context.params as IParams;
-  const project: ProjectTypes = await getClient().fetch(projectDetails, {
+  const project: ProjectResponse = await getClient().fetch(projectDetails, {
     slug,
   });
 

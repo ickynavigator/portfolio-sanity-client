@@ -5,8 +5,14 @@ import { AllProjectDetails } from '../../api/queries';
 import { getClient } from '../../lib/sanity.server';
 import { Project as ProjectTypes } from '../../schema';
 
+interface ProjectResponse extends ProjectTypes {
+  _id: string;
+}
+
 export const getStaticProps = async () => {
-  const projects: ProjectTypes[] = await getClient().fetch(AllProjectDetails);
+  const projects: ProjectResponse[] = await getClient().fetch(
+    AllProjectDetails,
+  );
   return { props: { projects } };
 };
 
