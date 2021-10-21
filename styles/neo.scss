@@ -1,5 +1,4 @@
 /* https://dribbble.com/myacode */
-
 $shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2),
   -0.2rem -0.2rem 0.5rem var(--white);
 $inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
@@ -14,41 +13,42 @@ $inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
 
 .btn {
   border-radius: 1rem;
-  box-shadow: var(--custom-shadow);
+  box-shadow: $shadow;
   justify-self: center;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: 0.3s ease;
-}
 
-.btn__primary {
-  grid-column: 1 / 2;
-  grid-row: 4 / 5;
-  background: var(--primary);
-  box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-light),
-    inset -0.2rem -0.2rem 1rem var(--primary-dark), var(--custom-shadow);
-  color: var(--greyLight-1);
-}
-.btn__primary:hover {
-  color: var(--white);
-}
-.btn__primary:active {
-  box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-dark),
-    inset -0.2rem -0.2rem 1rem var(--primary-light);
-}
+  &__primary {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+    background: var(--primary);
+    box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-light),
+      inset -0.2rem -0.2rem 1rem var(--primary-dark), $shadow;
+    color: var(--greyLight-1);
+    &:hover {
+      color: var(--white);
+    }
+    &:active {
+      box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-dark),
+        inset -0.2rem -0.2rem 1rem var(--primary-light);
+    }
+  }
 
-.btn__secondary {
-  grid-column: 1 / 2;
-  grid-row: 5 / 6;
-  color: var(--greyDark);
-}
-.btn__secondary:hover {
-  color: var(--primary);
-}
-.btn__secondary:active {
-  box-shadow: var(--custom-inner-shadow);
+  &__secondary {
+    grid-column: 1 / 2;
+    grid-row: 5 / 6;
+    color: var(--greyDark);
+
+    &:hover {
+      color: var(--primary);
+    }
+    &:active {
+      box-shadow: $inner-shadow;
+    }
+  }
 }
 
 .switch {
@@ -76,7 +76,7 @@ $inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
       border-radius: 1.6rem;
 
       &::after {
-        content: 'dark';
+        content: '';
         position: absolute;
         left: 0.4rem;
         width: 2.1rem;
@@ -86,7 +86,7 @@ $inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
         transition: all 0.4s ease;
       }
       &::before {
-        content: 'light';
+        content: '';
         width: 100%;
         height: 100%;
         border-radius: inherit;
