@@ -39,5 +39,5 @@ export default function useDarkMode() {
     [enabled], // Only re-call effect when value changes
   );
   // Return enabled state and setter
-  return [enabled, setEnabledState];
+  return [enabled, setEnabledState] as const;
 }

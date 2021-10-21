@@ -2,7 +2,12 @@ import { useEffect, useState } from 'react';
 
 const useMedia = <T>(queries: string[], values: T[], defaultValue: T) => {
   // Array containing a media query list for each query
-  const mediaQueryLists = queries.map(q => window.matchMedia(q));
+  let mediaQueryLists: MediaQueryList[];
+  if (typeof window !== 'undefined') {
+    mediaQueryLists = queries.map(q => window.matchMedia(q));
+  } else {
+    mediaQueryLists = [];
+  }
   // Function that gets value based on matching media query
   const getValue = () => {
     // Get index of first media query that matches
