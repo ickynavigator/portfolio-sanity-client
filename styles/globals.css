@@ -8,10 +8,9 @@
   --greyLight-2: #c8d0e7;
   --greyLight-3: #bec8e4;
   --greyDark: #9baacf;
-  --custom-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2),
-    -0.2rem -0.2rem 0.5rem var(--white);
-  --custom-inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
-    inset -0.2rem -0.2rem 0.5rem var(--white);
+}
+.dark-mode {
+  /* add dark mode classes */
 }
 @tailwind base;
 @tailwind components;

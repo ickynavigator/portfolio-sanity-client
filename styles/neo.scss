@@ -52,11 +52,6 @@ $inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
 }
 
 .switch {
-  grid-column: 1 / 2;
-  display: grid;
-  grid-template-columns: repeat(2, min-content);
-  grid-gap: 3rem;
-  justify-self: center;
   input {
     display: none;
   }
