@@ -12,7 +12,7 @@ updates:
       interval: "daily"
     commit-message:
       # Prefix all commit messages with "npm"
-      prefix: "npm - dependabot"
+      prefix: "npm: "
     # Specify labels for npm pull requests
     labels:
       - "npm"
