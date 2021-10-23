@@ -3,19 +3,20 @@
 # Please see the documentation for all configuration options:
 # https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
-version: 1
+version: 2
 updates:
-  # Maintain dependencies for yarn
-  - package-ecosystem: "yarn"
+  # Maintain dependencies for npm
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
     commit-message:
-      # Prefix all commit messages with "yarn"
-      prefix: "yarn - dependabot"
+      # Prefix all commit messages with "npm"
+      prefix: "npm - dependabot"
     # Specify labels for npm pull requests
     labels:
-      - "yarn"
+      - "npm"
       - "dependencies"
-    # Allow up to 10 open pull requests for yarn dependencies
+      - "dependabot"
+    # Allow up to 10 open pull requests for npm dependencies
     open-pull-requests-limit: 10
