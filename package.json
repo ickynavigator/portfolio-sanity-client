@@ -42,7 +42,7 @@
     "eslint-plugin-css-modules": "^2.11.0",
     "eslint-plugin-react": "^7.26.1",
     "husky": ">=7",
-    "lint-staged": ">=10",
+    "lint-staged": ">=11",
     "postcss": "^8.3.11",
     "prettier": "^2.4.1",
     "tailwindcss": "^2.2.17",
