@@ -1,6 +1,8 @@
 :root {
-  --primary-light: #8abdff;
-  --primary: #6d5dfc;
+  --font-family: 'Recursive', sans-serif;
+
+  --primary-light: rgba(96, 217, 255, 1);
+  --primary: rgba(29, 116, 255, 1);
   --primary-dark: #5b0eeb;
 
   --white: #ffffff;
@@ -8,6 +10,10 @@
   --greyLight-2: #c8d0e7;
   --greyLight-3: #bec8e4;
   --greyDark: #9baacf;
+
+  --button-text-color: white;
+  --button-color1: var(--primary-light);
+  --button-color2: var(--primary);
 }
 .dark-mode {
   /* add dark mode classes */
@@ -15,7 +21,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@600&display=swap');
+@layer components {
+  .navLink {
+    @apply block mt-4 lg:inline-block lg:mt-0 mx-2 p-2 !important;
+  }
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -24,5 +36,5 @@
 
 html {
   background: var(--greyLight-1);
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family);
 }

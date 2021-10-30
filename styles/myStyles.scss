@@ -1,0 +1,49 @@
+// variables
+$button-font: max(5vmin, 32px);
+$button-border-radius: 20px;
+$button-padding: 1.5rem;
+$button-transition-speed: 0.4s;
+
+// scss mixins
+@mixin background-color-gradient($color1, $color2, $transition-speed) {
+  $background-colors: $color1 -3.24%, $color2 57.16%;
+  $shadow-1: rgba(71, 184, 255, 0.5);
+  $shadow-2: rgba(58, 125, 233, 0.3);
+  $shadow-3: rgba(175, 230, 255, 0.5);
+  $shadow-4: rgba(19, 95, 216, 0.3);
+
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(320deg, $background-colors);
+  box-shadow: 0px 0px 20px $shadow-1, 0px 5px 5px -1px $shadow-2,
+    inset 4px 4px 8px $shadow-3, inset -4px -4px 8px $shadow-4;
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background: linear-gradient(125deg, $background-colors);
+    box-shadow: 0px 5px 50px $shadow-1, 0px 10px 10px -4px $shadow-2,
+      inset 4px 4px 8px $shadow-3, inset -4px -4px 8px $shadow-4;
+    opacity: 0;
+    transition: opacity $transition-speed linear;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+.hvr-gradient-btn {
+  font-family: var(--font-family);
+  cursor: pointer;
+  overflow: hidden;
+  @include background-color-gradient(
+    var(--primary-light),
+    var(--primary),
+    $button-transition-speed
+  );
+}
