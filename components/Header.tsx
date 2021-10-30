@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { RiSunFill, RiSunLine, RiMoonFill, RiMoonLine } from 'react-icons/ri';
+import {
+  RiSunFill,
+  RiSunLine,
+  RiMoonFill,
+  RiMoonLine,
+  RiMenuFill,
+  RiCloseFill,
+} from 'react-icons/ri';
 import { useDarkMode } from '../hooks';
 
 const Links = [
@@ -14,6 +21,7 @@ const Links = [
 const Header = () => {
   const router = useRouter();
   const [darkMode, setDarkMode] = useDarkMode();
+  const [navBar, setNavBar] = useState(false);
   const iconSize = '1.3em';
 
   return (
@@ -27,18 +35,18 @@ const Header = () => {
         <button
           type="button"
           className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
+          onClick={() => {
+            setNavBar(!navBar);
+          }}
         >
-          <svg
-            className="fill-current h-3 w-3"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-          </svg>
+          {navBar ? <RiCloseFill /> : <RiMenuFill />}
         </button>
       </div>
-      <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+      <div
+        className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto navMenu navMenu__${
+          navBar ? `show` : `hidden`
+        }`}
+      >
         <div className="text-sm lg:flex-grow lg:flex">
           {Links.map(({ title, href }) => {
             const activeBtn =
@@ -59,7 +67,7 @@ const Header = () => {
             {darkMode ? (
               <RiSunLine size={iconSize} />
             ) : (
-              <RiSunFill size={iconSize} />
+              <RiSunFill size={iconSize} fillRule="inherit" />
             )}
             <div className="switch mx-3">
               <div className="switch__1">

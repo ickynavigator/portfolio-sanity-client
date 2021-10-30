@@ -47,3 +47,15 @@ $button-transition-speed: 0.4s;
     $button-transition-speed
   );
 }
+
+.navMenu {
+  @media only screen and (max-width: 600px) {
+    &__show {
+      max-height: 100%;
+    }
+    &__hidden {
+      max-height: 0;
+      overflow: hidden;
+    }
+  }
+}
