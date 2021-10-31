@@ -26,10 +26,10 @@ const Header = () => {
   const iconSize = '1.3em';
 
   return (
-    <nav className="backDropCard flex items-center justify-between flex-wrap p-6">
+    <nav className="backDropCard flex items-center justify-between flex-wrap p-6 mb-6">
       <div className="flex items-center flex-shrink-0 text-black mr-6">
         <Link href="/" passHref>
-          <div className="cursor-pointer mx-3 p-2 flex items-center">
+          <div className="cursor-pointer ml-3 p-2 flex items-center">
             <Image src="/assets/images/fox.svg" width="30px" height="30px" />
             <span className="font-semibold text-xl tracking-tight">
               Obi Fortune
