@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import {
   RiSunFill,
@@ -27,9 +28,14 @@ const Header = () => {
   return (
     <nav className="backDropCard flex items-center justify-between flex-wrap p-6">
       <div className="flex items-center flex-shrink-0 text-black mr-6">
-        <span className="font-semibold text-xl tracking-tight mx-3 p-2">
-          <Link href="/">Obi Fortune</Link>
-        </span>
+        <Link href="/" passHref>
+          <div className="cursor-pointer mx-3 p-2 flex items-center">
+            <Image src="/assets/images/fox.svg" width="30px" height="30px" />
+            <span className="font-semibold text-xl tracking-tight">
+              Obi Fortune
+            </span>
+          </div>
+        </Link>
       </div>
       <div className="block lg:hidden">
         <button
