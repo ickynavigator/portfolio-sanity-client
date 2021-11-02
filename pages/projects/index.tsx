@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
+import { RiCodeSSlashFill, RiEye2Line } from 'react-icons/ri';
+
 import { AllProjectDetails } from '../../api/queries';
-import {
-  // usePreviewSubscription,
-  urlFor,
-  // PortableText
-} from '../../lib/sanity';
+import { urlFor } from '../../lib/sanity';
 import { getClient } from '../../lib/sanity.server';
 import { Project as ProjectTypes } from '../../schema';
+import CardIcon from '../../components/CardIcon';
 
 interface ProjectResponse extends ProjectTypes {
   _id: string;
@@ -27,56 +27,58 @@ type Props = UnwrapPromise<ReturnType<typeof getStaticProps>>['props'];
 const index: NextPage<Props> = props => {
   const { projects } = props;
 
-  const picSize = {
-    width: 1000,
-    height: 600,
-  };
+  const picSize = { width: 1000, height: 600 };
+
   return (
     <>
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6 justify-items-center">
+        <div className="grid grid-cols-1 gap-6 2xl:grid-cols-2 justify-items-center">
           {projects.map(project => {
+            const buttonDetails = [
+              {
+                tip: 'SourceCode',
+                icon: <RiCodeSSlashFill />,
+                url: project.sourceUrl?.url,
+                visibility: project.sourceUrl?.visibility,
+              },
+              {
+                tip: 'Live Project',
+                icon: <RiEye2Line />,
+                url: project.projectUrl?.url,
+                visibility: project.projectUrl?.visibility,
+              },
+            ];
+
             return (
               <Fragment key={project._id}>
-                {/* <a href={`projects/${project.slug?.current}`}>{project.name}</a> */}
-                <a
-                  href={`projects/${project.slug?.current}`}
-                  className="grid grid-cols-3 border-2 border-dashed hover:border-black w-full"
-                >
-                  <div className="col-span-2 flex justify-center">
-                    <Image
-                      src={
-                        urlFor(project.projectImage?.asset)
-                          .width(picSize.width)
-                          .height(picSize.height)
-                          .url() || 'assets/project/dummyImg.png'
-                      }
-                      width={`${picSize.width}`}
-                      height={`${picSize.height}`}
-                    />
+                <div>
+                  <div className="grid w-full grid-cols-3 p-2 overflow-hidden border-2 border-dashed rounded-xl hover:border-black">
+                    <Link passHref href={`projects/${project.slug?.current}`}>
+                      <>
+                        <div className="flex justify-center col-span-2">
+                          <Image
+                            src={
+                              urlFor(project.projectImage?.asset)
+                                .width(picSize.width)
+                                .height(picSize.height)
+                                .url() || 'assets/project/dummyImg.png'
+                            }
+                            width={`${picSize.width}`}
+                            height={`${picSize.height}`}
+                          />
+                        </div>
+                        <div className="flex flex-col justify-around p-4 leading-normal text-center">
+                          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                            {project.name}
+                          </h5>
+                          <div className="flex flex-row justify-between mx-10">
+                            {buttonDetails.map(button => CardIcon(button))}
+                          </div>
+                        </div>
+                      </>
+                    </Link>
                   </div>
-                  <div className="p-4 flex flex-col justify-between leading-normal">
-                    <h5 className="text-gray-900 font-bold text-2xl tracking-tight mb-2">
-                      {project.name}
-                    </h5>
-                    <button
-                      data-tippy-content="Tooltip Content"
-                      data-tippy-animation="scale"
-                      type="button"
-                      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                    >
-                      Default tooltip
-                    </button>
-                    <button
-                      data-tippy-content="Tooltip Content"
-                      data-tippy-animation="fade"
-                      type="button"
-                      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                    >
-                      Default tooltip
-                    </button>
-                  </div>
-                </a>
+                </div>
               </Fragment>
             );
           })}

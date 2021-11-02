@@ -20,14 +20,22 @@
 }
 @tailwind base;
 @tailwind components;
+@layer components {
+  .navLink {
+    @apply block p-3 mx-2 mt-4 lg:inline-block lg:mt-0;
+  }
+  .tooltip {
+    @apply absolute invisible;
+  }
+
+  .has-tooltip:hover .tooltip {
+    @apply z-50 visible;
+  }
+}
 @tailwind utilities;
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Recursive:wght@600&display=swap');
-@layer components {
-  .navLink {
-    @apply block mt-4 lg:inline-block lg:mt-0 mx-2 p-3 !important;
-  }
-}
+
 * {
   box-sizing: border-box;
   margin: 0;
