@@ -72,7 +72,9 @@ const index: NextPage<Props> = props => {
                             {project.name}
                           </h5>
                           <div className="flex flex-row justify-between mx-10">
-                            {buttonDetails.map(button => CardIcon(button))}
+                            {buttonDetails.map(button =>
+                              CardIcon({ id: project._id, ...button }),
+                            )}
                           </div>
                         </div>
                       </>
