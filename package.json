@@ -20,7 +20,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@sanity/client": "^2.21.7",
+    "@sanity/client": "^2.21.10",
     "axios": "^0.24.0",
     "next": "11.1.2",
     "next-sanity": "^0.4.0",
