@@ -29,7 +29,7 @@
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1",
     "tailwindcss": "^2.2.19",
-    "sass": "^1.43.4"
+    "sass": "^1.43.5"
   },
   "devDependencies": {
     "@types/react": "17.0.36",
