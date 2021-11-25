@@ -30,63 +30,61 @@ const index: NextPage<Props> = props => {
   const picSize = { width: 1000, height: 600 };
 
   return (
-    <>
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 gap-6 2xl:grid-cols-2 justify-items-center">
-          {projects.map(project => {
-            const buttonDetails = [
-              {
-                tip: 'SourceCode',
-                icon: <RiCodeSSlashFill />,
-                url: project.sourceUrl?.url,
-                visibility: project.sourceUrl?.visibility,
-              },
-              {
-                tip: 'Live Project',
-                icon: <RiEye2Line />,
-                url: project.projectUrl?.url,
-                visibility: project.projectUrl?.visibility,
-              },
-            ];
+    <div className="container mx-auto">
+      <div className="grid grid-cols-1 gap-6 2xl:grid-cols-2 justify-items-center">
+        {projects.map(project => {
+          const buttonDetails = [
+            {
+              tip: 'SourceCode',
+              icon: <RiCodeSSlashFill />,
+              url: project.sourceUrl?.url,
+              visibility: project.sourceUrl?.visibility,
+            },
+            {
+              tip: 'Live Project',
+              icon: <RiEye2Line />,
+              url: project.projectUrl?.url,
+              visibility: project.projectUrl?.visibility,
+            },
+          ];
 
-            return (
-              <Fragment key={project._id}>
-                <div>
-                  <div className="grid w-full grid-cols-3 p-2 overflow-hidden border-2 border-dashed rounded-xl hover:border-black">
-                    <Link passHref href={`projects/${project.slug?.current}`}>
-                      <>
-                        <div className="flex justify-center col-span-2">
-                          <Image
-                            src={
-                              urlFor(project.projectImage?.asset)
-                                .width(picSize.width)
-                                .height(picSize.height)
-                                .url() || 'assets/project/dummyImg.png'
-                            }
-                            width={`${picSize.width}`}
-                            height={`${picSize.height}`}
-                          />
+          return (
+            <Fragment key={project._id}>
+              <div>
+                <div className="grid w-full grid-cols-3 p-2 overflow-hidden border-2 border-dashed rounded-xl hover:border-black">
+                  <Link passHref href={`projects/${project.slug?.current}`}>
+                    <>
+                      <div className="flex justify-center col-span-2">
+                        <Image
+                          src={
+                            urlFor(project.projectImage?.asset)
+                              .width(picSize.width)
+                              .height(picSize.height)
+                              .url() || 'assets/project/dummyImg.png'
+                          }
+                          width={`${picSize.width}`}
+                          height={`${picSize.height}`}
+                        />
+                      </div>
+                      <div className="flex flex-col justify-around p-4 leading-normal text-center">
+                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                          {project.name}
+                        </h5>
+                        <div className="flex flex-row justify-between mx-10">
+                          {buttonDetails.map(button =>
+                            CardIcon({ id: project._id, ...button }),
+                          )}
                         </div>
-                        <div className="flex flex-col justify-around p-4 leading-normal text-center">
-                          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                            {project.name}
-                          </h5>
-                          <div className="flex flex-row justify-between mx-10">
-                            {buttonDetails.map(button =>
-                              CardIcon({ id: project._id, ...button }),
-                            )}
-                          </div>
-                        </div>
-                      </>
-                    </Link>
-                  </div>
+                      </div>
+                    </>
+                  </Link>
                 </div>
-              </Fragment>
-            );
-          })}
-        </div>
+              </div>
+            </Fragment>
+          );
+        })}
       </div>
-    </>
+    </div>
   );
 };
 
