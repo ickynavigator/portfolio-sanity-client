@@ -49,28 +49,28 @@ export interface PersonalInfo extends SanityDocument {
    *
    *
    */
-  name?: string;
+  name: string;
 
   /**
    * Slug — `slug`
    *
    *
    */
-  slug?: { _type: 'slug'; current: string };
+  slug: { _type: 'slug'; current: string };
 
   /**
    * Title — `string`
    *
    *
    */
-  title?: string;
+  title: string;
 
   /**
    * Job Status — `string`
    *
    *
    */
-  jobStatus?: 'open' | 'inbetween' | 'close';
+  jobStatus: 'open' | 'inbetween' | 'close';
 
   /**
    * Curriculum Vitae — `file`
@@ -84,7 +84,7 @@ export interface PersonalInfo extends SanityDocument {
    *
    *
    */
-  image?: {
+  image: {
     _type: 'image';
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
@@ -96,7 +96,7 @@ export interface PersonalInfo extends SanityDocument {
    *
    *
    */
-  bio?: Array<SanityKeyed<SanityBlock>>;
+  bio: Array<SanityKeyed<SanityBlock>>;
 
   /**
    * Social Media — `array`
@@ -119,28 +119,28 @@ export interface Project extends SanityDocument {
    *
    *
    */
-  projectHide?: boolean;
+  projectHide: boolean;
 
   /**
    * Project Name — `string`
    *
    *
    */
-  name?: string;
+  name: string;
 
   /**
    * Slug — `slug`
    *
    *
    */
-  slug?: { _type: 'slug'; current: string };
+  slug: { _type: 'slug'; current: string };
 
   /**
    * Body — `blockContent`
    *
    *
    */
-  body?: BlockContent;
+  body: BlockContent;
 
   /**
    * Project URL — `urlWrapper`
@@ -194,7 +194,7 @@ export interface Project extends SanityDocument {
    *
    *
    */
-  profileStatus?: 'completed' | 'ongoing' | 'abandoned';
+  profileStatus: 'completed' | 'ongoing' | 'abandoned';
 }
 
 /**
@@ -210,35 +210,35 @@ export interface Certificate extends SanityDocument {
    *
    *
    */
-  certificateHide?: boolean;
+  certificateHide: boolean;
 
   /**
-   * Project ID — `string`
+   * Certificate ID — `string`
    *
    *
    */
-  idx?: string;
+  idx: string;
 
   /**
-   * Project Name — `string`
+   * Certificate Name — `string`
    *
    *
    */
-  name?: string;
+  name: string;
 
   /**
    * Authority Name — `string`
    *
    *
    */
-  authorityName?: string;
+  authorityName: string;
 
   /**
    * Authority Image — `image`
    *
    *
    */
-  authorityImage?: {
+  authorityImage: {
     _type: 'image';
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
@@ -250,7 +250,7 @@ export interface Certificate extends SanityDocument {
    *
    *
    */
-  startDate?: string;
+  startDate: string;
 
   /**
    * Certificate End Date — `date`
@@ -268,6 +268,43 @@ export interface Certificate extends SanityDocument {
 }
 
 /**
+ * Contact Forms
+ *
+ *
+ */
+export interface ContactForms extends SanityDocument {
+  _type: 'contactForms';
+
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name?: string;
+
+  /**
+   * Email — `string`
+   *
+   *
+   */
+  email?: string;
+
+  /**
+   * Message — `string`
+   *
+   *
+   */
+  message?: string;
+
+  /**
+   * Reviewed — `boolean`
+   *
+   *
+   */
+  reviewed?: boolean;
+}
+
+/**
  * Category
  *
  *
@@ -280,14 +317,14 @@ export interface Category extends SanityDocument {
    *
    *
    */
-  title?: string;
+  title: string;
 
   /**
    * Slug — `slug`
    *
    *
    */
-  slug?: { _type: 'slug'; current: string };
+  slug: { _type: 'slug'; current: string };
 }
 
 /**
@@ -303,14 +340,14 @@ export interface Author extends SanityDocument {
    *
    *
    */
-  name?: string;
+  name: string;
 
   /**
    * Slug — `slug`
    *
    *
    */
-  slug?: { _type: 'slug'; current: string };
+  slug: { _type: 'slug'; current: string };
 
   /**
    * Github URL — `url`
@@ -349,14 +386,14 @@ export type SocialLink = {
    *
    *
    */
-  name?: string;
+  name: string;
 
   /**
    * Social Media Link — `string`
    *
    *
    */
-  link?: string;
+  link: string;
 
   /**
    * Social Media Icon — `fontawesomeIcon`
@@ -373,7 +410,7 @@ export type UrlWrapper = {
    *
    *
    */
-  url?: string;
+  url: string;
 
   /**
    * Hide URL — `boolean`
@@ -407,19 +444,20 @@ export type FontawesomeIcon = {
    *
    *
    */
-  IconPrefix?: string;
+  IconPrefix: string;
 
   /**
    * Fontawesome Icon Name — `string`
    *
    *
    */
-  IconName?: string;
+  IconName: string;
 };
 
 export type Documents =
   | PersonalInfo
   | Project
   | Certificate
+  | ContactForms
   | Category
   | Author;
