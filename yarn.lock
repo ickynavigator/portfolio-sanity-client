@@ -2811,10 +2811,10 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-next-sanity-image@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/next-sanity-image/-/next-sanity-image-3.2.0.tgz#55eb1f3e76037a003f3f6d1b211167e10c3c0e79"
-  integrity sha512-3Mccww8apnhcfkLqeFrtHw6q5nKmZ2GIgLhnuI40E7Hb5IYhTOP7A9Y+BBZUvcXMeSostyN2kFsWGJqkOene5g==
+next-sanity-image@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/next-sanity-image/-/next-sanity-image-3.2.1.tgz#81b44969c7b5c281b7f29fe25b3649828fc5a5ea"
+  integrity sha512-lnynR/h7kD5ueVxQoam8ElKXb+bGWuU1cP+PCwx1NzIiBUHM2wBMnvmpt+emubGocMaIURT/iwPU46VnmB9rsQ==
   dependencies:
     "@sanity/image-url" "^0.140.22"
 
