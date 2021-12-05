@@ -2,13 +2,19 @@ import React, { Fragment } from 'react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { RiCodeSSlashFill, RiEye2Line } from 'react-icons/ri';
+import {
+  FaLaptopCode,
+  FaRegEye,
+  FaCheck,
+  FaHourglassHalf,
+  FaTimes,
+} from 'react-icons/fa';
 
 import { AllProjectDetails } from '../../api/queries';
-import { urlFor } from '../../lib/sanity';
+import { urlFor, PortableText } from '../../lib/sanity';
 import { getClient } from '../../lib/sanity.server';
 import { Project as ProjectTypes } from '../../schema';
-import CardIcon from '../../components/CardIcon';
+import Tooltip from '../../components/Tooltip';
 
 interface ProjectResponse extends ProjectTypes {
   _id: string;
@@ -30,59 +36,129 @@ const index: NextPage<Props> = props => {
   const picSize = { width: 1000, height: 600 };
 
   return (
-    <div className="container mx-auto">
-      <div className="grid grid-cols-1 gap-6 2xl:grid-cols-2 justify-items-center">
-        {projects.map(project => {
-          const buttonDetails = [
-            {
-              tip: 'SourceCode',
-              icon: <RiCodeSSlashFill />,
-              url: project.sourceUrl?.url,
-              visibility: project.sourceUrl?.visibility,
-            },
-            {
-              tip: 'Live Project',
-              icon: <RiEye2Line />,
-              url: project.projectUrl?.url,
-              visibility: project.projectUrl?.visibility,
-            },
-          ];
+    <div className="container mx-auto my-10">
+      <div className="gap-4 row">
+        {projects.map(
+          ({
+            name,
+            _id,
+            sourceUrl,
+            projectUrl,
+            body,
+            profileStatus,
+            projectIssuer,
+            projectImage,
+          }) => {
+            const buttonDetails = [
+              {
+                tip: 'Source Code',
+                icon: <FaLaptopCode />,
+                url: sourceUrl?.url,
+                visibility: sourceUrl?.visibility,
+              },
+              {
+                tip: 'Live Project',
+                icon: <FaRegEye />,
+                url: projectUrl?.url,
+                visibility: projectUrl?.visibility,
+              },
+            ];
+            const profileStatusIcon = (() => {
+              switch (profileStatus) {
+                case 'completed':
+                  return {
+                    icon: <FaCheck />,
+                    color: 'bg-green-200 border-green-400',
+                  };
+                case 'ongoing':
+                  return {
+                    icon: <FaHourglassHalf />,
+                    color: 'bg-yellow-200 border-yellow-400',
+                  };
+                case 'abandoned':
+                  return {
+                    icon: <FaTimes />,
+                    color: 'bg-red-200 border-red-400',
+                  };
+                default:
+                  return {
+                    icon: <FaCheck />,
+                    color: 'bg-green-200 border-2 border-green-400',
+                  };
+              }
+            })();
+            const pImage = urlFor(projectImage).url();
 
-          return (
-            <Fragment key={project._id}>
-              <div>
-                <div className="grid w-full grid-cols-3 p-2 overflow-hidden border-2 border-dashed rounded-xl hover:border-black">
-                  <Link passHref href={`projects/${project.slug?.current}`}>
-                    <>
-                      <div className="flex justify-center col-span-2">
-                        <Image
-                          src={
-                            urlFor(project.projectImage?.asset)
-                              .width(picSize.width)
-                              .height(picSize.height)
-                              .url() || 'assets/project/dummyImg.png'
-                          }
-                          width={`${picSize.width}`}
-                          height={`${picSize.height}`}
-                        />
+            return (
+              <Fragment key={_id}>
+                <div className="my-2 border-2 border-gray-500 rounded">
+                  <div className="p-2 text-2xl font-medium text-center bg-gray-100">
+                    {name}
+                  </div>
+
+                  <div className="px-3 py-3 border-t border-b border-black">
+                    <div className="grid grid-cols-2 pb-3 md:grid-cols-9">
+                      <div className="col-span-6">
+                        {projectImage && (
+                          <Image
+                            src={pImage !== null ? pImage : 'hi'}
+                            alt={name}
+                            {...picSize}
+                          />
+                        )}
                       </div>
-                      <div className="flex flex-col justify-around p-4 leading-normal text-center">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                          {project.name}
-                        </h5>
-                        <div className="flex flex-row justify-between mx-10">
-                          {buttonDetails.map(button =>
-                            CardIcon({ id: project._id, ...button }),
-                          )}
+                      <div className="col-span-3 pl-5">
+                        <PortableText blocks={body} />
+                      </div>
+                    </div>
+
+                    {projectIssuer && (
+                      <div className="flex items-center justify-center mb-4 bg-gray-300 border-2 border-black rounded">
+                        Project By:
+                        {projectIssuer.link ? (
+                          <Link href={projectIssuer.link} passHref>
+                            <span className="ml-1 underline cursor-pointer">
+                              {projectIssuer.name}
+                            </span>
+                          </Link>
+                        ) : (
+                          <span className="ml-1">{projectIssuer.name}</span>
+                        )}
+                      </div>
+                    )}
+                    <div
+                      className={`${profileStatusIcon.color} flex justify-center items-center rounded border-2`}
+                    >
+                      {profileStatusIcon.icon}
+                      <span className="ml-4">{profileStatus}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-row justify-between p-2 bg-gray-100">
+                    {buttonDetails.map(({ tip, icon, url, visibility }) => {
+                      return !visibility && url ? (
+                        <div key={url}>
+                          <Tooltip tip={tip} tipClass="text-gray-600">
+                            <Link href={url} passHref>
+                              <button
+                                type="button"
+                                className="px-3 py-1 text-2xl transition bg-gray-400 rounded hover:bg-gray-300"
+                              >
+                                {icon}
+                              </button>
+                            </Link>
+                          </Tooltip>
                         </div>
-                      </div>
-                    </>
-                  </Link>
+                      ) : (
+                        <div>Link Unavailable</div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            </Fragment>
-          );
-        })}
+              </Fragment>
+            );
+          },
+        )}
       </div>
     </div>
   );
