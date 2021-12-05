@@ -11,6 +11,10 @@ export const ProfileName = groq`
     id
   }[0]
 `;
+export const AllSocialLinks = groq`
+  *[_type == "personalInfo" && _id == ${profileID}]{
+    socialLinks
+  }[0]`;
 export const AllProjectDetails = groq`
   *[_type == "project" && projectHide == false]
 `;
