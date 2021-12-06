@@ -4,8 +4,9 @@ import NavButton from './NavButton';
 const navMenuLinks = [
   { title: 'Projects', href: '/projects' },
   { title: 'About', href: '/about' },
+  { title: 'Home', href: '/' },
+  { title: 'Contact', href: '/contact' },
   { title: 'Certificates', href: '/certificates' },
-  { title: 'Contact Me', href: '/contact' },
 ];
 
 const Header = () => {
