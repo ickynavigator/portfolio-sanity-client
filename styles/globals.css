@@ -1,30 +1,15 @@
+/* Imports */
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root {
   --font-family: 'Fira Sans', sans-serif;
-
-  --primary-light: rgba(96, 217, 255, 1);
-  --primary: rgba(29, 116, 255, 1);
-  --primary-dark: #5b0eeb;
-
-  --white: #ffffff;
-  --greyLight-1: white;
-  /* --greyLight-1: #e4ebf5; */
-  --greyLight-2: #c8d0e7;
-  --greyLight-3: #bec8e4;
-  --greyDark: #9baacf;
-
-  --button-text-color: white;
-  --button-color1: var(--primary-light);
-  --button-color2: var(--primary);
+  --bg-color: #ffffff;
 }
-.dark-mode {
-  /* add dark mode classes */
-}
+
 @tailwind base;
 @tailwind components;
 @layer components {
-  .navLink {
-    @apply block p-3 mx-2 mt-4 lg:inline-block lg:mt-0;
-  }
   .tooltip {
     @apply absolute invisible;
   }
@@ -34,38 +19,36 @@
   }
 
   .btn {
-    /* padding: 0.375rem 0.75rem; */
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
       border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     @apply inline-block px-3 py-1 text-base font-normal text-center text-blue-900 no-underline align-middle bg-transparent border border-transparent border-solid cursor-pointer select-none rounded-3xl;
   }
+
   .navBtn {
     @apply text-gray-500 border-gray-500 shadow-none;
   }
+
   .navBtn.navBtn-active,
   .navBtn:hover {
     @apply text-white bg-gray-500 border-gray-500;
   }
 }
 @tailwind utilities;
-/* fonts */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-body {
-  width: 100%;
-  height: 99%;
-}
-#__next {
-  height: 100%;
 }
 html {
   height: 100%;
   width: 100%;
-  background: var(--greyLight-1);
+  background: var(--bg-color);
   font-family: var(--font-family);
+}
+body {
+  height: 99%;
+  width: 100%;
+}
+#__next {
+  height: 100%;
 }
