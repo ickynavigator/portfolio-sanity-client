@@ -7,8 +7,23 @@ const Index: NextPage = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
+  const [formSuc, setFormSuc] = useState(false);
+  const [formErr, setFormErr] = useState(false);
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    setFormSuc(false);
+    setFormErr(false);
+
     event.preventDefault();
+    event.stopPropagation();
+    if (event.currentTarget.checkValidity() === true) {
+      //   if (process.env?.NODE_ENV === "development") console.error(err);
+      //   setFormErr(true);
+      setName('');
+      setEmail('');
+      setMessage('');
+      event.currentTarget.reset();
+    }
   };
   return (
     <>
@@ -16,6 +31,16 @@ const Index: NextPage = () => {
       <div className="my-3">
         <div className="flex flex-col items-center">
           <h1 className="text-3xl font-semibold">Contact Me</h1>
+          {formSuc && (
+            <div className="flex items-center justify-center w-full py-1 mt-3 text-green-800 bg-green-200 border-2 border-green-400 rounded">
+              Message Sent Successfully
+            </div>
+          )}
+          {formErr && (
+            <div className="flex items-center justify-center w-full py-1 mt-3 text-red-800 bg-red-200 border-2 border-red-400 rounded">
+              There was an issue please try again
+            </div>
+          )}
           <form
             method="POST"
             onSubmit={handleSubmit}
