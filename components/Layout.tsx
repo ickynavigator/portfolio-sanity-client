@@ -10,7 +10,7 @@ const Layout: NextPage = props => {
   return (
     <>
       <MetaHead />
-      <div className="flex items-center justify-center w-full h-full px-5 lg:px-60">
+      <div className="flex w-full h-full px-5 lg:px-60">
         <div className="container">
           <div className="md:px-32">
             <Header />
