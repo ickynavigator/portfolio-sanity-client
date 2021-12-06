@@ -36,5 +36,3 @@ export const projectSlugs = groq`
     slug
   }
 `;
-
-export default { ProfileDetails };
