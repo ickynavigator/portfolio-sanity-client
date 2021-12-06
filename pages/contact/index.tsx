@@ -19,7 +19,7 @@ const Index: NextPage = () => {
           <form
             method="POST"
             onSubmit={handleSubmit}
-            className="flex flex-col items-center w-4/5 mt-3"
+            className="flex flex-col items-center w-full mt-3 md:w-4/5"
           >
             <div className="inputGroup">
               <label htmlFor="Name">Name</label>
