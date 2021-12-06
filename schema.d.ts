@@ -80,6 +80,13 @@ export interface PersonalInfo extends SanityDocument {
   CV?: { _type: 'file'; asset: SanityReference<any> };
 
   /**
+   * CV Last Updated at — `date`
+   *
+   *
+   */
+  CVLastUpdatedAt?: string;
+
+  /**
    * Image — `image`
    *
    *
