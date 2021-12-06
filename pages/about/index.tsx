@@ -18,7 +18,7 @@ type Props = UnwrapPromise<ReturnType<typeof getStaticProps>>['props'];
 
 const index: NextPage<Props> = props => {
   const { details } = props;
-  const { bio, CV } = details;
+  const { bio, CV, CVLastUpdatedAt } = details;
 
   return (
     <div className="py-3">
@@ -35,8 +35,11 @@ const index: NextPage<Props> = props => {
             </button>
           </Link>
         </div>
-        {/* TODO ADD A TIMESTAMP */}
-        <span className="text-gray-500">Last Modified on</span>
+        {CVLastUpdatedAt && (
+          <span className="text-gray-500">
+            Last Modified on {new Date(CVLastUpdatedAt).toDateString()}
+          </span>
+        )}
       </div>
     </div>
   );

@@ -14,7 +14,8 @@ export const ProfileName = groq`
 export const AboutMeDetails = groq`
   *[_type == "personalInfo" && _id == ${profileID}]{
     bio,
-    CV
+    CV,
+    CVLastUpdatedAt
   }[0]
 `;
 export const AllSocialLinks = groq`
