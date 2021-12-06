@@ -32,6 +32,17 @@
   .navBtn:hover {
     @apply text-white bg-gray-500 border-gray-500;
   }
+
+  .inputBox {
+    @apply w-full p-2 border border-gray-500 border-solid rounded outline-none focus:border-blue-600 focus:shadow-lg;
+  }
+
+  .inputGroup {
+    @apply flex flex-col items-center w-3/5 my-1;
+  }
+  .inputGroup > label {
+    @apply mb-2;
+  }
 }
 @tailwind utilities;
 
