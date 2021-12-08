@@ -1,6 +1,7 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import MetaHead from '../../components/MetaHead';
+import { postContactForm } from '../../lib/sanity';
 
 const Index: NextPage = () => {
   const [name, setName] = useState('');
@@ -17,14 +18,32 @@ const Index: NextPage = () => {
     event.preventDefault();
     event.stopPropagation();
     if (event.currentTarget.checkValidity() === true) {
-      //   if (process.env?.NODE_ENV === "development") console.error(err);
-      //   setFormErr(true);
-      setName('');
-      setEmail('');
-      setMessage('');
-      event.currentTarget.reset();
+      postContactForm({ name, email, message }).then(res => {
+        if (res.status === 200) {
+          event.currentTarget.reset();
+          setFormSuc(true);
+        } else {
+          setFormErr(true);
+        }
+      });
     }
   };
+
+  useEffect(() => {
+    if (formSuc) {
+      setTimeout(() => {
+        setFormSuc(false);
+      }, 5000);
+    }
+  });
+
+  useEffect(() => {
+    if (formErr) {
+      setTimeout(() => {
+        setFormErr(false);
+      }, 5000);
+    }
+  });
   return (
     <>
       <MetaHead title="Contact Obi Fortune" />
