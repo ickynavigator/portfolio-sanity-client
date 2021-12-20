@@ -1,12 +1,12 @@
-import React from 'react';
 import type { NextPage } from 'next';
 import Link from 'next/link';
+import React from 'react';
 import { FaFileDownload } from 'react-icons/fa';
-
-import { PortableText, getUrlFromId } from '../../lib/sanity';
+import { AboutMeDetails } from '../../api/queries';
+import MetaHead from '../../components/MetaHead';
+import { getUrlFromId, PortableText } from '../../lib/sanity';
 import { getClient } from '../../lib/sanity.server';
 import { PersonalInfo } from '../../schema';
-import { AboutMeDetails } from '../../api/queries';
 
 export const getStaticProps = async () => {
   const details: PersonalInfo = await getClient().fetch(AboutMeDetails);
@@ -21,27 +21,31 @@ const index: NextPage<Props> = props => {
   const { bio, CV, CVLastUpdatedAt } = details;
 
   return (
-    <div className="py-3">
-      <div className="text-center">
-        <PortableText blocks={bio} />
+    <>
+      <MetaHead title="About Me" />
 
-        <div>
-          <Link href={getUrlFromId(CV?.asset._ref)} passHref>
-            <button
-              type="button"
-              className="inline-flex items-center px-3 py-2 my-3 text-white bg-gray-500 rounded hover:bg-gray-400"
-            >
-              <FaFileDownload className="mr-1" /> Download my CV
-            </button>
-          </Link>
+      <div className="py-3">
+        <div className="text-center">
+          <PortableText blocks={bio} />
+
+          <div>
+            <Link href={getUrlFromId(CV?.asset._ref)} passHref>
+              <button
+                type="button"
+                className="inline-flex items-center px-3 py-2 my-3 text-white bg-gray-500 rounded hover:bg-gray-400"
+              >
+                <FaFileDownload className="mr-1" /> Download my CV
+              </button>
+            </Link>
+          </div>
+          {CVLastUpdatedAt && (
+            <span className="text-gray-500">
+              Last Modified on {new Date(CVLastUpdatedAt).toDateString()}
+            </span>
+          )}
         </div>
-        {CVLastUpdatedAt && (
-          <span className="text-gray-500">
-            Last Modified on {new Date(CVLastUpdatedAt).toDateString()}
-          </span>
-        )}
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,12 +1,11 @@
-import React from 'react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
+import React from 'react';
 import { FaCheck, FaHourglassHalf, FaTimes } from 'react-icons/fa';
-
-import { getClient } from '../lib/sanity.server';
-import { urlFor } from '../lib/sanity';
 import { ProfileDetails } from '../api/queries';
 import MetaHead from '../components/MetaHead';
+import { urlFor } from '../lib/sanity';
+import { getClient } from '../lib/sanity.server';
 import { PersonalInfo } from '../schema.d';
 
 export const getStaticProps = async () => {
@@ -55,7 +54,7 @@ const Home: NextPage<Props> = props => {
 
   return (
     <>
-      <MetaHead title="Homepage" />
+      <MetaHead title="Home" />
       <div className="flex flex-col justify-center py-3">
         <div className="flex justify-center my-2">
           <Image
