@@ -1,5 +1,5 @@
-import React, { FormEvent, useEffect, useState } from 'react';
 import type { NextPage } from 'next';
+import React, { FormEvent, useEffect, useState } from 'react';
 import MetaHead from '../../components/MetaHead';
 import { postContactForm } from '../../lib/sanity';
 
@@ -20,7 +20,9 @@ const Index: NextPage = () => {
     if (event.currentTarget.checkValidity() === true) {
       postContactForm({ name, email, message }).then(res => {
         if (res.status === 200) {
-          event.currentTarget.reset();
+          setName('');
+          setEmail('');
+          setMessage('');
           setFormSuc(true);
         } else {
           setFormErr(true);
