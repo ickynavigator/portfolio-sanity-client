@@ -121,7 +121,7 @@ const index: NextPage<Props> = props => {
                             <Link href={projectIssuer.link} passHref>
                               <a
                                 href="replace"
-                                className="ml-1 underline cursor-pointer"
+                                className="ml-1 bg-gradient-to-r from-gray-400 to-gray-400 bg-growing-underline"
                               >
                                 {projectIssuer.name}
                               </a>
