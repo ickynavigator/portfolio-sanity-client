@@ -145,6 +145,7 @@ const index: NextPage<Props> = props => {
                           <Link href={url} passHref key={url}>
                             <a
                               href="replace"
+                              aria-label={`${name} ${tip}`}
                               className="px-3 py-1 mx-2 text-2xl transition bg-gray-400 rounded hover:bg-gray-300"
                             >
                               <Tooltip

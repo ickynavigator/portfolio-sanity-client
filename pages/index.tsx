@@ -60,6 +60,7 @@ const Home: NextPage<Props> = props => {
           <Image
             className="flex overflow-hidden rounded-full"
             src={myImage !== null ? myImage : fallBackImage}
+            alt={name}
             {...picSize}
           />
         </div>
