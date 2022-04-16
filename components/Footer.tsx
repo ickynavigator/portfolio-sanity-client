@@ -1,13 +1,12 @@
-import React from 'react';
 import Link from 'next/link';
+import React from 'react';
 import {
-  FaGithub,
-  FaTwitter,
   FaCode,
-  FaLinkedinIn,
   FaFacebook,
+  FaGithub,
+  FaLinkedinIn,
+  FaTwitter,
 } from 'react-icons/fa';
-
 import Tooltip from './Tooltip';
 
 // TODO
@@ -51,11 +50,14 @@ const Footer: React.FC = () => {
       <div className="flex justify-center m-3">
         {socialLinks.map(({ name, link, icon }) => (
           <Link key={name} href={link} passHref>
-            <span className="p-1 mx-2 text-3xl text-gray-500 rounded cursor-pointer hover:bg-gray-500 hover:text-white">
+            <a
+              href="replace"
+              className="p-1 mx-2 text-3xl text-gray-500 rounded cursor-pointer hover:bg-gray-500 hover:text-white"
+            >
               <Tooltip tip={name} tipClass="text-sm text-gray-500">
                 {icon}
               </Tooltip>
-            </span>
+            </a>
           </Link>
         ))}
       </div>

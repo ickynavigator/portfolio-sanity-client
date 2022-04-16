@@ -119,9 +119,12 @@ const index: NextPage<Props> = props => {
                           Project By:
                           {projectIssuer.link ? (
                             <Link href={projectIssuer.link} passHref>
-                              <span className="ml-1 underline cursor-pointer">
+                              <a
+                                href="replace"
+                                className="ml-1 underline cursor-pointer"
+                              >
                                 {projectIssuer.name}
-                              </span>
+                              </a>
                             </Link>
                           ) : (
                             <span className="ml-1">{projectIssuer.name}</span>
@@ -139,18 +142,19 @@ const index: NextPage<Props> = props => {
                     <div className="flex flex-row justify-between p-2 bg-gray-100">
                       {buttonDetails.map(({ tip, icon, url, visibility }) => {
                         return !visibility && url ? (
-                          <div key={url}>
-                            <Tooltip tip={tip} tipClass="text-gray-600">
-                              <Link href={url} passHref>
-                                <button
-                                  type="button"
-                                  className="px-3 py-1 text-2xl transition bg-gray-400 rounded hover:bg-gray-300"
-                                >
-                                  {icon}
-                                </button>
-                              </Link>
-                            </Tooltip>
-                          </div>
+                          <Link href={url} passHref key={url}>
+                            <a
+                              href="replace"
+                              className="px-3 py-1 mx-2 text-2xl transition bg-gray-400 rounded hover:bg-gray-300"
+                            >
+                              <Tooltip
+                                tip={tip}
+                                tipClass="text-gray-600 text-base"
+                              >
+                                {icon}
+                              </Tooltip>
+                            </a>
+                          </Link>
                         ) : (
                           <div>Link Unavailable</div>
                         );

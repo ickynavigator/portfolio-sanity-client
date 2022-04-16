@@ -90,9 +90,12 @@ const index: NextPage<Props> = props => {
                           <p className="text-gray-500">
                             {certificateLink && (
                               <Link href={certificateLink} passHref>
-                                <span className="underline cursor-pointer">
+                                <a
+                                  href="replace"
+                                  className="underline cursor-pointer"
+                                >
                                   View Certificate
-                                </span>
+                                </a>
                               </Link>
                             )}
                           </p>
