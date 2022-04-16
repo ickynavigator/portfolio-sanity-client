@@ -92,7 +92,7 @@ const index: NextPage<Props> = props => {
                               <Link href={certificateLink} passHref>
                                 <a
                                   href="replace"
-                                  className="underline cursor-pointer"
+                                  className="bg-gradient-to-r from-gray-300 to-gray-300 bg-growing-underline"
                                 >
                                   View Certificate
                                 </a>
