@@ -17,7 +17,7 @@ export const monthNames = [
 
 export const sourceCodeLink: SocialLink = {
   _type: 'socialLink',
-  link: 'https://github.com/',
+  link: 'https://github.com/ickynavigator/portfolio-sanity-client',
   name: 'Code',
 };
 
