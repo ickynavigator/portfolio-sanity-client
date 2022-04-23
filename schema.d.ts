@@ -386,47 +386,6 @@ export type BlockContent = Array<
     }>
 >;
 
-export type SocialLink = {
-  _type: 'socialLink';
-  /**
-   * Social Media Name — `string`
-   *
-   *
-   */
-  name: string;
-
-  /**
-   * Social Media Link — `string`
-   *
-   *
-   */
-  link: string;
-
-  /**
-   * Social Media Icon — `fontawesomeIcon`
-   *
-   *
-   */
-  icon?: FontawesomeIcon;
-};
-
-export type UrlWrapper = {
-  _type: 'urlWrapper';
-  /**
-   * URL — `url`
-   *
-   *
-   */
-  url: string;
-
-  /**
-   * Hide URL — `boolean`
-   *
-   *
-   */
-  visibility?: boolean;
-};
-
 export type IssuerWrapper = {
   _type: 'issuerWrapper';
   /**
@@ -444,21 +403,45 @@ export type IssuerWrapper = {
   link?: string;
 };
 
-export type FontawesomeIcon = {
-  _type: 'fontawesomeIcon';
+export type SocialLink = {
+  _type: 'socialLink';
   /**
-   * Fontawesome Icon Prefix — `string`
+   * Social Media Name — `string`
    *
    *
    */
-  IconPrefix: string;
+  name: string;
 
   /**
-   * Fontawesome Icon Name — `string`
+   * Social Media Link — `string`
    *
    *
    */
-  IconName: string;
+  link: string;
+
+  /**
+   * react-icons icon name — `string`
+   *
+   *
+   */
+  iconName: string;
+};
+
+export type UrlWrapper = {
+  _type: 'urlWrapper';
+  /**
+   * URL — `url`
+   *
+   *
+   */
+  url: string;
+
+  /**
+   * Hide URL — `boolean`
+   *
+   *
+   */
+  visibility?: boolean;
 };
 
 export type Documents =
