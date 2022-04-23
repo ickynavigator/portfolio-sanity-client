@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FaCode,
   FaFacebook,
@@ -9,8 +9,8 @@ import {
   FaTwitter,
 } from 'react-icons/fa';
 import { AllSocialLinks } from '../api/queries';
+import { defaultSocialLinks, insert, sourceCodeLink } from '../helpers';
 import { useSanityFetch } from '../hooks';
-import { SocialLink } from '../schema';
 import Tooltip from './Tooltip';
 
 const SocialLinksIcons = (name: string) => {
@@ -30,47 +30,24 @@ const SocialLinksIcons = (name: string) => {
   }
 };
 
-const defaultSocialLink: SocialLink[] = [
-  {
-    _type: 'socialLink',
-    link: 'https://github.com/ickynavigator',
-    name: 'Github',
-  },
-  {
-    _type: 'socialLink',
-    link: 'https://twitter.com/obifortunebleh',
-    name: 'Twitter',
-  },
-  {
-    _type: 'socialLink',
-    link: 'https://github.com/',
-    name: 'Code',
-  },
-  {
-    _type: 'socialLink',
-    link: 'https://www.linkedin.com/in/obifortune/ ',
-    name: 'LinkedIn',
-  },
-  {
-    _type: 'socialLink',
-    link: 'https://www.facebook.com/obi.fortune2',
-    name: 'Facebook',
-  },
-];
-
 const Footer: React.FC = () => {
-  const [socialLinks, loading] = useSanityFetch<SocialLink[]>(
+  const [socialLinks, loading] = useSanityFetch(
     AllSocialLinks,
-    defaultSocialLink,
+    defaultSocialLinks,
   );
+  const [updatedSocialLinks, setUpdatedSocialLinks] = useState(socialLinks);
+  useEffect(() => {
+    setUpdatedSocialLinks(
+      insert(socialLinks, Math.floor(socialLinks.length / 2), sourceCodeLink),
+    );
+  }, [socialLinks]);
 
   return (
     <footer>
       <div className="flex justify-center m-3">
         {' '}
         {!loading &&
-          socialLinks &&
-          socialLinks.map(({ name, link }) => (
+          updatedSocialLinks.map(({ name, link }) => (
             <Link key={name} href={link} passHref>
               <a
                 href="replace"
