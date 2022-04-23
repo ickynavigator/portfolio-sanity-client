@@ -9,9 +9,9 @@ const Layout: NextPage = props => {
   return (
     <>
       <MetaHead />
-      <div className="flex w-full min-h-full px-5 lg:px-60 items-center">
+      <div className="flex w-full min-h-full px-5 items-center justify-center">
         <div className="container">
-          <div className="md:px-32">
+          <div className="md:px-32 xl:px-80">
             <Header />
             <hr className="border-t border-gray-500" />
             {children}
