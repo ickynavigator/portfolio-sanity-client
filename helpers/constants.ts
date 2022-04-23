@@ -18,7 +18,8 @@ export const monthNames = [
 export const sourceCodeLink: SocialLink = {
   _type: 'socialLink',
   link: 'https://github.com/ickynavigator/portfolio-sanity-client',
-  name: 'Code',
+  name: 'Site Source Code',
+  iconName: 'Code',
 };
 
 export const defaultSocialLinks: SocialLink[] = [
@@ -26,20 +27,24 @@ export const defaultSocialLinks: SocialLink[] = [
     _type: 'socialLink',
     link: 'https://github.com/ickynavigator',
     name: 'Github',
+    iconName: 'Github',
   },
   {
     _type: 'socialLink',
     link: 'https://twitter.com/obifortunebleh',
     name: 'Twitter',
+    iconName: 'Twitter',
   },
   {
     _type: 'socialLink',
     link: 'https://www.linkedin.com/in/obifortune/ ',
     name: 'LinkedIn',
+    iconName: 'LinkedIn',
   },
   {
     _type: 'socialLink',
     link: 'https://www.facebook.com/obi.fortune2',
     name: 'Facebook',
+    iconName: 'Facebook',
   },
 ];
