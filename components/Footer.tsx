@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
       <div className="flex justify-center m-3">
         {' '}
         {!loading &&
-          updatedSocialLinks.map(({ name, link }) => (
+          updatedSocialLinks.map(({ name, link, iconName }) => (
             <Link key={name} href={link} passHref>
               <a
                 href="replace"
@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
                 className="p-1 mx-2 text-3xl text-gray-500 rounded cursor-pointer hover:bg-gray-500 hover:text-white"
               >
                 <Tooltip tip={name} tipClass="text-sm text-gray-500">
-                  {SocialLinksIcons(name)}
+                  {SocialLinksIcons(iconName)}
                 </Tooltip>
               </a>
             </Link>
