@@ -1,6 +1,6 @@
 import { groq } from 'next-sanity';
 
-const profileID = `"${process.env.PROFILE_ID}"`;
+const profileID = `"${process.env.NEXT_PUBLIC_PROFILE_ID}"`;
 
 export const ProfileDetails = groq`
   *[_type == "personalInfo" && _id == ${profileID}][0]
