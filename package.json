@@ -32,7 +32,7 @@
     "tailwindcss": "^3.0.15"
   },
   "devDependencies": {
-    "@types/node": "^17.0.24",
+    "@types/node": "^17.0.26",
     "@types/react": "17.0.38",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
