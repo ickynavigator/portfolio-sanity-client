@@ -90,7 +90,7 @@ const index: NextPage<Props> = props => {
                     };
                 }
               })();
-              const pImage = urlFor(projectImage).url();
+              const pImage = projectImage && urlFor(projectImage).url();
 
               return (
                 <Fragment key={_id}>
@@ -104,7 +104,7 @@ const index: NextPage<Props> = props => {
                         <div className="col-span-6">
                           {projectImage && (
                             <Image
-                              src={pImage !== null ? pImage : 'hi'}
+                              src={pImage || 'hi'}
                               alt={name}
                               {...picSize}
                             />
