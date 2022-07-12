@@ -15,8 +15,7 @@ export const previewClient = createClient({
 
 // Helper function for easily switching between normal client and preview client
 export const getClient = () => {
-  // const usePreview = process.env.NODE_ENV !== 'production';
-  const usePreview = true;
+  const usePreview = process.env.NODE_ENV !== 'production';
 
   return usePreview ? previewClient : NextSanityClient;
 };
