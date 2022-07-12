@@ -1,10 +1,10 @@
+import { PortableText } from '@portabletext/react';
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import React from 'react';
 import { FaFileDownload } from 'react-icons/fa';
 import { AboutMeDetails } from '../../api/queries';
 import MetaHead from '../../components/MetaHead';
-import { getUrlFromId, PortableText } from '../../lib/sanity';
+import { getUrlFromId } from '../../lib/sanity';
 import { getClient } from '../../lib/sanity.server';
 import { PersonalInfo } from '../../schema';
 
@@ -26,7 +26,7 @@ const index: NextPage<Props> = props => {
 
       <div className="py-3">
         <div className="text-center">
-          <PortableText blocks={bio} />
+          <PortableText value={bio} />
 
           <div>
             <Link href={getUrlFromId(CV?.asset._ref)} passHref>

@@ -1,7 +1,8 @@
+import { PortableText } from '@portabletext/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import {
   FaCheck,
   FaHourglassHalf,
@@ -12,7 +13,7 @@ import {
 import { AllProjectDetails } from '../../api/queries';
 import MetaHead from '../../components/MetaHead';
 import Tooltip from '../../components/Tooltip';
-import { PortableText, urlFor } from '../../lib/sanity';
+import { urlFor } from '../../lib/sanity';
 import { getClient } from '../../lib/sanity.server';
 import { Project as ProjectTypes } from '../../schema';
 
@@ -110,7 +111,7 @@ const index: NextPage<Props> = props => {
                           )}
                         </div>
                         <div className="col-span-3 pl-5">
-                          <PortableText blocks={body} />
+                          <PortableText value={body} />
                         </div>
                       </div>
 
