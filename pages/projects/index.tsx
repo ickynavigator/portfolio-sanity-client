@@ -142,23 +142,29 @@ const index: NextPage<Props> = props => {
 
                     <div className="flex flex-row justify-between p-2 bg-gray-100">
                       {buttonDetails.map(({ tip, icon, url, visibility }) => {
-                        return !visibility && url ? (
-                          <Link href={url} passHref key={url}>
-                            <a
-                              href="replace"
-                              aria-label={`${name} ${tip}`}
-                              className="px-3 py-1 mx-2 text-2xl transition bg-gray-400 rounded hover:bg-gray-300"
-                            >
-                              <Tooltip
-                                tip={tip}
-                                tipClass="text-gray-600 text-base"
-                              >
-                                {icon}
-                              </Tooltip>
-                            </a>
-                          </Link>
-                        ) : (
-                          <div>Link Unavailable</div>
+                        const key = `${_id}-${tip}`;
+
+                        return (
+                          <Fragment key={key}>
+                            {!visibility && url ? (
+                              <Link href={url} passHref key={url}>
+                                <a
+                                  href="replace"
+                                  aria-label={`${name} ${tip}`}
+                                  className="px-3 py-1 mx-2 text-2xl transition bg-gray-400 rounded hover:bg-gray-300"
+                                >
+                                  <Tooltip
+                                    tip={tip}
+                                    tipClass="text-gray-600 text-base"
+                                  >
+                                    {icon}
+                                  </Tooltip>
+                                </a>
+                              </Link>
+                            ) : (
+                              <div>Link Unavailable</div>
+                            )}
+                          </Fragment>
                         );
                       })}
                     </div>
