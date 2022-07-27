@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
-import React, { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import MetaHead from '../../components/MetaHead';
-import { postContactForm } from '../../lib/sanity';
+import { postToSanity } from '../../lib/sanity';
 
 const Index: NextPage = () => {
   const [name, setName] = useState('');
@@ -18,16 +18,18 @@ const Index: NextPage = () => {
     event.preventDefault();
     event.stopPropagation();
     if (event.currentTarget.checkValidity() === true) {
-      postContactForm({ name, email, message }).then(res => {
-        if (res.status === 200) {
-          setName('');
-          setEmail('');
-          setMessage('');
-          setFormSuc(true);
-        } else {
-          setFormErr(true);
-        }
-      });
+      postToSanity({ _type: 'contactForms', name, email, message }).then(
+        res => {
+          if (res.status === 200) {
+            setName('');
+            setEmail('');
+            setMessage('');
+            setFormSuc(true);
+          } else {
+            setFormErr(true);
+          }
+        },
+      );
     }
   };
 

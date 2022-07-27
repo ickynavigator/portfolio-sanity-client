@@ -2,7 +2,6 @@ import imageUrlBuilder from '@sanity/image-url';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import axios from 'axios';
 import { createCurrentUserHook } from 'next-sanity';
-import { ContactForms } from '../schema';
 import { config } from './config';
 
 const { projectId, dataset } = config;
@@ -25,19 +24,14 @@ export const getUrlFromId = (ref: string) => {
 };
 
 export const postToSanity = async (data: any) => {
-  const dryrun = process.env.NODE_ENV !== 'production' ? '?dryRun=true' : '';
+  const dryrun = process.env.NODE_ENV !== 'production';
 
   return axios({
     method: 'post',
-    url: `https://${config.projectId}.api.sanity.io/v2021-06-07/data/mutate/${config.dataset}${dryrun}`,
+    url: `api/sanity/post?dryrun=${dryrun}`,
     headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_SANITY_TOKEN}`,
       'Content-type': 'application/json',
     },
-    data: JSON.stringify({ mutations: [data] }),
+    data,
   });
-};
-
-export const postContactForm = (data: Partial<ContactForms>) => {
-  return postToSanity({ createOrReplace: { _type: 'contactForms', ...data } });
 };
