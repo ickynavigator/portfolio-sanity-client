@@ -15,10 +15,11 @@ import MetaHead from '../../components/MetaHead';
 import Tooltip from '../../components/Tooltip';
 import { urlFor } from '../../lib/sanity';
 import { getClient } from '../../lib/sanity.server';
-import { Project as ProjectTypes } from '../../schema';
+import { Category, Project as ProjectTypes } from '../../schema';
 
 interface ProjectResponse extends ProjectTypes {
   _id: string;
+  tags: Category[];
 }
 
 export const getStaticProps = async () => {
@@ -51,6 +52,7 @@ const index: NextPage<Props> = props => {
               profileStatus,
               projectIssuer,
               projectImage,
+              tags,
             }) => {
               const buttonDetails = [
                 {
@@ -112,6 +114,16 @@ const index: NextPage<Props> = props => {
                         </div>
                         <div className="col-span-3 pl-5">
                           <PortableText value={body} />
+
+                          <div className="flex flex-row justify-center flex-wrap">
+                            {tags?.map(tag => {
+                              return (
+                                <div className="chip" key={tag.slug.current}>
+                                  <span>{tag.title}</span>
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
                       </div>
 

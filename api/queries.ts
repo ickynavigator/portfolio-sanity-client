@@ -26,7 +26,10 @@ export const AllCertificates = groq`
   *[_type == "certificate"]
 `;
 export const AllProjectDetails = groq`
-  *[_type == "project" && projectHide == false]
+  *[_type == "project" && projectHide == false]{
+    ...,
+    "tags": categories[]->
+  }
 `;
 export const projectDetails = groq`
   *[_type == "project" && projectHide == false && slug.current == $slug][0]
