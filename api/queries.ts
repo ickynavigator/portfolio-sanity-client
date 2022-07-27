@@ -37,3 +37,6 @@ export const projectSlugs = groq`
     slug
   }
 `;
+export const AllSkills = groq`
+  *[_type == "category" && _id in *[_type == "personalInfo" && _id == ${profileID}].skillTags[]._ref]
+`;
