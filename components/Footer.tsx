@@ -11,6 +11,7 @@ import {
 import { AllSocialLinks } from '../api/queries';
 import { defaultSocialLinks, insert, sourceCodeLink } from '../helpers';
 import { useSanityFetch } from '../hooks';
+import { SocialLink } from '../schema';
 import Tooltip from './Tooltip';
 
 const SocialLinksIcons = (name: string) => {
@@ -31,23 +32,25 @@ const SocialLinksIcons = (name: string) => {
 };
 
 const Footer: React.FC = () => {
-  const [socialLinks, loading] = useSanityFetch(
+  const [socialLinks, loading] = useSanityFetch<SocialLink[]>(
     AllSocialLinks,
     defaultSocialLinks,
   );
   const [updatedSocialLinks, setUpdatedSocialLinks] = useState(socialLinks);
   useEffect(() => {
-    setUpdatedSocialLinks(
-      insert(socialLinks, Math.floor(socialLinks.length / 2), sourceCodeLink),
-    );
-  }, [socialLinks]);
+    if (!loading && socialLinks) {
+      setUpdatedSocialLinks(
+        insert(socialLinks, Math.floor(socialLinks.length / 2), sourceCodeLink),
+      );
+    }
+  }, [socialLinks, loading]);
 
   return (
     <footer>
       <div className="flex justify-center m-3">
         {' '}
         {!loading &&
-          updatedSocialLinks.map(({ name, link, iconName }) => (
+          updatedSocialLinks?.map(({ name, link, iconName }) => (
             <Link key={name} href={link} passHref>
               <a
                 href="replace"

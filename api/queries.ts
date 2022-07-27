@@ -24,7 +24,7 @@ export const AboutMeDetails = groq`
 export const AllSocialLinks = groq`
   *[_type == "personalInfo" && _id == ${profileID}]{
     socialLinks
-  }[0]`;
+  }[0].socialLinks`;
 export const AllCertificates = groq`
   *[_type == "certificate"]
 `;
