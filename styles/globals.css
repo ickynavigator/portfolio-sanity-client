@@ -56,6 +56,10 @@
   .bg-growing-underline:focus {
     background-size: 100% 100%;
   }
+
+  .chip {
+    @apply justify-center items-center m-1 px-2 py-1 border text-gray-500 border-gray-500 rounded-full;
+  }
 }
 @tailwind utilities;
 
