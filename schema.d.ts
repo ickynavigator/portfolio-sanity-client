@@ -118,6 +118,13 @@ export interface PersonalInfo extends SanityDocument {
    *
    */
   socialLinks?: Array<SanityKeyed<SocialLink>>;
+
+  /**
+   * Skills — `array`
+   *
+   *
+   */
+  skillTags?: Array<SanityKeyedReference<Category>>;
 }
 
 /**
