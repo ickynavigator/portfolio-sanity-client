@@ -1,17 +1,20 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { FaCheck, FaHourglassHalf, FaTimes } from 'react-icons/fa';
-import { AllSkills, ProfileDetails } from '../api/queries';
+import { ProfileDetails } from '../api/queries';
 import MetaHead from '../components/MetaHead';
 import { urlFor } from '../lib/sanity';
 import { getClient } from '../lib/sanity.server';
 import { Category, PersonalInfo } from '../schema.d';
 
-export const getStaticProps = async () => {
-  const data: PersonalInfo = await getClient().fetch(ProfileDetails);
-  const skills: Category[] = await getClient().fetch(AllSkills);
+interface PersonalInfoResponse extends PersonalInfo {
+  skills: Category[];
+}
 
-  return { props: { data: { ...data, skills } } };
+export const getStaticProps = async () => {
+  const data: PersonalInfoResponse = await getClient().fetch(ProfileDetails);
+
+  return { props: { data: { ...data } } };
 };
 
 type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
