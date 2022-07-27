@@ -66,6 +66,13 @@ export interface PersonalInfo extends SanityDocument {
   title: string;
 
   /**
+   * Show Job Status — `boolean`
+   *
+   *
+   */
+  jobVisibility: boolean;
+
+  /**
    * Job Status — `string`
    *
    *

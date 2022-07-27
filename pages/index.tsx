@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import React from 'react';
 import { FaCheck, FaHourglassHalf, FaTimes } from 'react-icons/fa';
 import { ProfileDetails } from '../api/queries';
 import MetaHead from '../components/MetaHead';
@@ -18,7 +17,7 @@ type Props = UnwrapPromise<ReturnType<typeof getStaticProps>>['props'];
 
 const Home: NextPage<Props> = props => {
   const { data } = props;
-  const { name, title, jobStatus, image } = data;
+  const { name, title, jobStatus, image, jobVisibility } = data;
 
   const picSize = { width: 160, height: 160 };
   const jobStatusCheck = (() => {
@@ -68,14 +67,20 @@ const Home: NextPage<Props> = props => {
           <h1 className="text-3xl font-semibold">{name}</h1>
           <hr className="w-3/12 my-3" />
           <h2 className="text-2xl font-semibold text-gray-500">{title}</h2>
-          <h3 className="text-xl font-semibold text-gray-500">Job Status</h3>
         </div>
-        <div
-          className={`${jobStatusCheck.color} flex justify-center items-center rounded border-2 mt-3`}
-        >
-          {jobStatusCheck.icon}
-          <span className="ml-4">{jobStatusCheck.message}</span>
-        </div>
+        {jobVisibility && (
+          <>
+            <h3 className="text-xl font-semibold text-gray-500 text-center">
+              Job Status
+            </h3>
+            <div
+              className={`${jobStatusCheck.color} flex justify-center items-center rounded border-2`}
+            >
+              {jobStatusCheck.icon}
+              <span className="ml-4">{jobStatusCheck.message}</span>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
