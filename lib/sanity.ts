@@ -1,7 +1,6 @@
 import imageUrlBuilder from '@sanity/image-url';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import axios from 'axios';
-import { createCurrentUserHook } from 'next-sanity';
 import { config } from './config';
 
 const { projectId, dataset } = config;
@@ -15,7 +14,6 @@ export function urlFor(source: SanityImageSource) {
 }
 
 // Helper function for using the current logged in user account
-export const useCurrentUser = createCurrentUserHook(config);
 
 export const getUrlFromId = (ref: string) => {
   // eslint-disable-next-line no-unused-vars
