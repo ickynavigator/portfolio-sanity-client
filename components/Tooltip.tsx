@@ -5,6 +5,7 @@ interface T {
   location?: 'top' | 'bottom' | 'right' | 'left';
   className?: string;
   tipClass?: string;
+  children: React.ReactNode;
 }
 const Tooltip: React.FC<T> = ({
   tip,

@@ -29,13 +29,12 @@ const index: NextPage<Props> = props => {
           <PortableText value={bio} />
 
           <div>
-            <Link href={getUrlFromId(CV?.asset._ref)} passHref>
-              <a
-                href="replace"
-                className="inline-flex items-center px-3 py-2 my-3 text-white bg-gray-500 rounded hover:bg-gray-400"
-              >
-                <FaFileDownload className="mr-1" /> Download my CV
-              </a>
+            <Link
+              href={getUrlFromId(CV?.asset._ref)}
+              passHref
+              className="inline-flex items-center px-3 py-2 my-3 text-white bg-gray-500 rounded hover:bg-gray-400"
+            >
+              <FaFileDownload className="mr-1" /> Download my CV
             </Link>
           </div>
           {CVLastUpdatedAt && (
