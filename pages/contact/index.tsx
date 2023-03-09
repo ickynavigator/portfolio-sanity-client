@@ -2,6 +2,8 @@ import type { NextPage } from 'next';
 import { FormEvent, useEffect, useState } from 'react';
 import MetaHead from '../../components/MetaHead';
 import { postToSanity } from '../../lib/sanity';
+import type { ContactForms } from '../../schema';
+import type { Enhanced } from '../../types';
 
 const Index: NextPage = () => {
   const [name, setName] = useState('');
@@ -11,25 +13,31 @@ const Index: NextPage = () => {
   const [formSuc, setFormSuc] = useState(false);
   const [formErr, setFormErr] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     setFormSuc(false);
     setFormErr(false);
 
     event.preventDefault();
     event.stopPropagation();
+
     if (event.currentTarget.checkValidity() === true) {
-      postToSanity({ _type: 'contactForms', name, email, message }).then(
-        res => {
-          if (res.status === 200) {
-            setName('');
-            setEmail('');
-            setMessage('');
-            setFormSuc(true);
-          } else {
-            setFormErr(true);
-          }
-        },
-      );
+      try {
+        const res = await postToSanity<Enhanced<ContactForms>, ContactForms>({
+          _type: 'contactForms',
+          name,
+          email,
+          message,
+        });
+
+        if (res.status === 200) {
+          setName('');
+          setEmail('');
+          setMessage('');
+          setFormSuc(true);
+        }
+      } catch (error) {
+        setFormErr(true);
+      }
     }
   };
 

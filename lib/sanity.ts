@@ -21,10 +21,10 @@ export const getUrlFromId = (ref: string) => {
   return `https://cdn.sanity.io/files/${projectId}/${dataset}/${id}.${extension}`;
 };
 
-export const postToSanity = async (data: any) => {
+export const postToSanity = async <T = any, D = any>(data: D) => {
   const dryrun = process.env.NODE_ENV !== 'production';
 
-  return axios({
+  return axios<T>({
     method: 'post',
     url: `api/sanity/post?dryrun=${dryrun}`,
     headers: {
