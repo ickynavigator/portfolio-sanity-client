@@ -1,3 +1,4 @@
+import axios from 'axios';
 import type { NextPage } from 'next';
 import { FormEvent, useEffect, useState } from 'react';
 import MetaHead from '../../components/MetaHead';
@@ -34,6 +35,12 @@ const Index: NextPage = () => {
           setEmail('');
           setMessage('');
           setFormSuc(true);
+
+          await axios.post(
+            `api/mail/contact`,
+            { ...res.data },
+            { headers: { 'Content-type': 'application/json' } },
+          );
         }
       } catch (error) {
         setFormErr(true);
