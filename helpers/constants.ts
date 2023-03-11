@@ -48,3 +48,8 @@ export const defaultSocialLinks: SocialLink[] = [
     iconName: 'Facebook',
   },
 ];
+
+export const mailInfo = {
+  from: 'me@obifortune.tech',
+  to: 'gabrielobi.of@gmail.com',
+} as const;
