@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { AllCertificates } from '../../api/queries';
 import MetaHead from '../../components/MetaHead';
 import { monthNames } from '../../helpers';
@@ -89,13 +89,12 @@ const index: NextPage<Props> = props => {
                           </p>
                           <p className="text-gray-500">
                             {certificateLink && (
-                              <Link href={certificateLink} passHref>
-                                <a
-                                  href="replace"
-                                  className="bg-gradient-to-r from-gray-300 to-gray-300 bg-growing-underline"
-                                >
-                                  View Certificate
-                                </a>
+                              <Link
+                                href={certificateLink}
+                                passHref
+                                className="bg-gradient-to-r from-gray-300 to-gray-300 bg-growing-underline"
+                              >
+                                View Certificate
                               </Link>
                             )}
                           </p>

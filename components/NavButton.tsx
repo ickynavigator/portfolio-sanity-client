@@ -12,13 +12,11 @@ const NavButton: React.FC<NBT> = ({ title, href }) => {
 
   return (
     <div key={title} className="col-span-1">
-      <Link href={href} passHref>
-        <a
-          href="replace"
-          className={`w-full btn navBtn ${isActive ? `navBtn-active` : ``}`}
-        >
-          {title}
-        </a>
+      <Link
+        href={href}
+        className={`w-full btn navBtn ${isActive ? `navBtn-active` : ``}`}
+      >
+        {title}
       </Link>
     </div>
   );

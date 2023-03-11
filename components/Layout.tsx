@@ -4,7 +4,7 @@ import Footer from './Footer';
 import Header from './Header';
 import MetaHead from './MetaHead';
 
-const Layout: NextPage = props => {
+const Layout: NextPage<{ children: React.ReactNode }> = props => {
   const { children } = props;
   return (
     <>

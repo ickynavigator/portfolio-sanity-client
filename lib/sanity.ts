@@ -1,7 +1,6 @@
 import imageUrlBuilder from '@sanity/image-url';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import axios from 'axios';
-import { createCurrentUserHook } from 'next-sanity';
 import { config } from './config';
 
 const { projectId, dataset } = config;
@@ -15,7 +14,6 @@ export function urlFor(source: SanityImageSource) {
 }
 
 // Helper function for using the current logged in user account
-export const useCurrentUser = createCurrentUserHook(config);
 
 export const getUrlFromId = (ref: string) => {
   // eslint-disable-next-line no-unused-vars
@@ -23,10 +21,10 @@ export const getUrlFromId = (ref: string) => {
   return `https://cdn.sanity.io/files/${projectId}/${dataset}/${id}.${extension}`;
 };
 
-export const postToSanity = async (data: any) => {
+export const postToSanity = async <T = any, D = any>(data: D) => {
   const dryrun = process.env.NODE_ENV !== 'production';
 
-  return axios({
+  return axios<T>({
     method: 'post',
     url: `api/sanity/post?dryrun=${dryrun}`,
     headers: {
