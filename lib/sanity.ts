@@ -1,7 +1,7 @@
 import imageUrlBuilder from '@sanity/image-url';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import axios from 'axios';
-import { config } from './config';
+import { config } from './sanity.config';
 
 const { projectId, dataset } = config;
 const builder = imageUrlBuilder(config);
