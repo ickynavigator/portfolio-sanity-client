@@ -6,7 +6,7 @@ const navMenuLinks = [
   { title: 'About', href: '/about' },
   { title: 'Home', href: '/' },
   { title: 'Contact', href: '/contact' },
-  { title: 'Certificates', href: '/certificates' },
+  // { title: 'Certificates', href: '/certificates' },
 ];
 
 const Header = () => {
