@@ -10,9 +10,9 @@ import {
   FaLink,
   FaTimes,
 } from 'react-icons/fa';
-import { AllProjectDetails } from '../../api/queries';
 import MetaHead from '../../components/MetaHead';
 import Tooltip from '../../components/Tooltip';
+import { AllProjectDetails } from '../../groq/queries';
 import { urlFor } from '../../lib/sanity';
 import { getClient } from '../../lib/sanity.server';
 import { Category, Project as ProjectTypes } from '../../schema';

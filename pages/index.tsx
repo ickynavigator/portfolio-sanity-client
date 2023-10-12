@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { FaCheck, FaHourglassHalf, FaTimes } from 'react-icons/fa';
-import { ProfileDetails } from '../api/queries';
 import MetaHead from '../components/MetaHead';
+import { ProfileDetails } from '../groq/queries';
 import { urlFor } from '../lib/sanity';
 import { getClient } from '../lib/sanity.server';
 import { Category, PersonalInfo } from '../schema.d';

@@ -8,7 +8,7 @@ import {
 } from '@tabler/icons-react';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { AllSocialLinks } from '../api/queries';
+import { AllSocialLinks } from '../groq/queries';
 import { defaultSocialLinks, insert, sourceCodeLink } from '../helpers';
 import { useSanityFetch } from '../hooks';
 import { SocialLink } from '../schema';
