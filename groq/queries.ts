@@ -18,7 +18,7 @@ export const AboutMeDetails = groq`
   *[_type == "personalInfo" && _id == ${profileID}]{
     bio,
     CV,
-    CVLastUpdatedAt
+    "skills": skillTags[]->
   }[0]
 `;
 export const AllSocialLinks = groq`

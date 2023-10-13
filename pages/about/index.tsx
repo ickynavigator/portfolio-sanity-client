@@ -1,3 +1,4 @@
+import { Badge, Box, Button, Center, Group, Title } from '@mantine/core';
 import { PortableText } from '@portabletext/react';
 import type { NextPage } from 'next';
 import Link from 'next/link';
@@ -6,10 +7,12 @@ import MetaHead from '../../components/MetaHead';
 import { AboutMeDetails } from '../../groq/queries';
 import { getUrlFromId } from '../../lib/sanity';
 import { getClient } from '../../lib/sanity.server';
-import { PersonalInfo } from '../../schema';
+import { Category, PersonalInfo } from '../../schema';
 
 export const getStaticProps = async () => {
-  const details: PersonalInfo = await getClient().fetch(AboutMeDetails);
+  const details = await getClient().fetch<
+    PersonalInfo & { skills: Category[] }
+  >(AboutMeDetails);
   return { props: { details } };
 };
 
@@ -18,32 +21,57 @@ type Props = UnwrapPromise<ReturnType<typeof getStaticProps>>['props'];
 
 const index: NextPage<Props> = props => {
   const { details } = props;
-  const { bio, CV, CVLastUpdatedAt } = details;
+  const { bio, CV, skills } = details;
 
   return (
     <>
       <MetaHead title="About Me" />
 
-      <div className="py-3">
-        <div className="text-center">
+      <Center>
+        <Box py="md">
+          <Title order={2} mb="sm" align="right">
+            Bio
+          </Title>
           <PortableText value={bio} />
 
-          <div>
-            <Link
-              href={getUrlFromId(CV?.asset._ref)}
+          {CV?.asset._ref && (
+            <Button
+              component={Link}
+              href={getUrlFromId(CV.asset._ref)}
               passHref
-              className="inline-flex items-center px-3 py-2 my-3 text-white bg-gray-500 rounded hover:bg-gray-400"
+              leftIcon={<FaFileDownload className="mr-1" />}
+              variant="outline"
+              color="gray"
+              mt="sm"
             >
-              <FaFileDownload className="mr-1" /> Download my CV
-            </Link>
-          </div>
-          {CVLastUpdatedAt && (
-            <span className="text-gray-500">
-              Last Modified on {new Date(CVLastUpdatedAt).toDateString()}
-            </span>
+              Download my CV
+            </Button>
           )}
-        </div>
-      </div>
+
+          {skills.length > 0 && (
+            <>
+              <Title order={2} mb="sm" align="right">
+                Skills
+              </Title>
+
+              <Group spacing="sm">
+                {skills.map(tag => {
+                  return (
+                    <Badge
+                      variant="outline"
+                      key={tag._id}
+                      color="gray"
+                      size="lg"
+                    >
+                      {tag.title}
+                    </Badge>
+                  );
+                })}
+              </Group>
+            </>
+          )}
+        </Box>
+      </Center>
     </>
   );
 };
