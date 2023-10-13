@@ -13,8 +13,6 @@ export function urlFor(source: SanityImageSource) {
   return builder.image(source);
 }
 
-// Helper function for using the current logged in user account
-
 export const getUrlFromId = (ref: string) => {
   // eslint-disable-next-line no-unused-vars
   const [_file, id, extension] = ref.split('-');
