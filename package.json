@@ -47,6 +47,7 @@
     "react-icons": "^4.8.0",
     "react-is": "18",
     "sanity": "3",
+    "sanity-codegen": "^0.9.8",
     "sass": "^1.62.0",
     "sharp": "^0.32.0",
     "styled-components": "^5.2",
