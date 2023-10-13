@@ -1,5 +1,4 @@
 // lib/sanity.server.js
-import sanityClient from '@sanity/client';
 import { createClient } from 'next-sanity';
 import { config } from './sanity.config';
 
@@ -20,5 +19,3 @@ export const getClient = () => {
 
   return usePreview ? previewClient : NextSanityClient;
 };
-
-export const client = sanityClient(config);
