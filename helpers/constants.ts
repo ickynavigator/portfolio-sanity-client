@@ -1,20 +1,5 @@
 import { SocialLink } from '../schema';
 
-export const monthNames = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
-
 export const sourceCodeLink: SocialLink = {
   _type: 'socialLink',
   link: 'https://github.com/ickynavigator/portfolio-sanity-client',
