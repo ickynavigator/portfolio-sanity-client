@@ -1,31 +1,38 @@
+import {
+  ActionIcon,
+  Alert,
+  Anchor,
+  Badge,
+  Box,
+  Card,
+  Center,
+  Group,
+  Stack,
+  Text,
+  Title,
+  Tooltip,
+} from '@mantine/core';
 import { PortableText } from '@portabletext/react';
+import {
+  IconCheck,
+  IconDeviceLaptop,
+  IconHourglassLow,
+  IconLink,
+  IconX,
+} from '@tabler/icons-react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Fragment } from 'react';
-import {
-  FaCheck,
-  FaHourglassHalf,
-  FaLaptopCode,
-  FaLink,
-  FaTimes,
-} from 'react-icons/fa';
 import MetaHead from '../../components/MetaHead';
-import Tooltip from '../../components/Tooltip';
 import { AllProjectDetails } from '../../groq/queries';
 import { urlFor } from '../../lib/sanity';
 import { getClient } from '../../lib/sanity.server';
 import { Category, Project as ProjectTypes } from '../../schema';
 
-interface ProjectResponse extends ProjectTypes {
-  _id: string;
-  tags: Category[];
-}
-
 export const getStaticProps = async () => {
-  const projects: ProjectResponse[] = await getClient().fetch(
-    AllProjectDetails,
-  );
+  const projects = await getClient().fetch<
+    Array<ProjectTypes & { tags: Category[] }>
+  >(AllProjectDetails);
   return { props: { projects } };
 };
 
@@ -40,10 +47,10 @@ const index: NextPage<Props> = props => {
   return (
     <>
       <MetaHead title="All Projects" />
-      <div className="container mx-auto my-10">
-        <div className="gap-4 row">
-          {projects.map(
-            ({
+      <Box>
+        <Stack>
+          {projects.map(data => {
+            const {
               name,
               _id,
               sourceUrl,
@@ -53,138 +60,151 @@ const index: NextPage<Props> = props => {
               projectIssuer,
               projectImage,
               tags,
-            }) => {
-              const buttonDetails = [
-                {
-                  tip: 'Source Code',
-                  icon: <FaLaptopCode />,
-                  url: sourceUrl?.url,
-                  visibility: sourceUrl?.visibility,
-                },
-                {
-                  tip: 'Live Project',
-                  icon: <FaLink />,
-                  url: projectUrl?.url,
-                  visibility: projectUrl?.visibility,
-                },
-              ];
-              const profileStatusIcon = (() => {
-                switch (profileStatus) {
-                  case 'completed':
-                    return {
-                      icon: <FaCheck />,
-                      color: 'bg-green-200 border-green-400',
-                    };
-                  case 'ongoing':
-                    return {
-                      icon: <FaHourglassHalf />,
-                      color: 'bg-yellow-200 border-yellow-400',
-                    };
-                  case 'abandoned':
-                    return {
-                      icon: <FaTimes />,
-                      color: 'bg-red-200 border-red-400',
-                    };
-                  default:
-                    return {
-                      icon: <FaCheck />,
-                      color: 'bg-green-200 border-2 border-green-400',
-                    };
-                }
-              })();
-              const pImage = projectImage && urlFor(projectImage).url();
+            } = data;
 
-              return (
-                <Fragment key={_id}>
-                  <div className="my-2 border-2 border-gray-500 rounded">
-                    <div className="p-2 text-2xl font-medium text-center bg-gray-100">
-                      {name}
-                    </div>
+            const buttonDetails = [
+              {
+                tip: 'Source Code',
+                icon: <IconDeviceLaptop />,
+                url: sourceUrl?.url,
+                visibility: sourceUrl?.visibility,
+              },
+              {
+                tip: 'Live Project',
+                icon: <IconLink />,
+                url: projectUrl?.url,
+                visibility: projectUrl?.visibility,
+              },
+            ];
+            const profileStatusIcon = (() => {
+              switch (profileStatus) {
+                case 'ongoing':
+                  return {
+                    icon: <IconHourglassLow />,
+                    color: 'yellow',
+                  };
+                case 'abandoned':
+                  return {
+                    icon: <IconX />,
+                    color: 'red',
+                  };
+                case 'completed':
+                default:
+                  return {
+                    icon: <IconCheck />,
+                    color: 'green',
+                  };
+              }
+            })();
 
-                    <div className="px-3 py-3 border-t border-b border-black">
-                      <div className="grid grid-cols-2 pb-3 md:grid-cols-9">
-                        <div className="col-span-6">
-                          {projectImage && (
-                            <Image
-                              src={pImage || 'hi'}
-                              alt={name}
-                              {...picSize}
-                            />
-                          )}
-                        </div>
-                        <div className="col-span-3 pl-5">
-                          <PortableText value={body} />
+            return (
+              <Card
+                shadow="sm"
+                padding="sm"
+                radius="md"
+                pt="0"
+                withBorder
+                key={_id}
+              >
+                <Stack>
+                  <Card.Section>
+                    {projectImage && (
+                      <Image
+                        src={urlFor(projectImage)}
+                        alt={name}
+                        priority
+                        {...picSize}
+                      />
+                    )}
+                  </Card.Section>
 
-                          <div className="flex flex-row justify-center flex-wrap">
-                            {tags?.map(tag => {
-                              return (
-                                <div className="chip" key={tag.slug.current}>
-                                  <span>{tag.title}</span>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </div>
+                  <Stack>
+                    <Title order={3}>{name}</Title>
 
-                      {projectIssuer && (
-                        <div className="flex items-center justify-center mb-4 bg-gray-300 border-2 border-black rounded">
-                          Project By:
-                          {projectIssuer.link ? (
-                            <Link
-                              href={projectIssuer.link}
-                              className="ml-1 bg-gradient-to-r from-gray-400 to-gray-400 bg-growing-underline"
-                            >
-                              {projectIssuer.name}
-                            </Link>
-                          ) : (
-                            <span className="ml-1">{projectIssuer.name}</span>
-                          )}
-                        </div>
-                      )}
-                      <div
-                        className={`${profileStatusIcon.color} flex justify-center items-center rounded border-2`}
-                      >
-                        {profileStatusIcon.icon}
-                        <span className="ml-4">{profileStatus}</span>
-                      </div>
-                    </div>
+                    <PortableText value={body} />
 
-                    <div className="flex flex-row justify-between p-2 bg-gray-100">
-                      {buttonDetails.map(({ tip, icon, url, visibility }) => {
-                        const key = `${_id}-${tip}`;
-
+                    <Group spacing="sm">
+                      {tags.map(tag => {
                         return (
-                          <Fragment key={key}>
-                            {!visibility && url ? (
+                          <Badge
+                            variant="outline"
+                            key={tag._id}
+                            color="gray"
+                            size="lg"
+                          >
+                            {tag.title}
+                          </Badge>
+                        );
+                      })}
+                    </Group>
+
+                    {projectIssuer && (
+                      <Alert color="gray" radius="md">
+                        <Center>
+                          <Group spacing="xs">
+                            Project comissioned by:
+                            {projectIssuer.link ? (
+                              <Anchor
+                                component={Link}
+                                href={projectIssuer.link}
+                              >
+                                <Text>{projectIssuer.name}</Text>
+                              </Anchor>
+                            ) : (
+                              <Text>{projectIssuer.name}</Text>
+                            )}
+                          </Group>
+                        </Center>
+                      </Alert>
+                    )}
+                    <Alert color={profileStatusIcon.color} radius="md">
+                      <Center>
+                        <Group>
+                          {profileStatusIcon.icon}
+                          <Text>{profileStatus}</Text>
+                        </Group>
+                      </Center>
+                    </Alert>
+
+                    <Group position="apart">
+                      {buttonDetails.map(({ tip, icon, url, visibility }) => {
+                        const shouldShow = !visibility && url;
+
+                        const inner = (
+                          <ActionIcon variant="outline" disabled={!shouldShow}>
+                            {icon}
+                          </ActionIcon>
+                        );
+                        return (
+                          <Tooltip
+                            label={`${tip}${
+                              shouldShow ? '' : ' - Link Unavailable'
+                            }`}
+                            key={`${_id}-${tip}`}
+                          >
+                            {shouldShow ? (
                               <Link
                                 href={url}
                                 passHref
                                 key={url}
                                 aria-label={`${name} ${tip}`}
-                                className="px-3 py-1 mx-2 text-2xl transition bg-gray-400 rounded hover:bg-gray-300"
                               >
-                                <Tooltip
-                                  tip={tip}
-                                  tipClass="text-gray-600 text-base"
-                                >
-                                  {icon}
-                                </Tooltip>
+                                {inner}
                               </Link>
                             ) : (
-                              <div>Link Unavailable</div>
+                              inner
                             )}
-                          </Fragment>
+                          </Tooltip>
                         );
                       })}
-                    </div>
-                  </div>
-                </Fragment>
-              );
-            },
-          )}
-        </div>
-      </div>
+                    </Group>
+                  </Stack>
+                </Stack>
+              </Card>
+            );
+          })}
+        </Stack>
+      </Box>
     </>
   );
 };
