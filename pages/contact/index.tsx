@@ -72,14 +72,16 @@ const Index: NextPage = () => {
   return (
     <>
       <MetaHead title="Contact Obi Fortune" />
-      {formSuccess && <Alert.Success>Message Sent Successfully</Alert.Success>}
-      {formError && (
-        <Alert.Error>There was an issue please try again</Alert.Error>
-      )}
       <form onSubmit={form.onSubmit(values => handleSubmit(values))}>
         <Title order={2} mb="sm" align="right">
           Contact Me
         </Title>
+        {formSuccess && (
+          <Alert.Success>Message sent successfully</Alert.Success>
+        )}
+        {formError && (
+          <Alert.Error>There was an issue. Please try again</Alert.Error>
+        )}
 
         <Stack align="stretch">
           <TextInput

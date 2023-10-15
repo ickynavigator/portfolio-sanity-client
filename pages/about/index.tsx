@@ -28,7 +28,7 @@ const index: NextPage<Props> = props => {
       <MetaHead title="About Me" />
 
       <Center>
-        <Box py="md">
+        <Box>
           <Title order={2} mb="sm" align="right">
             Bio
           </Title>
