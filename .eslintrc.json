@@ -54,5 +54,14 @@
     "react/react-in-jsx-scope": ["off"],
     "react/jsx-props-no-spreading": ["off"],
     "react/prop-types": ["off"]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "no-undef": "off",
+        "no-unused-vars": "off"
+      }
+    }
+  ]
 }
