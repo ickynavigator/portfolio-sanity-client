@@ -66,13 +66,15 @@ const Home: NextPage<Props> = props => {
           <Image src={urlFor(image)} alt={name} priority {...picSize} />
         </Center>
 
-        <Title order={1}>{name}</Title>
-        <Title order={2} c="dimmed">
+        <Title order={1} align="center">
+          {name}
+        </Title>
+        <Title order={2} align="center" c="dimmed">
           {title}
         </Title>
         {jobVisibility && (
           <>
-            <Title order={3} c="dimmed">
+            <Title order={3} align="center" c="dimmed">
               Job Status
             </Title>
             <Alert color={jobStatusCheck.color}>
