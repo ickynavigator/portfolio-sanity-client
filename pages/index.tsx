@@ -22,7 +22,7 @@ type Props = UnwrapPromise<ReturnType<typeof getStaticProps>>['props'];
 
 const Home: NextPage<Props> = props => {
   const { data } = props;
-  const { name, title, jobStatus, image, jobVisibility, skills } = data;
+  const { name, title, jobStatus, image, jobVisibility } = data;
 
   const picSize = { width: 160, height: 160 };
   const jobStatusCheck = (() => {
@@ -83,22 +83,6 @@ const Home: NextPage<Props> = props => {
             >
               {jobStatusCheck.icon}
               <span className="ml-4">{jobStatusCheck.message}</span>
-            </div>
-          </>
-        )}
-        {skills?.length > 0 && (
-          <>
-            <h3 className="text-xl font-semibold text-gray-500 text-center">
-              Skills
-            </h3>
-            <div className="flex flex-row justify-center flex-wrap">
-              {skills?.map(tag => {
-                return (
-                  <div className="chip" key={tag.slug.current}>
-                    <span>{tag.title}</span>
-                  </div>
-                );
-              })}
             </div>
           </>
         )}
