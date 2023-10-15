@@ -39,6 +39,7 @@ const index: NextPage<Props> = props => {
               component={Link}
               href={getUrlFromId(CV.asset._ref)}
               passHref
+              target="_blank"
               leftIcon={<IconFileDownload className="mr-1" />}
               variant="outline"
               color="gray"

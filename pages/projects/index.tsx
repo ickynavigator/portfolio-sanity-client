@@ -187,6 +187,7 @@ const index: NextPage<Props> = props => {
                                 href={url}
                                 passHref
                                 key={url}
+                                target="_blank"
                                 aria-label={`${name} ${tip}`}
                               >
                                 {inner}
