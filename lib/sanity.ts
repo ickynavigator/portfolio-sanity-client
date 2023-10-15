@@ -10,7 +10,7 @@ const builder = imageUrlBuilder(config);
  * Read more: https://www.sanity.io/docs/image-url
  */
 export function urlFor(source: SanityImageSource) {
-  return builder.image(source);
+  return builder.image(source).url();
 }
 
 export const getUrlFromId = (ref: string) => {
