@@ -1,23 +1,25 @@
+import { Box, Button, Card, Center, Stack, Text, Title } from '@mantine/core';
 import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Fragment } from 'react';
 import MetaHead from '../../components/MetaHead';
 import { AllCertificates } from '../../groq/queries';
-import { monthNames } from '../../helpers';
 import { urlFor } from '../../lib/sanity';
 import { getClient } from '../../lib/sanity.server';
 import { Certificate as CertificateTypes } from '../../schema';
 
-interface CertificateResponse extends CertificateTypes {
-  _id: string;
-}
-
 export const getStaticProps = async () => {
-  const certificates: CertificateResponse[] = await getClient().fetch(
+  const certificates: CertificateTypes[] = await getClient().fetch(
     AllCertificates,
   );
   return { props: { certificates } };
+};
+
+const dateHelper = (date: Date) => {
+  return Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+  }).format(date);
 };
 
 type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
@@ -25,89 +27,85 @@ type Props = UnwrapPromise<ReturnType<typeof getStaticProps>>['props'];
 const index: NextPage<Props> = props => {
   const { certificates } = props;
   const picSize = { width: 150, height: 150 };
-  const fallbackCertImg = 'hi';
 
   return (
     <>
       <MetaHead title="All Certificates" />
-      <div className="py-3">
-        {certificates.map(
-          ({
-            _id,
-            idx,
-            name,
-            authorityName,
-            authorityImage,
-            startDate,
-            endDate,
-            certificateLink,
-            certificateHide,
-          }) => {
-            const aImage = urlFor(authorityImage).url();
-            const sDate = new Date(startDate);
-            const eDate = new Date(endDate ?? '');
+      <Center>
+        <Stack w="fit-content">
+          {certificates.map(
+            ({
+              _id,
+              idx,
+              name,
+              authorityName,
+              authorityImage,
+              startDate,
+              endDate,
+              certificateLink,
+              certificateHide,
+            }) => {
+              const sDate = startDate
+                ? dateHelper(new Date(startDate))
+                : 'UNAVAILABLE';
+              const eDate = endDate
+                ? dateHelper(new Date(endDate ?? ''))
+                : 'No Expiration Date';
 
-            return (
-              !certificateHide && (
-                <Fragment key={_id}>
-                  <div className="my-4 border-2 border-gray-500 rounded">
-                    <div className="p-2 text-2xl font-medium text-center bg-gray-100">
-                      <h2>{name}</h2>
-                    </div>
-
-                    <div className="px-3 py-3 border-t border-b border-black">
-                      <div className="grid grid-cols-2 pb-3 md:grid-cols-9">
-                        <div className="flex justify-center col-span-3">
+              return (
+                !certificateHide && (
+                  <Card
+                    shadow="sm"
+                    padding="sm"
+                    radius="md"
+                    withBorder
+                    key={_id}
+                  >
+                    <Stack align="center" spacing="xl">
+                      {authorityImage && (
+                        <Card.Section>
                           <Image
-                            src={aImage !== null ? aImage : fallbackCertImg}
+                            src={urlFor(authorityImage)}
                             alt={name}
+                            priority
                             {...picSize}
                           />
-                        </div>
-                        <div className="flex flex-col justify-between col-span-6 pl-5">
-                          <h3 className="">{authorityName}</h3>
-                          <p>
-                            <span>
-                              Issued on{' '}
-                              {startDate
-                                ? `${
-                                    monthNames[sDate.getMonth()]
-                                  } ${sDate.getFullYear()}`
-                                : 'UNAVAILABLE'}{' '}
-                              -{' '}
-                              {endDate
-                                ? `${
-                                    monthNames[eDate.getMonth()]
-                                  } ${eDate.getFullYear()}`
-                                : 'No Expiration Date'}
-                            </span>
-                          </p>
-                          <p className="text-gray-500">
-                            <span>
-                              Credential Id : <span>{idx}</span>
-                            </span>
-                          </p>
-                          <p className="text-gray-500">
-                            {certificateLink && (
-                              <Link
-                                href={certificateLink}
-                                passHref
-                                className="bg-gradient-to-r from-gray-300 to-gray-300 bg-growing-underline"
-                              >
-                                View Certificate
-                              </Link>
-                            )}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Fragment>
-              )
-            );
-          },
-        )}
-      </div>
+                        </Card.Section>
+                      )}
+                      <Box>
+                        <Stack spacing="0" align="center">
+                          <Title order={3}>{name}</Title>
+                          <Title order={4}>Issued by {authorityName}</Title>
+                          <Text c="dimmed">Credential Id : {idx}</Text>
+                          {(startDate || endDate) && (
+                            <Text c="dimmed">
+                              {`Issued on ${sDate} - ${eDate}`}
+                            </Text>
+                          )}
+                        </Stack>
+
+                        {certificateLink && (
+                          <Link href={certificateLink} passHref target="_blank">
+                            <Button
+                              variant="light"
+                              color="gray"
+                              fullWidth
+                              mt="md"
+                              radius="md"
+                            >
+                              View Certificate
+                            </Button>
+                          </Link>
+                        )}
+                      </Box>
+                    </Stack>
+                  </Card>
+                )
+              );
+            },
+          )}
+        </Stack>
+      </Center>
     </>
   );
 };
