@@ -9,7 +9,7 @@ import { getClient } from '../../lib/sanity.server';
 import { Certificate as CertificateTypes } from '../../schema';
 
 export const getStaticProps = async () => {
-  const certificates: CertificateTypes[] = await getClient().fetch(
+  const certificates = await getClient().fetch<CertificateTypes[]>(
     AllCertificates,
   );
   return { props: { certificates } };
