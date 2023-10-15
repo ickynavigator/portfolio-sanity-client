@@ -1,4 +1,5 @@
 import {
+  Anchor,
   Container,
   Group,
   Header as MantineHeader,
@@ -75,9 +76,9 @@ const Header = () => {
         <Group className={classes.header}>
           <Group>
             <ThemeSwitcher />
-            <Link href="/">
+            <Anchor component={Link} href="/" underline={false}>
               <Title>OBI FORTUNE</Title>
-            </Link>
+            </Anchor>
           </Group>
 
           <Group>

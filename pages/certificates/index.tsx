@@ -85,17 +85,19 @@ const index: NextPage<Props> = props => {
                         </Stack>
 
                         {certificateLink && (
-                          <Link href={certificateLink} passHref target="_blank">
-                            <Button
-                              variant="light"
-                              color="gray"
-                              fullWidth
-                              mt="md"
-                              radius="md"
-                            >
-                              View Certificate
-                            </Button>
-                          </Link>
+                          <Button
+                            component={Link}
+                            href={certificateLink}
+                            passHref
+                            target="_blank"
+                            variant="light"
+                            color="gray"
+                            fullWidth
+                            mt="md"
+                            radius="md"
+                          >
+                            View Certificate
+                          </Button>
                         )}
                       </Box>
                     </Stack>
