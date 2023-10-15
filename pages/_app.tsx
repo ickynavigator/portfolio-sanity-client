@@ -45,7 +45,7 @@ const App = (props: Props) => {
         theme={{ ...MantineConfig, colorScheme }}
       >
         <RouterTransition />
-        <Layout {...pageProps}>
+        <Layout>
           <Component {...pageProps} />
         </Layout>
       </MantineProvider>
