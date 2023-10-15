@@ -1,8 +1,8 @@
 import { Badge, Box, Button, Center, Group, Title } from '@mantine/core';
 import { PortableText } from '@portabletext/react';
+import { IconFileDownload } from '@tabler/icons-react';
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { FaFileDownload } from 'react-icons/fa';
 import MetaHead from '../../components/MetaHead';
 import { AboutMeDetails } from '../../groq/queries';
 import { getUrlFromId } from '../../lib/sanity';
@@ -39,7 +39,7 @@ const index: NextPage<Props> = props => {
               component={Link}
               href={getUrlFromId(CV.asset._ref)}
               passHref
-              leftIcon={<FaFileDownload className="mr-1" />}
+              leftIcon={<IconFileDownload className="mr-1" />}
               variant="outline"
               color="gray"
               mt="sm"

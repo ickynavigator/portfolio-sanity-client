@@ -1,7 +1,7 @@
 import { Alert, Center, Group, Stack, Text, Title } from '@mantine/core';
+import { IconCheck, IconHourglassLow, IconX } from '@tabler/icons-react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import { FaCheck, FaHourglassHalf, FaTimes } from 'react-icons/fa';
 import MetaHead from '../components/MetaHead';
 import { ProfileDetails } from '../groq/queries';
 import { urlFor } from '../lib/sanity';
@@ -35,18 +35,18 @@ const Home: NextPage<Props> = props => {
       case 'inbetween':
         message = 'Kind of available at the moment';
         color = 'yellow';
-        icon = <FaHourglassHalf />;
+        icon = <IconHourglassLow />;
         break;
       case 'close':
         message = 'Not available for hire at the moment';
         color = 'red';
-        icon = <FaTimes />;
+        icon = <IconX />;
         break;
       case 'open':
       default:
         message = 'Available for hire';
         color = 'green';
-        icon = <FaCheck />;
+        icon = <IconCheck />;
         break;
     }
 
