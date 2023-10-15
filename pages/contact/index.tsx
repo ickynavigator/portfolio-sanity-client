@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { z } from 'zod';
 import Alert from '../../components/Alert';
 import MetaHead from '../../components/MetaHead';
-import useAlertManager from '../../hooks/useAlertManager';
+import { useAlertManager } from '../../hooks';
 import { postToSanity } from '../../lib/sanity';
 import type { ContactForms } from '../../schema';
 
