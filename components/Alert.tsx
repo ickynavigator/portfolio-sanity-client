@@ -10,12 +10,7 @@ interface AlertProps {
 
 export const SuccessAlert = ({ children }: AlertProps) => {
   return (
-    <MantineAlert
-      icon={<IconCircleCheckFilled />}
-      title="Success!"
-      color="green"
-      my="sm"
-    >
+    <MantineAlert icon={<IconCircleCheckFilled />} color="green" my="sm">
       {children}
     </MantineAlert>
   );
@@ -23,12 +18,7 @@ export const SuccessAlert = ({ children }: AlertProps) => {
 
 export const ErrorAlert = ({ children }: AlertProps) => {
   return (
-    <MantineAlert
-      icon={<IconAlertCircleFilled />}
-      title="Success!"
-      color="red"
-      my="sm"
-    >
+    <MantineAlert icon={<IconAlertCircleFilled />} color="red" my="sm">
       {children}
     </MantineAlert>
   );
