@@ -19,7 +19,7 @@ export const getUrlFromId = (ref: string) => {
   return `https://cdn.sanity.io/files/${projectId}/${dataset}/${id}.${extension}`;
 };
 
-export const postToSanity = async <T = any, D = any>(data: D) => {
+export const postToSanity = async <T = any, D = any>(data: DeEnhanced<D>) => {
   const dryrun = process.env.NODE_ENV !== 'production';
 
   return axios<T>({
