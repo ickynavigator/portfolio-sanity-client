@@ -1,5 +1,4 @@
 import { Container } from '@mantine/core';
-import { NextPage } from 'next';
 import { Fira_Sans as FiraSans } from 'next/font/google';
 import React from 'react';
 import Footer from './Footer';
@@ -12,7 +11,7 @@ const firaSans = FiraSans({
   display: 'swap',
 });
 
-const Layout: NextPage<{ children: React.ReactNode }> = props => {
+const Layout = (props: { children: React.ReactNode }) => {
   const { children } = props;
 
   return (
@@ -22,7 +21,7 @@ const Layout: NextPage<{ children: React.ReactNode }> = props => {
       <div className={`${firaSans.className}`}>
         <Header />
 
-        <Container>{children}</Container>
+        <Container my="md">{children}</Container>
 
         <Footer />
       </div>
