@@ -1,4 +1,4 @@
-import { ActionIcon, Tooltip as MantineTooltip } from '@mantine/core';
+import { ActionIcon, Group, Tooltip } from '@mantine/core';
 import {
   IconBrandFacebook,
   IconBrandGithub,
@@ -12,7 +12,6 @@ import { AllSocialLinks } from '../groq/queries';
 import { defaultSocialLinks, insert, sourceCodeLink } from '../helpers';
 import { useSanityFetch } from '../hooks';
 import { SocialLink } from '../schema';
-// import Tooltip from './Tooltip';
 
 const SocialLinksIcons = (name: string) => {
   switch (name) {
@@ -47,37 +46,18 @@ const Footer: React.FC = () => {
 
   return (
     <footer>
-      <div className="flex justify-center m-3">
+      <Group position="center">
         {!loading &&
           updatedSocialLinks?.map(({ name, link, iconName }) => (
-            <MantineTooltip key={name} label={name}>
-              <Link
-                href={link}
-                aria-label={name}
-                passHref
-                // className="p-1 mx-2 text-3xl text-gray-500 rounded cursor-pointer hover:bg-gray-500 hover:text-white"
-              >
-                <ActionIcon
-                  variant="subtle"
-                  sx={theme => ({
-                    '&:hover': {
-                      backgroundColor:
-                        theme.colorScheme === 'dark'
-                          ? theme.colors.gray[0]
-                          : theme.colors.dark[6],
-                      color:
-                        theme.colorScheme === 'dark'
-                          ? theme.colors.dark[7]
-                          : theme.colors.gray[0],
-                    },
-                  })}
-                >
+            <Tooltip key={name} label={name}>
+              <Link href={link} passHref>
+                <ActionIcon variant="subtle">
                   {SocialLinksIcons(iconName)}
                 </ActionIcon>
               </Link>
-            </MantineTooltip>
+            </Tooltip>
           ))}
-      </div>
+      </Group>
     </footer>
   );
 };
