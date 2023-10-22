@@ -7,11 +7,8 @@ import {
   IconCode,
 } from '@tabler/icons-react';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { AllSocialLinks } from '../groq/queries';
-import { defaultSocialLinks, insert, sourceCodeLink } from '../helpers';
-import { useSanityFetch } from '../hooks';
-import { SocialLink } from '../schema';
+import React from 'react';
+import { useSocialIcons } from '../hooks';
 
 const SocialLinksIcons = (name: string) => {
   switch (name) {
@@ -31,32 +28,20 @@ const SocialLinksIcons = (name: string) => {
 };
 
 const Footer: React.FC = () => {
-  const [socialLinks, loading] = useSanityFetch<SocialLink[]>(
-    AllSocialLinks,
-    defaultSocialLinks,
-  );
-  const [updatedSocialLinks, setUpdatedSocialLinks] = useState(socialLinks);
-  useEffect(() => {
-    if (!loading && socialLinks) {
-      setUpdatedSocialLinks(
-        insert(socialLinks, Math.floor(socialLinks.length / 2), sourceCodeLink),
-      );
-    }
-  }, [socialLinks, loading]);
+  const [links] = useSocialIcons();
 
   return (
     <footer>
       <Group position="center">
-        {!loading &&
-          updatedSocialLinks?.map(({ name, link, iconName }) => (
-            <Tooltip key={name} label={name}>
-              <Link href={link} passHref>
-                <ActionIcon variant="subtle">
-                  {SocialLinksIcons(iconName)}
-                </ActionIcon>
-              </Link>
-            </Tooltip>
-          ))}
+        {links.map(({ name, link, iconName }) => (
+          <Tooltip key={name} label={name}>
+            <Link href={link} passHref>
+              <ActionIcon variant="subtle">
+                {SocialLinksIcons(iconName)}
+              </ActionIcon>
+            </Link>
+          </Tooltip>
+        ))}
       </Group>
     </footer>
   );
