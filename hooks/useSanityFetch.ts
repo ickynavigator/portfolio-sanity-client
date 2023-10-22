@@ -6,7 +6,7 @@ const useSanityFetch = <T = any>(
   initialData?: T,
   dependencies: any[] = [],
 ): [T | undefined, boolean] => {
-  const [data, setData] = useState<T | undefined>(initialData as T);
+  const [data, setData] = useState<T | undefined>(initialData);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
