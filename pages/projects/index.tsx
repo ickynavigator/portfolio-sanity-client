@@ -1,3 +1,4 @@
+import { Carousel } from '@mantine/carousel';
 import {
   ActionIcon,
   Alert,
@@ -39,7 +40,7 @@ export const getStaticProps = async () => {
 type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
 type Props = UnwrapPromise<ReturnType<typeof getStaticProps>>['props'];
 
-const index: NextPage<Props> = props => {
+const Index: NextPage<Props> = props => {
   const { projects } = props;
 
   const picSize = { width: 1000, height: 600 };
@@ -108,14 +109,20 @@ const index: NextPage<Props> = props => {
               >
                 <Stack>
                   <Card.Section>
-                    {projectImage && (
-                      <Image
-                        src={urlFor(projectImage)}
-                        alt={name}
-                        priority
-                        {...picSize}
-                      />
-                    )}
+                    <Carousel withControls={false}>
+                      {[projectImage].map((i, ind) =>
+                        i ? (
+                          <Carousel.Slide key={i.asset._ref}>
+                            <Image
+                              src={urlFor(i)}
+                              alt={`${name} - ${ind}`}
+                              priority
+                              {...picSize}
+                            />
+                          </Carousel.Slide>
+                        ) : null,
+                      )}
+                    </Carousel>
                   </Card.Section>
 
                   <Stack>
@@ -210,4 +217,4 @@ const index: NextPage<Props> = props => {
   );
 };
 
-export default index;
+export default Index;
