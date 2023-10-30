@@ -1,6 +1,7 @@
 import { groq } from 'next-sanity';
+import client from '../env/client.mjs';
 
-const profileID = `"${process.env.NEXT_PUBLIC_PROFILE_ID}"`;
+const profileID = `"${client.NEXT_PUBLIC_PROFILE_ID}"`;
 
 export const ProfileDetails = groq`
   *[_type == "personalInfo" && _id == ${profileID}]{
