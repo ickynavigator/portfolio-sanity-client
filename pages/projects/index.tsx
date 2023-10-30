@@ -128,7 +128,9 @@ const Index: NextPage<Props> = props => {
                   <Stack>
                     <Title order={3}>{name}</Title>
 
-                    <PortableText value={body} />
+                    <Box>
+                      <PortableText value={body} />
+                    </Box>
 
                     <Group spacing="sm">
                       {tags.map(tag => {
@@ -168,7 +170,7 @@ const Index: NextPage<Props> = props => {
                       <Center>
                         <Group>
                           {profileStatusIcon.icon}
-                          <Text>{profileStatus}</Text>
+                          <Text tt="capitalize">{profileStatus}</Text>
                         </Group>
                       </Center>
                     </Alert>
