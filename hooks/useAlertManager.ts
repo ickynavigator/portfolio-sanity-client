@@ -9,7 +9,7 @@ const useAlertManager = (initial: boolean = false, opts: Options = {}) => {
   const [alert, setAlert] = useState(initial);
 
   const toggle = (newVal?: boolean) => {
-    setAlert(prev => newVal || !prev);
+    setAlert(prev => newVal ?? !prev);
 
     setTimeout(() => {
       setAlert(false);
