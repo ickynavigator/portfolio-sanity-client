@@ -1,5 +1,5 @@
-// import './env/client';
-// import './env/server';
+import './env/client.mjs';
+import './env/server.mjs';
 
 /** @type {import('next').NextConfig} */
 const config = {
