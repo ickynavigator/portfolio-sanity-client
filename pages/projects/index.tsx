@@ -190,6 +190,7 @@ const Index: NextPage<Props> = props => {
                               shouldShow ? '' : ' - Link Unavailable'
                             }`}
                             key={`${_id}-${tip}`}
+                            withArrow
                           >
                             {shouldShow ? (
                               <Link
