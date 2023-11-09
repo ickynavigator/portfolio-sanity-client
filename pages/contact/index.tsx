@@ -18,9 +18,9 @@ import { postToSanity } from '../../lib/sanity';
 import type { ContactForms } from '../../schema';
 
 const formSchema = z.object({
-  name: z.string(),
+  name: z.string().min(3),
   email: z.string().email(),
-  message: z.string().max(256),
+  message: z.string().min(5).max(256),
 });
 
 const Index: NextPage = () => {
