@@ -1,4 +1,4 @@
-import { Box, Container } from '@mantine/core';
+import { Container, Stack } from '@mantine/core';
 import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
@@ -11,13 +11,13 @@ const Layout = (props: { children: React.ReactNode }) => {
     <>
       <MetaHead />
 
-      <Box mb="sm">
+      <Stack pb="sm" h="100%" justify="space-between">
         <Header />
 
-        <Container my="md">{children}</Container>
+        <Container>{children}</Container>
 
         <Footer />
-      </Box>
+      </Stack>
     </>
   );
 };
