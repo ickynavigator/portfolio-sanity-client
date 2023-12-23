@@ -36,7 +36,7 @@ const config = {
   /** Social Links to be displayed before the fetch from the sanity */
   defaultSocialLinks,
   /** Show career page link */
-  showCareerLink: false,
+  showCareerLink: true,
   /** Show certificates page link */
   showCertificateLink: false,
 };
