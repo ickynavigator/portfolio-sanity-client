@@ -44,3 +44,9 @@ export const projectSlugs = groq`
     slug
   }
 `;
+export const AllCareers = groq`
+  *[_type == "career" && careerHide == false]{
+    ...,
+    "tags": skillTags[]->
+  }
+`;

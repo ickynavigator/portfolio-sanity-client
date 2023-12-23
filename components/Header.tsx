@@ -15,6 +15,7 @@ import ThemeSwitcher from './ThemeSwitcher';
 
 const navMenuLinks = [
   { title: 'Projects', href: '/projects' },
+  { title: 'Career', href: '/career' },
   { title: 'Contact', href: '/contact' },
   // { title: 'Certificates', href: '/certificates' },
 ];
