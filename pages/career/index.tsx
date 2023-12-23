@@ -1,6 +1,5 @@
 import {
   Badge,
-  Box,
   Card,
   Divider,
   Group,
@@ -39,7 +38,7 @@ const Career: NextPage<Props> = props => {
   return (
     <>
       <MetaHead title="All Careers" />
-      <Box>
+      <Stack>
         {careers.map(data => {
           const {
             _id,
@@ -113,7 +112,7 @@ const Career: NextPage<Props> = props => {
             </Card>
           );
         })}
-      </Box>
+      </Stack>
     </>
   );
 };
