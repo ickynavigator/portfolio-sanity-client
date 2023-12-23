@@ -5,6 +5,7 @@ import {
   Divider,
   Group,
   Image,
+  Paper,
   Stack,
   Text,
   Title,
@@ -82,17 +83,17 @@ const Career: NextPage<Props> = props => {
                   </Stack>
 
                   {companyLogo && (
-                    <Image
-                      src={urlFor(companyLogo)}
-                      alt={`Logo for ${name}`}
-                      width="80px"
-                    />
+                    <Paper withBorder radius="md" sx={{ overflow: 'hidden' }}>
+                      <Image
+                        src={urlFor(companyLogo)}
+                        alt={`Logo for ${name}`}
+                        width="80px"
+                      />
+                    </Paper>
                   )}
                 </Group>
                 <Divider />
-                <Text color="dimmed">
-                  <PortableText value={description} />
-                </Text>
+                <PortableText value={description} />
                 <Divider />
                 <Group spacing="sm" mt="md">
                   {tags?.map(tag => {
