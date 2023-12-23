@@ -90,7 +90,7 @@ const Home: NextPage<Props> = props => {
         <Title order={2} align="center" c="dimmed">
           {title}
         </Title>
-        {!jobVisibility && (
+        {jobVisibility && (
           <>
             <Title order={3} align="center" c="dimmed">
               Job Status
