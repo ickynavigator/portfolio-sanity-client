@@ -8,6 +8,7 @@ import {
   Card,
   Center,
   Group,
+  Image,
   Stack,
   Text,
   Title,
@@ -22,7 +23,6 @@ import {
   IconX,
 } from '@tabler/icons-react';
 import type { NextPage } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import MetaHead from '../../components/MetaHead';
 import { AllProjectDetails } from '../../groq/queries';
@@ -42,8 +42,6 @@ type Props = UnwrapPromise<ReturnType<typeof getStaticProps>>['props'];
 
 const Index: NextPage<Props> = props => {
   const { projects } = props;
-
-  const picSize = { width: 1000, height: 600 };
 
   return (
     <>
@@ -116,8 +114,7 @@ const Index: NextPage<Props> = props => {
                             <Image
                               src={urlFor(i)}
                               alt={`${name} - ${ind}`}
-                              priority
-                              {...picSize}
+                              width="100%"
                             />
                           </Carousel.Slide>
                         ) : null,
