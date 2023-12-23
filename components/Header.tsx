@@ -71,7 +71,7 @@ const Header = () => {
   });
 
   return (
-    <MantineHeader height={matches ? 60 : 100}>
+    <MantineHeader height={matches ? 60 : 100} w="100%">
       <Container fluid py="xs">
         <Group className={classes.header}>
           <Group>

@@ -11,10 +11,10 @@ const Layout = (props: { children: React.ReactNode }) => {
     <>
       <MetaHead />
 
-      <Stack pb="sm" h="100%" justify="space-between">
+      <Stack pb="sm" h="100%" justify="space-between" align="center">
         <Header />
 
-        <Container>{children}</Container>
+        <Container w="100%">{children}</Container>
 
         <Footer />
       </Stack>
