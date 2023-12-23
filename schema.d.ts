@@ -1,39 +1,39 @@
 import type {
-  SanityReference,
-  SanityKeyedReference,
   SanityAsset,
-  SanityImage,
-  SanityFile,
-  SanityGeoPoint,
   SanityBlock,
   SanityDocument,
-  SanityImageCrop,
-  SanityImageHotspot,
-  SanityKeyed,
+  SanityFile,
+  SanityGeoPoint,
+  SanityImage,
   SanityImageAsset,
-  SanityImageMetadata,
+  SanityImageCrop,
   SanityImageDimensions,
+  SanityImageHotspot,
+  SanityImageMetadata,
   SanityImagePalette,
   SanityImagePaletteSwatch,
+  SanityKeyed,
+  SanityKeyedReference,
+  SanityReference,
 } from 'sanity-codegen';
 
 export type {
-  SanityReference,
-  SanityKeyedReference,
   SanityAsset,
-  SanityImage,
-  SanityFile,
-  SanityGeoPoint,
   SanityBlock,
   SanityDocument,
-  SanityImageCrop,
-  SanityImageHotspot,
-  SanityKeyed,
+  SanityFile,
+  SanityGeoPoint,
+  SanityImage,
   SanityImageAsset,
-  SanityImageMetadata,
+  SanityImageCrop,
   SanityImageDimensions,
+  SanityImageHotspot,
+  SanityImageMetadata,
   SanityImagePalette,
   SanityImagePaletteSwatch,
+  SanityKeyed,
+  SanityKeyedReference,
+  SanityReference,
 };
 
 /**
@@ -311,7 +311,7 @@ export interface ContactForms extends SanityDocument {
   email?: string;
 
   /**
-   * Message — `string`
+   * Message — `text`
    *
    *
    */
@@ -390,6 +390,104 @@ export interface Author extends SanityDocument {
   };
 }
 
+/**
+ * Career
+ *
+ *
+ */
+export interface Career extends SanityDocument {
+  _type: 'career';
+
+  /**
+   * Hide Career — `boolean`
+   *
+   *
+   */
+  careerHide: boolean;
+
+  /**
+   * Employment Type — `string`
+   *
+   *
+   */
+  employmentType:
+    | 'Contract'
+    | 'Self-employed'
+    | 'Part-time'
+    | 'Full-time'
+    | 'Internship'
+    | 'Apprenticeship'
+    | 'Freelance';
+
+  /**
+   * Title — `string`
+   *
+   *
+   */
+  title: string;
+
+  /**
+   * Company Name — `string`
+   *
+   *
+   */
+  name: string;
+
+  /**
+   * Location — `string`
+   *
+   *
+   */
+  location?: string;
+
+  /**
+   * Location Type — `string`
+   *
+   *
+   */
+  locationType: 'On-site' | 'Hybrid' | 'Remote';
+
+  /**
+   * Company Logo — `image`
+   *
+   *
+   */
+  companyLogo?: {
+    _type: 'image';
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
+
+  /**
+   * Start Date — `date`
+   *
+   *
+   */
+  startDate: string;
+
+  /**
+   * End Date — `date`
+   *
+   *
+   */
+  endDate?: string;
+
+  /**
+   * Description — `blockContent`
+   *
+   *
+   */
+  description: BlockContent;
+
+  /**
+   * Skills — `array`
+   *
+   *
+   */
+  skillTags: Array<SanityKeyedReference<Category>>;
+}
+
 export type BlockContent = Array<
   | SanityKeyed<SanityBlock>
   | SanityKeyed<{
@@ -464,4 +562,5 @@ export type Documents =
   | Certificate
   | ContactForms
   | Category
-  | Author;
+  | Author
+  | Career;
