@@ -1,8 +1,8 @@
 import { MantineThemeOverride } from '@mantine/core';
-import { firaSans } from '../styles/font';
+import { bricolageGrotesque } from '../styles/font';
 
 const config: MantineThemeOverride = {
-  fontFamily: `${firaSans.style.fontFamily}`,
+  fontFamily: `${bricolageGrotesque.style.fontFamily}, sans-serif`,
 };
 
 export default config;
