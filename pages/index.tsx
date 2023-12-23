@@ -1,10 +1,27 @@
-import { Alert, Center, Group, Stack, Text, Title } from '@mantine/core';
-import { IconCheck, IconHourglassLow, IconX } from '@tabler/icons-react';
+import {
+  Alert,
+  Badge,
+  Box,
+  Button,
+  Center,
+  Group,
+  Stack,
+  Text,
+  Title,
+} from '@mantine/core';
+import { PortableText } from '@portabletext/react';
+import {
+  IconCheck,
+  IconFileDownload,
+  IconHourglassLow,
+  IconX,
+} from '@tabler/icons-react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import MetaHead from '../components/MetaHead';
 import { ProfileDetails } from '../groq/queries';
-import { urlFor } from '../lib/sanity';
+import { getUrlFromId, urlFor } from '../lib/sanity';
 import { getClient } from '../lib/sanity.server';
 import { Category, PersonalInfo } from '../schema.d';
 
@@ -23,7 +40,8 @@ type Props = UnwrapPromise<ReturnType<typeof getStaticProps>>['props'];
 
 const Home: NextPage<Props> = props => {
   const { data } = props;
-  const { name, title, jobStatus, image, jobVisibility } = data;
+  const { name, title, jobStatus, image, jobVisibility, CV, bio, skills } =
+    data;
 
   const picSize = { width: 160, height: 160 };
   const jobStatusCheck = (() => {
@@ -72,21 +90,67 @@ const Home: NextPage<Props> = props => {
         <Title order={2} align="center" c="dimmed">
           {title}
         </Title>
-        {jobVisibility && (
+        {!jobVisibility && (
           <>
             <Title order={3} align="center" c="dimmed">
               Job Status
             </Title>
-            <Alert color={jobStatusCheck.color}>
+            <Alert color={jobStatusCheck.color} radius="xl">
               <Center>
                 <Group>
-                  {jobStatusCheck.icon}
                   <Text>{jobStatusCheck.message}</Text>
+                  {jobStatusCheck.icon}
                 </Group>
               </Center>
             </Alert>
           </>
         )}
+        <Center>
+          <Box>
+            <Title order={2} mb="sm" align="right">
+              Bio
+            </Title>
+            <PortableText value={bio} />
+
+            {CV?.asset._ref && (
+              <Button
+                component={Link}
+                href={getUrlFromId(CV.asset._ref)}
+                passHref
+                target="_blank"
+                leftIcon={<IconFileDownload className="mr-1" />}
+                variant="outline"
+                color="gray"
+                mt="sm"
+              >
+                Download my CV
+              </Button>
+            )}
+
+            {skills.length > 0 && (
+              <>
+                <Title order={2} mb="sm" align="right">
+                  Skills
+                </Title>
+
+                <Group spacing="sm">
+                  {skills.map(tag => {
+                    return (
+                      <Badge
+                        variant="outline"
+                        key={tag._id}
+                        color="gray"
+                        size="lg"
+                      >
+                        {tag.title}
+                      </Badge>
+                    );
+                  })}
+                </Group>
+              </>
+            )}
+          </Box>
+        </Center>
       </Stack>
     </>
   );
