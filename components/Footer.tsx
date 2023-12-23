@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer>
-      <Group position="center">
+      <Group position="center" mb="xl">
         {links.map(({ name, link, iconName }) => (
           <Tooltip key={name} label={name} withArrow>
             <Link href={link} passHref>
