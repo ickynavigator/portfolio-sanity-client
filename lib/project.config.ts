@@ -37,6 +37,8 @@ const config = {
   defaultSocialLinks,
   /** Show career page link */
   showCareerLink: false,
+  /** Show certificates page link */
+  showCertificateLink: false,
 };
 
 export default config;

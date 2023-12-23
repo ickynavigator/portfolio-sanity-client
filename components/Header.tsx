@@ -13,11 +13,12 @@ import { useRouter } from 'next/router';
 import projectConfig from '../lib/project.config';
 import ThemeSwitcher from './ThemeSwitcher';
 
+const { name, showCareerLink, showCertificateLink } = projectConfig;
 const navMenuLinks = [
   { title: 'Projects', href: '/projects' },
   { title: 'Career', href: '/career' },
   { title: 'Contact', href: '/contact' },
-  // { title: 'Certificates', href: '/certificates' },
+  { title: 'Certificates', href: '/certificates' },
 ];
 
 const useStyles = createStyles(theme => ({
@@ -78,13 +79,14 @@ const Header = () => {
           <Group>
             <ThemeSwitcher />
             <Anchor component={Link} href="/" underline={false}>
-              <Title>{projectConfig.name}</Title>
+              <Title>{name}</Title>
             </Anchor>
           </Group>
 
           <Group>
             {navMenuLinks.map(link => {
-              if (!projectConfig.showCareerLink && link.href === '/career')
+              if (!showCareerLink && link.href === '/career') return null;
+              if (!showCertificateLink && link.href === '/certificates')
                 return null;
 
               return (
