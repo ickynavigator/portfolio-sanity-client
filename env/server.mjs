@@ -3,9 +3,9 @@ import { z } from 'zod';
 
 const env = createEnv({
   server: {
-    SMTP_SERVICE: z.string(),
-    SMTP_USER: z.string(),
-    SMTP_PASS: z.string(),
+    SMTP_SERVICE: z.string().optional(),
+    SMTP_USER: z.string().optional(),
+    SMTP_PASS: z.string().optional(),
     SANITY_API_TOKEN: z.string(),
   },
   runtimeEnv: {

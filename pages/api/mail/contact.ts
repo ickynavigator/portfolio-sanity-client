@@ -1,5 +1,6 @@
 import { render } from '@react-email/render';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import server from '../../../env/server.mjs';
 import { mailInfo } from '../../../helpers';
 import { isContactForm } from '../../../lib/checks';
 import transporter from '../../../lib/mail';
@@ -21,14 +22,16 @@ export default async function handler(
           });
         }
 
-        const emailHtml = render(EmailContact(req.body), { pretty: true });
+        if (server.SMTP_SERVICE && server.SMTP_USER && server.SMTP_PASS) {
+          const emailHtml = render(EmailContact(req.body), { pretty: true });
 
-        transporter.sendMail({
-          from: mailInfo.from,
-          to: mailInfo.to,
-          subject: `${req.body.name} contacted you`,
-          html: emailHtml,
-        });
+          transporter.sendMail({
+            from: mailInfo.from,
+            to: mailInfo.to,
+            subject: `${req.body.name} contacted you`,
+            html: emailHtml,
+          });
+        }
 
         return res.status(200).json('Mail sent successfully');
       } catch (error) {
