@@ -1,8 +1,50 @@
+# Portfolio Sanity Client
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+You should setup the portfolio sanity studio first. Find it at https://github.com/ickynavigator/portfolio-sanity-studio
 
 ## Getting Started
 
-First, run the development server:
+### Environment Variables
+
+Fill up the .env file with the variables in the .env.example
+
+The Sanity API token is used to fetch data from Sanity. Go to your sanity project api page to generate it. Grant it the `Editor` role.
+
+```bash
+SANITY_API_TOKEN =
+```
+
+The Sanity Dataset is the name of the dataset you want to use. Go to your sanity project datasets page to find it. It is probably production but you can confirm by going to the URL above.
+
+```bash
+NEXT_PUBLIC_SANITY_DATASET =
+```
+
+The Sanity project id is the id linked with the sanity project. It should be on the dashboard of your sanity project.
+
+```bash
+NEXT_PUBLIC_SANITY_PROJECT_ID =
+```
+
+This is the ID of the profile you want to use for the site. You can find this by going to your Sanity Studio and running this query in the GROQ console: \*[_type == "personalInfo"]{ \_id }
+
+```bash
+NEXT_PUBLIC_PROFILE_ID =
+```
+
+Ignore at least one of the SMTP variables if you don't want the contact form to go to the user's email
+
+```bash
+SMTP_SERVICE =
+SMTP_USER =
+SMTP_PASS =
+```
+
+### Starting the App
+
+Then run the development server:
 
 ```bash
 npm run dev
@@ -11,24 +53,3 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
