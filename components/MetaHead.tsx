@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
+import projectConfig from '../lib/project.config';
 
 interface T {
   title?: string;
@@ -10,12 +11,12 @@ interface T {
 const MetaHead: React.FC<T> = ({ title, description, icon, keywords }) => {
   return (
     <Head>
-      <title>{title || `Obi Fortune Personal Portfolio`}</title>
+      <title>{title || `${projectConfig.name} Personal Portfolio`}</title>
       <meta
         name="description"
         content={
           description ||
-          `Obi Fortune Personal Portfolio. Built with Next.js and Sanity.`
+          `${projectConfig.name}'s Personal Portfolio. Built with Next.js and Sanity.`
         }
       />
       <link rel="icon" href={icon || `/favicon.ico`} />
@@ -23,7 +24,7 @@ const MetaHead: React.FC<T> = ({ title, description, icon, keywords }) => {
         name="keywords"
         content={keywords || `PORTFOLIO, DEVELOPER, NEXTJS, REACTJS, SANITY`}
       />
-      <meta name="author" content="Obi Fortune" />
+      <meta name="author" content={`${projectConfig.name}`} />
 
       <meta name="robots" content="index, follow" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />

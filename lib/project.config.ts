@@ -1,13 +1,6 @@
 import { SocialLink } from '../schema';
 
-export const sourceCodeLink: SocialLink = {
-  _type: 'socialLink',
-  link: 'https://github.com/ickynavigator/portfolio-sanity-client',
-  name: 'Site Source Code',
-  iconName: 'Code',
-};
-
-export const defaultSocialLinks: SocialLink[] = [
+const defaultSocialLinks: SocialLink[] = [
   {
     _type: 'socialLink',
     link: 'https://github.com/ickynavigator',
@@ -34,7 +27,14 @@ export const defaultSocialLinks: SocialLink[] = [
   },
 ];
 
-export const mailInfo = {
-  from: 'me@obifortune.tech',
-  to: 'gabrielobi.of@gmail.com',
-} as const;
+const config = {
+  name: 'Obi Fortune',
+  /** Should the original source code be shown in the portfolio */
+  showOriginalSourceLink: true,
+  /** Can leave `from` and `to` as empty strings if SMTP is not setup */
+  mailInfo: { from: 'me@obifortune.tech', to: 'gabrielobi.of@gmail.com' },
+  /** Social Links to be displayed before the fetch from the sanity */
+  defaultSocialLinks,
+};
+
+export default config;

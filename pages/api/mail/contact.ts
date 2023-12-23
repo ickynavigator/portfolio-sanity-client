@@ -1,10 +1,10 @@
 import { render } from '@react-email/render';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import server from '../../../env/server.mjs';
-import { mailInfo } from '../../../helpers';
 import { isContactForm } from '../../../lib/checks';
 import transporter from '../../../lib/mail';
 import { cors, runMiddleware } from '../../../lib/middleware';
+import projectConfig from '../../../lib/project.config';
 import { EmailContact } from '../../../templates';
 
 export default async function handler(
@@ -26,8 +26,8 @@ export default async function handler(
           const emailHtml = render(EmailContact(req.body), { pretty: true });
 
           transporter.sendMail({
-            from: mailInfo.from,
-            to: mailInfo.to,
+            from: projectConfig.mailInfo.from,
+            to: projectConfig.mailInfo.to,
             subject: `${req.body.name} contacted you`,
             html: emailHtml,
           });

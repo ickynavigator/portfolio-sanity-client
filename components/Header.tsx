@@ -10,6 +10,7 @@ import {
 import { useMediaQuery } from '@mantine/hooks';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import projectConfig from '../lib/project.config';
 import ThemeSwitcher from './ThemeSwitcher';
 
 const navMenuLinks = [
@@ -76,7 +77,7 @@ const Header = () => {
           <Group>
             <ThemeSwitcher />
             <Anchor component={Link} href="/" underline={false}>
-              <Title>OBI FORTUNE</Title>
+              <Title>{projectConfig.name}</Title>
             </Anchor>
           </Group>
 

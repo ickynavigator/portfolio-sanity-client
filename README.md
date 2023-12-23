@@ -48,6 +48,12 @@ SMTP_USER =
 SMTP_PASS =
 ```
 
+### Project config
+
+Go to [Project Config](./lib/project.config.ts) to update the app configuration.
+
+All the othe config files can also be found in that folder
+
 ### Starting the App
 
 Then run the development server:

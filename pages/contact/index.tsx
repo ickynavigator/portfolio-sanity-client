@@ -14,6 +14,7 @@ import { z } from 'zod';
 import Alert from '../../components/Alert';
 import MetaHead from '../../components/MetaHead';
 import { useAlertManager } from '../../hooks';
+import projectConfig from '../../lib/project.config';
 import { postToSanity } from '../../lib/sanity';
 import type { ContactForms } from '../../schema';
 
@@ -71,7 +72,7 @@ const Index: NextPage = () => {
 
   return (
     <>
-      <MetaHead title="Contact Obi Fortune" />
+      <MetaHead title={`Contact ${projectConfig.name}`} />
       <form onSubmit={form.onSubmit(values => handleSubmit(values))}>
         <Title order={2} mb="sm" align="right">
           Contact Me
