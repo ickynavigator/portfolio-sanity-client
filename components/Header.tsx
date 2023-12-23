@@ -83,17 +83,22 @@ const Header = () => {
           </Group>
 
           <Group>
-            {navMenuLinks.map(link => (
-              <Link
-                key={link.title}
-                href={link.href}
-                className={cx(classes.link, {
-                  [classes.linkActive]: router.pathname === link.href,
-                })}
-              >
-                {link.title}
-              </Link>
-            ))}
+            {navMenuLinks.map(link => {
+              if (!projectConfig.showCareerLink && link.href === '/career')
+                return null;
+
+              return (
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  className={cx(classes.link, {
+                    [classes.linkActive]: router.pathname === link.href,
+                  })}
+                >
+                  {link.title}
+                </Link>
+              );
+            })}
           </Group>
         </Group>
       </Container>

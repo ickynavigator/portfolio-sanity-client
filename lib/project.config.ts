@@ -35,6 +35,8 @@ const config = {
   mailInfo: { from: 'me@obifortune.tech', to: 'gabrielobi.of@gmail.com' },
   /** Social Links to be displayed before the fetch from the sanity */
   defaultSocialLinks,
+  /** Show career page link */
+  showCareerLink: false,
 };
 
 export default config;
