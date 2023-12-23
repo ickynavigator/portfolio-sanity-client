@@ -9,44 +9,22 @@ export const ProfileDetails = groq`
     "skills": skillTags[]->
   }[0]
 `;
-export const ProfileName = groq`
-  *[_type == "personalInfo" && _id == ${profileID}]{
-    name,
-    id
-  }[0]
-`;
-export const AboutMeDetails = groq`
-  *[_type == "personalInfo" && _id == ${profileID}]{
-    bio,
-    CV,
-    "skills": skillTags[]->
-  }[0]
-`;
 export const AllSocialLinks = groq`
   *[_type == "personalInfo" && _id == ${profileID}]{
     socialLinks
   }[0].socialLinks`;
 export const AllCertificates = groq`
-  *[_type == "certificate"]
+  *[_type == "certificate" && certificateHide == false] | order(startDate desc)
 `;
 export const AllProjectDetails = groq`
   *[_type == "project" && projectHide == false]{
     ...,
     "tags": categories[]->
-  }
-`;
-export const projectDetails = groq`
-  *[_type == "project" && projectHide == false && slug.current == $slug][0]
-`;
-export const projectSlugs = groq`
-  *[_type == "project" && projectHide == false]{
-    _id,
-    slug
-  }
+  } | order(_updatedAt desc)
 `;
 export const AllCareers = groq`
   *[_type == "career" && careerHide == false]{
     ...,
     "tags": skillTags[]->
-  }
+  } | order(startDate desc)
 `;
