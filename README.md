@@ -16,7 +16,7 @@ The Sanity API token is used to fetch data from Sanity. Go to your sanity projec
 SANITY_API_TOKEN =
 ```
 
-The Sanity Dataset is the name of the dataset you want to use. Go to your sanity project datasets page to find it. It is probably production but you can confirm by going to the URL above.
+The Sanity Dataset is the name of the dataset you want to use. Go to your sanity project datasets page to find it. It defaults to "production"
 
 ```bash
 NEXT_PUBLIC_SANITY_DATASET =
@@ -32,6 +32,12 @@ This is the ID of the profile you want to use for the site. You can find this by
 
 ```bash
 NEXT_PUBLIC_PROFILE_ID =
+```
+
+Sanity Api version
+
+```bash
+NEXT_PUBLIC_SANITY_API_VERSION =
 ```
 
 Ignore at least one of the SMTP variables if you don't want the contact form to go to the user's email
