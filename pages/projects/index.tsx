@@ -3,7 +3,6 @@ import {
   ActionIcon,
   Alert,
   Anchor,
-  Badge,
   Box,
   Card,
   Center,
@@ -24,6 +23,7 @@ import {
 } from '@tabler/icons-react';
 import type { NextPage } from 'next';
 import Link from 'next/link';
+import CategoryList from '../../components/CategoryList';
 import MetaHead from '../../components/MetaHead';
 import { AllProjectDetails } from '../../groq/queries';
 import { urlFor } from '../../lib/sanity';
@@ -130,18 +130,7 @@ const Index: NextPage<Props> = props => {
                     </Box>
 
                     <Group spacing="sm">
-                      {tags.map(tag => {
-                        return (
-                          <Badge
-                            variant="outline"
-                            key={tag._id}
-                            color="gray"
-                            size="lg"
-                          >
-                            {tag.title}
-                          </Badge>
-                        );
-                      })}
+                      <CategoryList tags={tags} />
                     </Group>
 
                     {projectIssuer && (

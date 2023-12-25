@@ -1,6 +1,5 @@
 import {
   Alert,
-  Badge,
   Box,
   Button,
   Center,
@@ -19,6 +18,7 @@ import {
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import CategoryList from '../components/CategoryList';
 import MetaHead from '../components/MetaHead';
 import { ProfileDetails } from '../groq/queries';
 import { getUrlFromId, urlFor } from '../lib/sanity';
@@ -134,18 +134,7 @@ const Home: NextPage<Props> = props => {
                 </Title>
 
                 <Group spacing="sm">
-                  {skills.map(tag => {
-                    return (
-                      <Badge
-                        variant="outline"
-                        key={tag._id}
-                        color="gray"
-                        size="lg"
-                      >
-                        {tag.title}
-                      </Badge>
-                    );
-                  })}
+                  <CategoryList tags={skills} />
                 </Group>
               </>
             )}

@@ -1,5 +1,4 @@
 import {
-  Badge,
   Card,
   Divider,
   Group,
@@ -11,6 +10,7 @@ import {
 } from '@mantine/core';
 import { PortableText } from '@portabletext/react';
 import { InferGetStaticPropsType, NextPage } from 'next';
+import CategoryList from '../../components/CategoryList';
 import MetaHead from '../../components/MetaHead';
 import { AllCareers } from '../../groq/queries';
 import { urlFor } from '../../lib/sanity';
@@ -95,18 +95,7 @@ const Career: NextPage<Props> = props => {
                 <PortableText value={description} />
                 <Divider />
                 <Group spacing="sm" mt="md">
-                  {tags?.map(tag => {
-                    return (
-                      <Badge
-                        variant="outline"
-                        key={tag._id}
-                        color="gray"
-                        size="lg"
-                      >
-                        {tag.title}
-                      </Badge>
-                    );
-                  })}
+                  <CategoryList tags={tags} />
                 </Group>
               </Stack>
             </Card>
