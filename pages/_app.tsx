@@ -31,6 +31,8 @@ const App = (props: Props) => {
     // when color scheme is updated save it to cookie
     setCookie('mantine-color-scheme', nextColorScheme, {
       maxAge: 60 * 60 * 24 * 30,
+      sameSite: 'none',
+      secure: true,
     });
   };
 
