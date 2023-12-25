@@ -106,12 +106,7 @@ const Index: NextPage = () => {
             {...form.getInputProps('message')}
           />
           <Group position="right">
-            <Button
-              type="submit"
-              color="gray"
-              variant="outline"
-              loading={loading}
-            >
+            <Button type="submit" variant="outline" loading={loading}>
               Send
             </Button>
           </Group>

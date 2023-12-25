@@ -120,7 +120,6 @@ const Home: NextPage<Props> = props => {
                 target="_blank"
                 leftIcon={<IconFileDownload className="mr-1" />}
                 variant="outline"
-                color="gray"
                 mt="sm"
               >
                 Download my CV

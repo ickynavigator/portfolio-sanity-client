@@ -23,10 +23,10 @@ const useStyles = createStyles(theme => ({
     fontSize: rem(220),
     lineHeight: 1,
     marginBottom: `calc(${theme.spacing.xl} * 1.5)`,
-    color:
-      theme.colorScheme === 'dark'
-        ? theme.colors.dark[4]
-        : theme.colors.gray[2],
+    color: theme.fn.variant({
+      variant: theme.colorScheme,
+      color: theme.primaryColor,
+    }).color,
 
     [theme.fn.smallerThan('sm')]: {
       fontSize: rem(120),
@@ -83,7 +83,7 @@ const Page500 = () => {
             >
               Refresh Page
             </Button>
-            <Button variant="subtle" size="md" component={Link} href="/">
+            <Button variant="outline" size="md" component={Link} href="/">
               Take me back to home page
             </Button>
           </Group>

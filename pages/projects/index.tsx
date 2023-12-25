@@ -166,7 +166,7 @@ const Index: NextPage<Props> = props => {
                         const shouldShow = !visibility && url;
 
                         const inner = (
-                          <ActionIcon variant="outline" disabled={!shouldShow}>
+                          <ActionIcon disabled={!shouldShow}>
                             {icon}
                           </ActionIcon>
                         );

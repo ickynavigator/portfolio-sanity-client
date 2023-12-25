@@ -90,8 +90,7 @@ const index: NextPage<Props> = props => {
                             href={certificateLink}
                             passHref
                             target="_blank"
-                            variant="light"
-                            color="gray"
+                            variant="outline"
                             fullWidth
                             mt="md"
                             radius="md"
