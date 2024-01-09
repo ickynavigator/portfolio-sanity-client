@@ -8,7 +8,6 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import { PortableText } from '@portabletext/react';
 import {
   IconCheck,
   IconFileDownload,
@@ -19,6 +18,7 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import CategoryList from '../components/CategoryList';
+import EnhancedPortableText from '../components/EnhancedPortableText';
 import MetaHead from '../components/MetaHead';
 import { ProfileDetails } from '../groq/queries';
 import { getUrlFromId, urlFor } from '../lib/sanity';
@@ -110,7 +110,7 @@ const Home: NextPage<Props> = props => {
             <Title order={2} mb="sm" align="right">
               Bio
             </Title>
-            <PortableText value={bio} />
+            <EnhancedPortableText value={bio} />
 
             {CV?.asset._ref && (
               <Button

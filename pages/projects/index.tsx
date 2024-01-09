@@ -13,7 +13,6 @@ import {
   Title,
   Tooltip,
 } from '@mantine/core';
-import { PortableText } from '@portabletext/react';
 import {
   IconCheck,
   IconDeviceLaptop,
@@ -24,6 +23,7 @@ import {
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import CategoryList from '../../components/CategoryList';
+import EnhancedPortableText from '../../components/EnhancedPortableText';
 import MetaHead from '../../components/MetaHead';
 import { AllProjectDetails } from '../../groq/queries';
 import { urlFor } from '../../lib/sanity';
@@ -126,7 +126,7 @@ const Index: NextPage<Props> = props => {
                     <Title order={3}>{name}</Title>
 
                     <Box>
-                      <PortableText value={body} />
+                      <EnhancedPortableText value={body} />
                     </Box>
 
                     <Group spacing="sm">
@@ -166,9 +166,7 @@ const Index: NextPage<Props> = props => {
                         const shouldShow = !visibility && url;
 
                         const inner = (
-                          <ActionIcon disabled={!shouldShow}>
-                            {icon}
-                          </ActionIcon>
+                          <ActionIcon disabled={!shouldShow}>{icon}</ActionIcon>
                         );
                         return (
                           <Tooltip

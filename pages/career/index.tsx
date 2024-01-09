@@ -8,9 +8,9 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import { PortableText } from '@portabletext/react';
 import { InferGetStaticPropsType, NextPage } from 'next';
 import CategoryList from '../../components/CategoryList';
+import EnhancedPortableText from '../../components/EnhancedPortableText';
 import MetaHead from '../../components/MetaHead';
 import { AllCareers } from '../../groq/queries';
 import { urlFor } from '../../lib/sanity';
@@ -92,7 +92,7 @@ const Career: NextPage<Props> = props => {
                   )}
                 </Group>
                 <Divider />
-                <PortableText value={description} />
+                <EnhancedPortableText value={description} />
                 <Divider />
                 <Group spacing="sm" mt="md">
                   <CategoryList tags={tags} />
