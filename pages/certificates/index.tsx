@@ -19,6 +19,7 @@ const dateHelper = (date: Date) => {
   return Intl.DateTimeFormat('en-US', {
     year: 'numeric',
     month: 'long',
+    timeZone: 'UTC',
   }).format(date);
 };
 
