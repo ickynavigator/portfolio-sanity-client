@@ -1,11 +1,11 @@
 import { render } from '@react-email/render';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import server from '../../../env/server.mjs';
-import { isContactForm } from '../../../lib/checks';
-import transporter from '../../../lib/mail';
-import { cors, runMiddleware } from '../../../lib/middleware';
-import projectConfig from '../../../lib/project.config';
-import { EmailContact } from '../../../templates';
+import { isContactForm } from '../../../src/lib/checks';
+import transporter from '../../../src/lib/mail';
+import { cors, runMiddleware } from '../../../src/lib/middleware';
+import projectConfig from '../../../src/lib/project.config';
+import { EmailContact } from '../../../src/templates';
 
 export default async function handler(
   req: NextApiRequest,

@@ -11,12 +11,12 @@ import axios from 'axios';
 import type { NextPage } from 'next';
 import { useState } from 'react';
 import { z } from 'zod';
-import Alert from '../../components/Alert';
-import MetaHead from '../../components/MetaHead';
-import { useAlertManager } from '../../hooks';
-import projectConfig from '../../lib/project.config';
-import { postToSanity } from '../../lib/sanity';
+import { useAlertManager } from '../../src/hooks';
+import projectConfig from '../../src/lib/project.config';
+import { postToSanity } from '../../src/lib/sanity';
 import type { ContactForms } from '../../schema';
+import Alert from '../../src/components/Alert';
+import MetaHead from '../../src/components/MetaHead';
 
 const formSchema = z.object({
   name: z.string().min(3),

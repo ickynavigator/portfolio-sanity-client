@@ -17,13 +17,13 @@ import {
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import CategoryList from '../components/CategoryList';
-import EnhancedPortableText from '../components/EnhancedPortableText';
-import MetaHead from '../components/MetaHead';
-import { ProfileDetails } from '../groq/queries';
-import { getUrlFromId, urlFor } from '../lib/sanity';
-import { getClient } from '../lib/sanity.server';
 import { Category, PersonalInfo } from '../schema.d';
+import CategoryList from '../src/components/CategoryList';
+import EnhancedPortableText from '../src/components/EnhancedPortableText';
+import MetaHead from '../src/components/MetaHead';
+import { ProfileDetails } from '../src/groq/queries';
+import { getUrlFromId, urlFor } from '../src/lib/sanity';
+import { getClient } from '../src/lib/sanity.server';
 
 interface PersonalInfoResponse extends PersonalInfo {
   skills: Category[];

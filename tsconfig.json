@@ -17,7 +17,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
@@ -25,7 +30,8 @@
     "**/*.ts",
     "**/*.tsx",
     "env/server.mjs",
-    "env/client.mjs"
+    "env/client.mjs",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

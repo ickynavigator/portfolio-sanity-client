@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { cors, runMiddleware } from '../../../lib/middleware';
-import { getClient } from '../../../lib/sanity.server';
+import { cors, runMiddleware } from '../../../src/lib/middleware';
+import { getClient } from '../../../src/lib/sanity.server';
 
 export default async function handler(
   req: NextApiRequest,

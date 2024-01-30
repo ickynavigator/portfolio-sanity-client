@@ -9,13 +9,13 @@ import {
   Title,
 } from '@mantine/core';
 import { InferGetStaticPropsType, NextPage } from 'next';
-import CategoryList from '../../components/CategoryList';
-import EnhancedPortableText from '../../components/EnhancedPortableText';
-import MetaHead from '../../components/MetaHead';
-import { AllCareers } from '../../groq/queries';
-import { urlFor } from '../../lib/sanity';
-import { getClient } from '../../lib/sanity.server';
 import { Career as CareerType, Category } from '../../schema';
+import CategoryList from '../../src/components/CategoryList';
+import EnhancedPortableText from '../../src/components/EnhancedPortableText';
+import MetaHead from '../../src/components/MetaHead';
+import { AllCareers } from '../../src/groq/queries';
+import { urlFor } from '../../src/lib/sanity';
+import { getClient } from '../../src/lib/sanity.server';
 
 export const getStaticProps = async () => {
   const careers = await getClient().fetch<

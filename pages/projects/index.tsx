@@ -22,13 +22,13 @@ import {
 } from '@tabler/icons-react';
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import CategoryList from '../../components/CategoryList';
-import EnhancedPortableText from '../../components/EnhancedPortableText';
-import MetaHead from '../../components/MetaHead';
-import { AllProjectDetails } from '../../groq/queries';
-import { urlFor } from '../../lib/sanity';
-import { getClient } from '../../lib/sanity.server';
 import { Category, Project as ProjectTypes } from '../../schema';
+import CategoryList from '../../src/components/CategoryList';
+import EnhancedPortableText from '../../src/components/EnhancedPortableText';
+import MetaHead from '../../src/components/MetaHead';
+import { AllProjectDetails } from '../../src/groq/queries';
+import { urlFor } from '../../src/lib/sanity';
+import { getClient } from '../../src/lib/sanity.server';
 
 export const getStaticProps = async () => {
   const projects = await getClient().fetch<

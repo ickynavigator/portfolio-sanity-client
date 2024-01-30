@@ -8,10 +8,10 @@ import type { AppContext, AppProps } from 'next/app';
 import NextApp from 'next/app';
 import { useState } from 'react';
 
-import Layout from '../components/Layout';
-import RouterTransition from '../components/RouterTransition';
-import MantineConfig from '../lib/mantine.config';
-import '../styles/globals.css';
+import Layout from '../src/components/Layout';
+import RouterTransition from '../src/components/RouterTransition';
+import MantineConfig from '../src/lib/mantine.config';
+import '../src/styles/globals.css';
 
 type Props = AppProps & {
   colorScheme: ColorScheme;

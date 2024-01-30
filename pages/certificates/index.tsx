@@ -2,11 +2,11 @@ import { Box, Button, Card, Center, Stack, Text, Title } from '@mantine/core';
 import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import MetaHead from '../../components/MetaHead';
-import { AllCertificates } from '../../groq/queries';
-import { urlFor } from '../../lib/sanity';
-import { getClient } from '../../lib/sanity.server';
 import { Certificate as CertificateTypes } from '../../schema';
+import MetaHead from '../../src/components/MetaHead';
+import { AllCertificates } from '../../src/groq/queries';
+import { urlFor } from '../../src/lib/sanity';
+import { getClient } from '../../src/lib/sanity.server';
 
 export const getStaticProps = async () => {
   const certificates = await getClient().fetch<CertificateTypes[]>(
