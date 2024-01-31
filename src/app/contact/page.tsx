@@ -16,7 +16,7 @@ import {
 } from '@tabler/icons-react';
 import { useState } from 'react';
 import { z } from 'zod';
-import { useAlertManager } from '~/hooks';
+import useAlertManager from '~/hooks/useAlertManager';
 import formSubmit from './actions';
 
 const formSchema = z.object({
