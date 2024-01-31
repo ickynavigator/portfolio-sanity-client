@@ -32,7 +32,7 @@ const config = {
   /** Should the original source code be shown in the portfolio */
   showOriginalSourceLink: true,
   /** Can leave `from` and `to` as empty strings if SMTP is not setup */
-  mailInfo: { from: 'me@obifortune.tech', to: 'gabrielobi.of@gmail.com' },
+  mailInfo: { from: 'me@obifortune.com', to: 'gabrielobi.of@gmail.com' },
   /** Social Links to be displayed before the fetch from the sanity */
   defaultSocialLinks,
   /** Show career page link */
