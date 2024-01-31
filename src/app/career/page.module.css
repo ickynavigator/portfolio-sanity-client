@@ -1,0 +1,5 @@
+.group {
+  @media (max-width: $mantine-breakpoint-sm) {
+    flex-direction: column-reverse;
+  }
+}
