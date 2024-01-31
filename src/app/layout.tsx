@@ -1,4 +1,6 @@
+import '@mantine/carousel/styles.css';
 import '@mantine/core/styles.css';
+
 import './layout.styles.css';
 
 import {
