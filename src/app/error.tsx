@@ -11,14 +11,14 @@ import {
   rem,
 } from '@mantine/core';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import classes from './error.module.css';
 
 const ErrorPage = () => {
   const router = useRouter();
 
   const handleRefresh = () => {
-    router.reload();
+    router.refresh();
   };
 
   return (
