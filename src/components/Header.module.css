@@ -1,0 +1,24 @@
+.wrapper {
+  height: 120px;
+  border-bottom: 0.0625rem solid
+    light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
+
+  @media (min-width: $mantine-breakpoint-sm) {
+    height: 60px;
+  }
+}
+
+.header {
+  @media (max-width: $mantine-breakpoint-sm) {
+    justify-content: center;
+  }
+}
+
+.link {
+  transition: color 200ms ease, background-color 200ms ease;
+  font-size: var(--mantine-font-size-sm);
+  &[data-active='true'] {
+    color: var(--mantine-primary-color-contrast);
+    background-color: var(--mantine-primary-color-filled);
+  }
+}

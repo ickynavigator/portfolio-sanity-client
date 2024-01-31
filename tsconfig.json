@@ -22,7 +22,15 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "~/*": [
+        "./src/*"
+      ],
+      "~/schema": [
+        "./schema.d.ts"
+      ]
+    }
   },
   "include": [
     "next-env.d.ts",
@@ -31,7 +39,8 @@
     "**/*.tsx",
     "env/server.mjs",
     "env/client.mjs",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "postcss.config.cjs"
   ],
   "exclude": [
     "node_modules"

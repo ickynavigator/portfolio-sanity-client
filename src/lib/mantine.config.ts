@@ -1,7 +1,7 @@
-import { MantineThemeOverride } from '@mantine/core';
+import { createTheme } from '@mantine/core';
 import { bricolageGrotesque } from '../styles/font';
 
-const config: MantineThemeOverride = {
+const theme = createTheme({
   fontFamily: `${bricolageGrotesque.style.fontFamily}, sans-serif`,
   colors: {
     brand: [
@@ -18,6 +18,6 @@ const config: MantineThemeOverride = {
     ],
   },
   // primaryColor: 'brand',
-};
+});
 
-export default config;
+export default theme;

@@ -7,8 +7,11 @@ import {
   IconCode,
 } from '@tabler/icons-react';
 import Link from 'next/link';
-import React from 'react';
-import { useSocialIcons } from '../hooks';
+import { AllSocialLinks } from '~/groq/queries';
+import { insert } from '~/helpers';
+import { getClient } from '~/lib/sanity.server';
+import { SocialLink } from '~/schema';
+import projectConfig from '../lib/project.config';
 
 const SocialLinksIcons = (name: string) => {
   switch (name) {
@@ -27,12 +30,29 @@ const SocialLinksIcons = (name: string) => {
   }
 };
 
-const Footer: React.FC = () => {
-  const [links] = useSocialIcons();
+const getSocialIcons = async (showOGsourceLink: boolean) => {
+  const sourceCodeLink: SocialLink = {
+    _type: 'socialLink',
+    link: 'https://github.com/ickynavigator/portfolio-sanity-client',
+    name: 'Site Source Code',
+    iconName: 'Code',
+  };
+  const postItems: SocialLink[] = [];
+  if (showOGsourceLink) {
+    postItems.push(sourceCodeLink);
+  }
+
+  const client = getClient();
+  const socialLinks = await client.fetch<SocialLink[]>(AllSocialLinks);
+  return insert(socialLinks, Math.floor(socialLinks.length / 2), ...postItems);
+};
+
+const Footer = async () => {
+  const links = await getSocialIcons(projectConfig.showOriginalSourceLink);
 
   return (
     <footer>
-      <Group position="center" mb="xl">
+      <Group align="center" mb="lg">
         {links.map(({ name, link, iconName }) => (
           <Tooltip key={name} label={name} withArrow>
             <Link href={link} passHref>

@@ -7,6 +7,9 @@ const config = {
   images: {
     remotePatterns: [{ protocol: 'https', hostname: 'cdn.sanity.io' }],
   },
+  experimental: {
+    optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
+  },
 };
 
 export default config;
