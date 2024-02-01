@@ -3,7 +3,7 @@
 import { render } from '@react-email/render';
 import Mail from 'nodemailer/lib/mailer';
 import server from '~/env/server.mjs';
-import transporter from '~/lib/mail';
+import getTransporter from '~/lib/mail';
 import projectConfig from '~/lib/project.config';
 import { ContactForms } from '~/schema';
 import { EmailContact } from '~/templates';
@@ -19,7 +19,9 @@ export const sendMail = async (emailHtml: string, options?: Mail.Options) => {
     return;
 
   try {
-    transporter.sendMail({
+    using t = getTransporter();
+
+    t.transporter.sendMail({
       from: projectConfig.mailInfo.from,
       to: projectConfig.mailInfo.to,
       html: emailHtml,
