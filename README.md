@@ -23,6 +23,12 @@ This is only required if your dataset is private (it should be)
 SANITY_API_TOKEN =
 ```
 
+The secret sanity expects when it tries to hit the revalidate webhook. It defaults to `secret`
+
+```bash
+SANITY_REVALIDATE_SECRET =
+```
+
 The Sanity Dataset is the name of the dataset you want to use. Go to your sanity project datasets page to find it. It defaults to `production`
 
 ```bash
