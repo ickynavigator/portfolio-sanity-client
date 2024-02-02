@@ -6,7 +6,7 @@ const env = createEnv({
     SMTP_SERVICE: z.string().min(1).optional(),
     SMTP_USER: z.string().min(1).optional(),
     SMTP_PASS: z.string().min(1).optional(),
-    SANITY_API_TOKEN: z.string(),
+    SANITY_API_TOKEN: z.string().min(1).optional(),
   },
   runtimeEnv: {
     SMTP_SERVICE: process.env.SMTP_SERVICE,

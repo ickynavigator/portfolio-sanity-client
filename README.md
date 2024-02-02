@@ -17,6 +17,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 Fill up the .env file with the variables in the .env.example
 
 The Sanity API token is used to fetch data from Sanity. Go to your sanity project api page to generate it. Grant it the `Editor` role.
+This is only required if your dataset is private (it should be)
 
 ```bash
 SANITY_API_TOKEN =
