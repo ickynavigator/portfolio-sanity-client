@@ -53,6 +53,9 @@ const Header = () => {
                   className={classes.link}
                   variant="subtle"
                   data-active={pathname === link.href}
+                  fw="500"
+                  px="sm"
+                  style={{ border: 0 }}
                 >
                   {link.title}
                 </Button>
