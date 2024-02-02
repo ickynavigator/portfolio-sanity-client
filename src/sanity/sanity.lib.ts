@@ -1,15 +1,26 @@
-import imageUrlBuilder from '@sanity/image-url';
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import { config } from './sanity.config';
+import createImageUrlBuilder from '@sanity/image-url';
+import type { Image } from 'sanity';
+import { config } from '~/sanity/sanity.config';
 
-const { projectId, dataset } = config;
-const builder = imageUrlBuilder(config);
-/**
- * Set up a helper function for generating Image URLs with only the asset reference data in your documents.
- * Read more: https://www.sanity.io/docs/image-url
- */
-export const urlForImage = (source: SanityImageSource) => {
-  return builder.image(source).url();
+const { dataset, projectId } = config;
+export const imageBuilder = createImageUrlBuilder({ projectId, dataset });
+
+export const getBuiltImage = (source?: Image) => {
+  if (!source) {
+    return undefined;
+  }
+
+  // Ensure that source image contains a valid reference
+  if (!source?.asset?._ref) {
+    return undefined;
+  }
+
+  return imageBuilder.image(source).auto('format');
+};
+
+export const urlForImage = (source?: Image) => {
+  const builtImage = getBuiltImage(source);
+  return builtImage?.url();
 };
 
 export const getUrlFromId = (ref: string) => {
