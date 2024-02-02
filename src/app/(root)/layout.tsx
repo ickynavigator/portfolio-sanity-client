@@ -9,8 +9,8 @@ import projectConfig from '~/lib/project.config';
 
 export const metadata: Metadata = {
   title: {
-    template: `%s | ${projectConfig.name} Personal Portfolio`,
-    default: `${projectConfig.name} Personal Portfolio`,
+    template: `%s | ${projectConfig.name}'s Personal Portfolio`,
+    default: `${projectConfig.name}'s Personal Portfolio`,
   },
   keywords: ['PORTFOLIO', 'DEVELOPER', 'NEXTJS', 'REACTJS', 'SANITY'],
   robots: 'index, follow',
