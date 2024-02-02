@@ -64,13 +64,13 @@ const Page = () => {
       </Title>
 
       {formSuccess && (
-        <Alert icon={<IconCircleCheckFilled />} color="green" my="sm">
+        <Alert icon={<IconCircleCheckFilled />} color="green" my="sm" fz="sm">
           Message sent successfully
         </Alert>
       )}
 
       {formError && (
-        <Alert icon={<IconAlertCircleFilled />} color="red" my="sm">
+        <Alert icon={<IconAlertCircleFilled />} color="red" my="sm" fz="sm">
           There was an issue. Please try again
         </Alert>
       )}

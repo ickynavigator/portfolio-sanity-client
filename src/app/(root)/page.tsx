@@ -86,10 +86,10 @@ const Page = async () => {
           <Title order={3} ta="center" c="dimmed">
             Job Status
           </Title>
-          <Alert color={jobStatusCheck.color} radius="xl">
+          <Alert color={jobStatusCheck.color} radius="xl" fz="sm">
             <Center>
               <Group>
-                <Text>{jobStatusCheck.message}</Text>
+                <Text size="sm">{jobStatusCheck.message}</Text>
                 {jobStatusCheck.icon}
               </Group>
             </Center>

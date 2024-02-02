@@ -132,26 +132,33 @@ const Page = async () => {
                   </Group>
 
                   {projectIssuer && (
-                    <Alert color="gray" radius="md">
+                    <Alert color="gray" radius="md" py="sm" fz="sm">
                       <Center>
                         <Group gap="xs">
                           Project comissioned by:
                           {projectIssuer.link ? (
                             <Anchor component={Link} href={projectIssuer.link}>
-                              <Text>{projectIssuer.name}</Text>
+                              <Text size="sm">{projectIssuer.name}</Text>
                             </Anchor>
                           ) : (
-                            <Text>{projectIssuer.name}</Text>
+                            <Text size="sm">{projectIssuer.name}</Text>
                           )}
                         </Group>
                       </Center>
                     </Alert>
                   )}
-                  <Alert color={profileStatusIcon.color} radius="md">
+                  <Alert
+                    color={profileStatusIcon.color}
+                    radius="md"
+                    py="sm"
+                    fz="sm"
+                  >
                     <Center>
                       <Group>
                         {profileStatusIcon.icon}
-                        <Text tt="capitalize">{profileStatus}</Text>
+                        <Text tt="capitalize" size="sm">
+                          {profileStatus}
+                        </Text>
                       </Group>
                     </Center>
                   </Alert>
