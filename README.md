@@ -67,7 +67,7 @@ Go to [Project Config](./src/lib/project.config.ts) to update the app configurat
 
 ### Setup Revalidation
 
-The app is statically built and nextjs caches all the fetch calls so you need to setup revalidation for sanity so the app actually updates when you make a change. There is a preconfigured webhook setup [Found here](https://www.sanity.io/manage/webhooks/share?name=Revalidate&description=Revalidate+site&url=https%3A%2F%2Fv3.obifortune.com%2Fapi%2Frevalidate&on=update&on=create&on=delete&filter=&projection=&httpMethod=POST&apiVersion=v2021-06-01&includeDrafts=&headers=%7B%7D).
+The app is statically built and nextjs caches all the fetch calls so you need to setup revalidation for sanity so the app actually updates when you make a change. There is a preconfigured webhook setup [Found here](https://www.sanity.io/manage/webhooks/share?name=Revalidate&description=Revalidate+site&url=https%3A%2F%2Fv3.obifortune.com%2Fapi%2Frevalidate&on=update&on=create&on=delete&filter=&projection=%7B_id%2C+_type%7D&httpMethod=POST&apiVersion=v2021-06-01&includeDrafts=&headers=%7B%7D).
 
 - Replace the site with URL with {SITE_URL}/api/revalidate
 - Add a secret (to prevent others from revalidating it)
