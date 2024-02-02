@@ -65,7 +65,7 @@ Go to [Project Config](./src/lib/project.config.ts) to update the app configurat
 Then run the development server:
 
 ```bash
-yarn dev
+pnpm run dev
 ```
 
 #### Viewing the main app
@@ -79,5 +79,5 @@ Open [http://localhost:3000/studio](http://localhost:3000/studio) to see the loc
 ### Generate the schema types
 
 ```bash
-yarn codegen
+pnpm run codegen
 ```
