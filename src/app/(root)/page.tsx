@@ -70,6 +70,7 @@ const Page = async () => {
           src={urlForImage(image)}
           alt={name}
           component={NextImage}
+          priority
           {...picSize}
         />
       </Center>

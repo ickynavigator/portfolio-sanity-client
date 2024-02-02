@@ -80,6 +80,7 @@ const Page = async () => {
                       src={urlForImage(companyLogo)}
                       alt={`Logo for ${name}`}
                       component={NextImage}
+                      priority
                       {...imageSize}
                     />
                   </Paper>
