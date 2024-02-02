@@ -15,7 +15,6 @@ import {
   IconHourglassLow,
   IconX,
 } from '@tabler/icons-react';
-import { Metadata } from 'next';
 import NextImage from 'next/image';
 import Link from 'next/link';
 import CategoryList from '~/components/CategoryList';
@@ -28,10 +27,6 @@ import { Category, PersonalInfo } from '~/schema';
 interface PersonalInfoResponse extends PersonalInfo {
   skills: Category[];
 }
-
-export const metadata: Metadata = {
-  title: 'Home',
-};
 
 const Page = async () => {
   const client = getClient();
