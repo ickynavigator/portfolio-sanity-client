@@ -16,7 +16,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "codegen": "sanity-codegen"
+    "codegen": "sanity-codegen && prettier -w schema.d.ts"
   },
   "dependencies": {
     "@babel/core": "^7.4.0",
