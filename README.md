@@ -1,8 +1,14 @@
 # Portfolio Sanity Client
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It uses [Sanity](https://www.sanity.io/) as the CMS(data store)
 
-You should setup the portfolio sanity studio first. Find it at https://github.com/ickynavigator/portfolio-sanity-studio
+## Tools Used
+
+- [NextJS](https://nextjs.org/)
+- [Sanity CMS](https://sanity.io/)
+- [Mantine UI](https://mantine.dev/)
+- [React Email](https://react.email/) + [Nodemailer](https://nodemailer.com/)
+- [@tabler/icons-react](https://tabler.io/docs/icons/react)
 
 ## Getting Started
 
@@ -16,7 +22,7 @@ The Sanity API token is used to fetch data from Sanity. Go to your sanity projec
 SANITY_API_TOKEN =
 ```
 
-The Sanity Dataset is the name of the dataset you want to use. Go to your sanity project datasets page to find it. It defaults to "production"
+The Sanity Dataset is the name of the dataset you want to use. Go to your sanity project datasets page to find it. It defaults to `production`
 
 ```bash
 NEXT_PUBLIC_SANITY_DATASET =
@@ -28,19 +34,19 @@ The Sanity project id is the id linked with the sanity project. It should be on 
 NEXT_PUBLIC_SANITY_PROJECT_ID =
 ```
 
-This is the ID of the profile you want to use for the site. You can find this by going to your Sanity Studio and running this query in the GROQ console: \*[_type == "personalInfo"]{ \_id }
+This is the ID of the profile you want to use for the site. You can find this by going to your Sanity Studio and running this query in the GROQ console: `*[_type == "personalInfo"]{ _id }`
 
 ```bash
 NEXT_PUBLIC_PROFILE_ID =
 ```
 
-Sanity Api version
+Sanity Api version. It defaults to `2021-10-21`
 
 ```bash
 NEXT_PUBLIC_SANITY_API_VERSION =
 ```
 
-Ignore at least one of the SMTP variables if you don't want the contact form to go to the user's email
+Ignore at least one of the SMTP variables if you don't want the contact form to go to the user's email. Check the [Nodemailer docs](https://nodemailer.com/smtp/)
 
 ```bash
 SMTP_SERVICE =
@@ -50,18 +56,28 @@ SMTP_PASS =
 
 ### Project config
 
-Go to [Project Config](./lib/project.config.ts) to update the app configuration.
+Go to [Project Config](./src/lib/project.config.ts) to update the app configuration.
 
-All the othe config files can also be found in that folder
+## Commands
 
 ### Starting the App
 
 Then run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Viewing the main app
+
+Open [http://localhost:3000](http://localhost:3000) to see the result.
+
+#### Viewing the studio
+
+Open [http://localhost:3000/studio](http://localhost:3000/studio) to see the local studio.
+
+### Generate the schema types
+
+```bash
+yarn codegen
+```
