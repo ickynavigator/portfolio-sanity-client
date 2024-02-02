@@ -14,7 +14,7 @@ import CategoryList from '~/components/CategoryList';
 import EnhancedPortableText from '~/components/EnhancedPortableText';
 import { AllCareers } from '~/groq/queries';
 import { formatDate } from '~/lib/format';
-import { urlFor } from '~/sanity/sanity';
+import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
 import { Career, Category } from '~/schema';
 import classes from './page.module.css';
@@ -77,7 +77,7 @@ const Page = async () => {
                 {companyLogo && (
                   <Paper withBorder radius="md" style={{ overflow: 'hidden' }}>
                     <Image
-                      src={urlFor(companyLogo)}
+                      src={urlForImage(companyLogo)}
                       alt={`Logo for ${name}`}
                       component={NextImage}
                       {...imageSize}

@@ -21,7 +21,7 @@ import Link from 'next/link';
 import CategoryList from '~/components/CategoryList';
 import EnhancedPortableText from '~/components/EnhancedPortableText';
 import { ProfileDetails } from '~/groq/queries';
-import { getUrlFromId, urlFor } from '~/sanity/sanity';
+import { getUrlFromId, urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
 import { Category, PersonalInfo } from '~/schema';
 
@@ -72,7 +72,7 @@ const Page = async () => {
     <Stack align="center" gap="xs">
       <Center style={{ overflow: 'hidden', borderRadius: '50%' }}>
         <Image
-          src={urlFor(image)}
+          src={urlForImage(image)}
           alt={name}
           component={NextImage}
           {...picSize}

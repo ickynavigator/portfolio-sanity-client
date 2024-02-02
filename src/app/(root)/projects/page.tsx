@@ -26,7 +26,7 @@ import Link from 'next/link';
 import CategoryList from '~/components/CategoryList';
 import EnhancedPortableText from '~/components/EnhancedPortableText';
 import { AllProjectDetails } from '~/groq/queries';
-import { urlFor } from '~/sanity/sanity';
+import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
 import { Category, Project } from '~/schema';
 
@@ -110,7 +110,7 @@ const Page = async () => {
                       i ? (
                         <CarouselSlide key={i.asset._ref}>
                           <Image
-                            src={urlFor(i)}
+                            src={urlForImage(i)}
                             alt={`${name} - ${ind}`}
                             width="100%"
                           />

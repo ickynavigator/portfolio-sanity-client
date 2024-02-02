@@ -15,7 +15,7 @@ import NextImage from 'next/image';
 import Link from 'next/link';
 import { AllCertificates } from '~/groq/queries';
 import { formatDate } from '~/lib/format';
-import { urlFor } from '~/sanity/sanity';
+import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
 import { Certificate } from '~/schema';
 
@@ -64,7 +64,7 @@ const Page = async () => {
                           style={{ overflow: 'hidden' }}
                         >
                           <Image
-                            src={urlFor(authorityImage)}
+                            src={urlForImage(authorityImage)}
                             alt={name}
                             component={NextImage}
                             priority
