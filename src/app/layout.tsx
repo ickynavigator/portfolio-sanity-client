@@ -17,7 +17,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 
       <body>
         <MantineProvider theme={theme}>{children}</MantineProvider>
-        <Analytics />;
+        <Analytics />
       </body>
     </html>
   );
