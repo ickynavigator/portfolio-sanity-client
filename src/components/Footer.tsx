@@ -9,7 +9,7 @@ import {
 import Link from 'next/link';
 import { AllSocialLinks } from '~/groq/queries';
 import { insert } from '~/helpers';
-import { getClient } from '~/lib/sanity.server';
+import { getClient } from '~/sanity/sanity.server';
 import { SocialLink } from '~/schema';
 import projectConfig from '../lib/project.config';
 

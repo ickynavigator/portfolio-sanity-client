@@ -1,7 +1,7 @@
 'use server';
 
 import { SanityDocumentStub } from 'next-sanity';
-import { getClient } from '~/lib/sanity.server';
+import { getClient } from '~/sanity/sanity.server';
 import { ContactForms } from '~/schema';
 
 export const postToSanity = async <

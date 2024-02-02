@@ -15,8 +15,8 @@ import NextImage from 'next/image';
 import Link from 'next/link';
 import { AllCertificates } from '~/groq/queries';
 import { formatDate } from '~/lib/format';
-import { urlFor } from '~/lib/sanity';
-import { getClient } from '~/lib/sanity.server';
+import { urlFor } from '~/sanity/sanity';
+import { getClient } from '~/sanity/sanity.server';
 import { Certificate } from '~/schema';
 
 interface _CertificateResponse extends Certificate {}

@@ -21,8 +21,8 @@ import Link from 'next/link';
 import CategoryList from '~/components/CategoryList';
 import EnhancedPortableText from '~/components/EnhancedPortableText';
 import { ProfileDetails } from '~/groq/queries';
-import { getUrlFromId, urlFor } from '~/lib/sanity';
-import { getClient } from '~/lib/sanity.server';
+import { getUrlFromId, urlFor } from '~/sanity/sanity';
+import { getClient } from '~/sanity/sanity.server';
 import { Category, PersonalInfo } from '~/schema';
 
 interface PersonalInfoResponse extends PersonalInfo {

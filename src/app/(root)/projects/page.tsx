@@ -26,8 +26,8 @@ import Link from 'next/link';
 import CategoryList from '~/components/CategoryList';
 import EnhancedPortableText from '~/components/EnhancedPortableText';
 import { AllProjectDetails } from '~/groq/queries';
-import { urlFor } from '~/lib/sanity';
-import { getClient } from '~/lib/sanity.server';
+import { urlFor } from '~/sanity/sanity';
+import { getClient } from '~/sanity/sanity.server';
 import { Category, Project } from '~/schema';
 
 interface _ProjectResponse extends Project {

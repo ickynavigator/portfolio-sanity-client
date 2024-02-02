@@ -14,8 +14,8 @@ import CategoryList from '~/components/CategoryList';
 import EnhancedPortableText from '~/components/EnhancedPortableText';
 import { AllCareers } from '~/groq/queries';
 import { formatDate } from '~/lib/format';
-import { urlFor } from '~/lib/sanity';
-import { getClient } from '~/lib/sanity.server';
+import { urlFor } from '~/sanity/sanity';
+import { getClient } from '~/sanity/sanity.server';
 import { Career, Category } from '~/schema';
 import classes from './page.module.css';
 
