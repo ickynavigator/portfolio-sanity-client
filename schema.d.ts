@@ -1,39 +1,39 @@
 import type {
+  SanityReference,
+  SanityKeyedReference,
   SanityAsset,
-  SanityBlock,
-  SanityDocument,
+  SanityImage,
   SanityFile,
   SanityGeoPoint,
-  SanityImage,
-  SanityImageAsset,
+  SanityBlock,
+  SanityDocument,
   SanityImageCrop,
-  SanityImageDimensions,
   SanityImageHotspot,
+  SanityKeyed,
+  SanityImageAsset,
   SanityImageMetadata,
+  SanityImageDimensions,
   SanityImagePalette,
   SanityImagePaletteSwatch,
-  SanityKeyed,
-  SanityKeyedReference,
-  SanityReference,
 } from 'sanity-codegen';
 
 export type {
+  SanityReference,
+  SanityKeyedReference,
   SanityAsset,
-  SanityBlock,
-  SanityDocument,
+  SanityImage,
   SanityFile,
   SanityGeoPoint,
-  SanityImage,
-  SanityImageAsset,
+  SanityBlock,
+  SanityDocument,
   SanityImageCrop,
-  SanityImageDimensions,
   SanityImageHotspot,
+  SanityKeyed,
+  SanityImageAsset,
   SanityImageMetadata,
+  SanityImageDimensions,
   SanityImagePalette,
   SanityImagePaletteSwatch,
-  SanityKeyed,
-  SanityKeyedReference,
-  SanityReference,
 };
 
 /**
@@ -106,11 +106,11 @@ export interface PersonalInfo extends SanityDocument {
   };
 
   /**
-   * Bio — `array`
+   * Bio — `blockContent`
    *
    *
    */
-  bio: Array<SanityKeyed<SanityBlock>>;
+  bio: BlockContent;
 
   /**
    * Social Media — `array`
