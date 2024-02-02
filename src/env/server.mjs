@@ -14,6 +14,7 @@ const env = createEnv({
     SMTP_USER: process.env.SMTP_USER,
     SMTP_PASS: process.env.SMTP_PASS,
     SANITY_API_TOKEN: process.env.SANITY_API_TOKEN,
+    SANITY_REVALIDATE_SECRET: process.env.SANITY_REVALIDATE_SECRET,
   },
 });
 
