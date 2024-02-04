@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 const getBaseURL = () => {
-  const _base = process.env.NEXT_PUBLIC_VERCEL_URL || 'https://localhost:3000';
+  const _base = process.env.VERCEL_URL || 'https://localhost:3000';
 
   const baseURL = new URL(_base);
   baseURL.protocol = 'https';
