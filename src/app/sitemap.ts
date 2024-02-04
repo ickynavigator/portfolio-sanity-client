@@ -1,10 +1,8 @@
 import { MetadataRoute } from 'next';
+import env from '~/env/server.mjs';
 
 const getBaseURL = () => {
-  const _base = process.env.VERCEL_URL || 'https://localhost:3000';
-
-  const baseURL = new URL(_base);
-  baseURL.protocol = 'https';
+  const baseURL = new URL(`https://${env.VERCEL_URL}`);
 
   return baseURL;
 };
