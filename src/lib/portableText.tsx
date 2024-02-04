@@ -30,7 +30,7 @@ const portableTextCustomComponents: Partial<PortableTextReactComponents> = {
       </Text>
     ),
     link: ({ children, value }) => (
-      <Anchor href={value?.href} target="_blank">
+      <Anchor href={value?.href} target="_blank" td="underline">
         {children}
       </Anchor>
     ),

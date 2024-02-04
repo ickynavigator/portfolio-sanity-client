@@ -60,10 +60,8 @@ const Page = async () => {
                 className={classes.group}
               >
                 <Stack gap={0} mb="md">
-                  <Title order={3}>{name}</Title>
-                  <Title order={4} c="dimmed">
-                    {title}
-                  </Title>
+                  <Title order={2}>{name}</Title>
+                  <Title order={3}>{title}</Title>
                   <Text>
                     {employmentType} - {locationType}{' '}
                     {location ? `- ${location}` : ``}

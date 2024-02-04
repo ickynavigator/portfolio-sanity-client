@@ -55,11 +55,14 @@ const Footer = async () => {
       <Group align="center" mb="lg">
         {links.map(({ name, link, iconName }) => (
           <Tooltip key={name} label={name} withArrow>
-            <Link href={link} passHref>
-              <ActionIcon variant="subtle">
-                {SocialLinksIcons(iconName)}
-              </ActionIcon>
-            </Link>
+            <ActionIcon
+              variant="subtle"
+              aria-label={`Link for ${name}`}
+              component={Link}
+              href={link}
+            >
+              {SocialLinksIcons(iconName)}
+            </ActionIcon>
           </Tooltip>
         ))}
       </Group>

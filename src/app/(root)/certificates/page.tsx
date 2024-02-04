@@ -75,13 +75,11 @@ const Page = async () => {
                     )}
                     <Box>
                       <Stack gap="0" align="center">
-                        <Title order={3}>{name}</Title>
-                        <Title order={4}>Issued by {authorityName}</Title>
-                        <Text c="dimmed">Credential Id : {idx}</Text>
+                        <Title order={2}>{name}</Title>
+                        <Title order={3}>Issued by {authorityName}</Title>
+                        <Text>Credential Id : {idx}</Text>
                         {(startDate || endDate) && (
-                          <Text c="dimmed">
-                            {`Issued on ${sDate} - ${eDate}`}
-                          </Text>
+                          <Text>{`Issued on ${sDate} - ${eDate}`}</Text>
                         )}
                       </Stack>
 

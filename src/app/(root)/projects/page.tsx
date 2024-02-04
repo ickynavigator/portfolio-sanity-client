@@ -9,6 +9,7 @@ import {
   Center,
   Group,
   Image,
+  Paper,
   Stack,
   Text,
   Title,
@@ -77,18 +78,18 @@ const Page = async () => {
             switch (profileStatus) {
               case 'ongoing':
                 return {
-                  icon: <IconHourglassLow />,
+                  icon: <IconHourglassLow size="1rem" />,
                   color: 'yellow',
                 };
               case 'abandoned':
                 return {
-                  icon: <IconX />,
+                  icon: <IconX size="1rem" />,
                   color: 'red',
                 };
               case 'completed':
               default:
                 return {
-                  icon: <IconCheck />,
+                  icon: <IconCheck size="1rem" />,
                   color: 'green',
                 };
             }
@@ -121,7 +122,7 @@ const Page = async () => {
                 </CardSection>
 
                 <Stack>
-                  <Title order={3}>{name}</Title>
+                  <Title order={2}>{name}</Title>
 
                   <Box>
                     <EnhancedPortableText value={body} />
@@ -132,20 +133,29 @@ const Page = async () => {
                   </Group>
 
                   {projectIssuer && (
-                    <Alert color="gray" radius="md" py="sm" fz="sm">
+                    <Paper radius="md" py="sm" fz="sm">
                       <Center>
                         <Group gap="xs">
                           Project comissioned by:
                           {projectIssuer.link ? (
-                            <Anchor component={Link} href={projectIssuer.link}>
-                              <Text size="sm">{projectIssuer.name}</Text>
+                            <Anchor
+                              component={Link}
+                              href={projectIssuer.link}
+                              td="underline"
+                              size="sm"
+                              fw="bold"
+                              aria-label={`Go to project comissioner (${projectIssuer.name})`}
+                            >
+                              {projectIssuer.name}
                             </Anchor>
                           ) : (
-                            <Text size="sm">{projectIssuer.name}</Text>
+                            <Text size="sm" fw="bold">
+                              {projectIssuer.name}
+                            </Text>
                           )}
                         </Group>
                       </Center>
-                    </Alert>
+                    </Paper>
                   )}
                   <Alert
                     color={profileStatusIcon.color}
@@ -171,7 +181,11 @@ const Page = async () => {
                         shouldShow ? '' : ' - Link Unavailable'
                       }`;
                       const inner = (
-                        <ActionIcon disabled={!shouldShow} variant="subtle">
+                        <ActionIcon
+                          disabled={!shouldShow}
+                          variant="subtle"
+                          aria-label={`${tip} link for ${name}`}
+                        >
                           {icon}
                         </ActionIcon>
                       );
