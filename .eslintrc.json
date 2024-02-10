@@ -11,7 +11,7 @@
     "next/core-web-vitals",
     "eslint-config-next",
     "airbnb",
-    "prettier"
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -21,13 +21,33 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "eslint-plugin-css-modules"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "eslint-plugin-css-modules"
+  ],
   "rules": {
-    "no-use-before-define": ["off"],
-    "@typescript-eslint/no-use-before-define": ["error"],
-    "arrow-body-style": ["off"],
-    "no-console": ["error", { "allow": ["warn", "error"] }],
-    "no-underscore-dangle": ["off"],
+    "no-use-before-define": [
+      "off"
+    ],
+    "@typescript-eslint/no-use-before-define": [
+      "error"
+    ],
+    "arrow-body-style": [
+      "off"
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ],
+    "no-underscore-dangle": [
+      "off"
+    ],
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -38,7 +58,9 @@
         "tsx": "never"
       }
     ],
-    "jsx-a11y/label-has-associated-control": ["off"],
+    "jsx-a11y/label-has-associated-control": [
+      "off"
+    ],
     "react/function-component-definition": [
       2,
       {
@@ -46,18 +68,36 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "react/require-default-props": ["off"],
+    "react/require-default-props": [
+      "off"
+    ],
     "react/jsx-filename-extension": [
       2,
-      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
     ],
-    "react/react-in-jsx-scope": ["off"],
-    "react/jsx-props-no-spreading": ["off"],
-    "react/prop-types": ["off"]
+    "react/react-in-jsx-scope": [
+      "off"
+    ],
+    "react/jsx-props-no-spreading": [
+      "off"
+    ],
+    "react/prop-types": [
+      "off"
+    ]
   },
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx"],
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
       "rules": {
         "no-undef": "off",
         "no-unused-vars": "off"
