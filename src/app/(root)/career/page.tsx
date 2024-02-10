@@ -1,4 +1,5 @@
 import {
+  Box,
   Card,
   Divider,
   Group,
@@ -53,13 +54,13 @@ const Page = async () => {
 
         return (
           <Card shadow="sm" padding="lg" radius="md" withBorder key={_id}>
-            <Stack gap={0} my="md">
+            <Stack gap="sm" my="md">
               <Group
                 justify="space-between"
                 align="flex-start"
                 className={classes.group}
               >
-                <Stack gap={0} mb="md">
+                <Box>
                   <Title order={2}>{name}</Title>
                   <Title order={3}>{title}</Title>
                   <Text>
@@ -70,7 +71,7 @@ const Page = async () => {
                     {formatDate(startDate)} -{' '}
                     {endDate ? formatDate(endDate) : 'Present'}
                   </Text>
-                </Stack>
+                </Box>
 
                 {companyLogo && (
                   <Paper withBorder radius="md" style={{ overflow: 'hidden' }}>
@@ -91,7 +92,7 @@ const Page = async () => {
 
               <Divider />
 
-              <Group gap="sm" mt="md">
+              <Group gap="sm">
                 <CategoryList tags={tags} />
               </Group>
             </Stack>
