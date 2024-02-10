@@ -13,18 +13,23 @@
 }
 
 .link {
-  transition:
-    color 200ms ease,
-    background-color 200ms ease;
-  font-size: var(--mantine-font-size-sm);
+  font-weight: bold;
+
+  color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-1));
+  padding: var(--mantine-spacing-sm);
+
+  transition: all 200ms ease;
+
+  @mixin hover {
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+    text-decoration: none;
+  }
+
   &[data-active='true'] {
-    color: var(--mantine-primary-color-contrast);
-    background-color: var(--mantine-primary-color-filled);
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
   }
 
   @media (max-width: $mantine-breakpoint-sm) {
-    height: rem(42px);
-    width: 100%;
-    border-radius: 0;
+    text-transform: uppercase;
   }
 }

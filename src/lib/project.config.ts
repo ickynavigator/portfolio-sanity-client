@@ -8,6 +8,10 @@ const config = {
   showCareerLink: true,
   /** Show certificates page link */
   showCertificateLink: false,
+  /** Show contact page link */
+  showContactLink: true,
+  /** Show projects page link */
+  showProjectLink: true,
 };
 
 export default config;

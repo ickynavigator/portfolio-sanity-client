@@ -4,7 +4,6 @@ import {
   Anchor,
   Box,
   Burger,
-  Button,
   Container,
   Drawer,
   Group,
@@ -18,41 +17,38 @@ import projectConfig from '../lib/project.config';
 import classes from './Header.module.css';
 import ThemeSwitcher from './ThemeSwitcher';
 
-const {
-  name,
-  showCareerLink: showCareer,
-  showCertificateLink: showCerts,
-} = projectConfig;
+const { name } = projectConfig;
 const navMenuLinks = [
   { title: 'Projects', href: '/projects' },
   { title: 'Career', href: '/career' },
   { title: 'Contact', href: '/contact' },
   { title: 'Certificates', href: '/certificates' },
 ];
+const linksToShow = navMenuLinks.filter(link => {
+  if (!projectConfig.showCareerLink && link.href === '/career') return null;
+  if (!projectConfig.showCertificateLink && link.href === '/certificates')
+    return null;
+  if (!projectConfig.showContactLink && link.href === '/contact') return null;
+  if (!projectConfig.showProjectLink && link.href === '/projects') return null;
+
+  return link;
+});
 
 const Header = () => {
   const pathname = usePathname();
   const [opened, { toggle, close }] = useDisclosure(false);
 
-  const Links = navMenuLinks.map(link => {
-    if (!showCareer && link.href === '/career') return null;
-    if (!showCerts && link.href === '/certificates') return null;
-
+  const Links = linksToShow.map(link => {
     return (
-      <Button
+      <Anchor
         key={link.title}
         component={Link}
         href={link.href}
-        size="compact-md"
-        className={classes.link}
-        variant="subtle"
         data-active={pathname === link.href}
-        fw="bold"
-        px="sm"
-        style={{ border: 0 }}
+        className={classes.link}
       >
         {link.title}
-      </Button>
+      </Anchor>
     );
   });
 
@@ -66,7 +62,9 @@ const Header = () => {
           </Anchor>
         </Group>
 
-        <Group visibleFrom="md">{Links}</Group>
+        <Group visibleFrom="md" gap="lg">
+          {Links}
+        </Group>
 
         <Burger opened={opened} onClick={toggle} hiddenFrom="md" size="sm" />
         <Drawer
@@ -82,7 +80,7 @@ const Header = () => {
             content: { height: 'fit-content' },
           }}
         >
-          <Stack gap="xs" mx="-sm" my="-sm">
+          <Stack gap="xl" mx="-sm" my="-sm" p="xl" align="center">
             {Links}
           </Stack>
         </Drawer>
