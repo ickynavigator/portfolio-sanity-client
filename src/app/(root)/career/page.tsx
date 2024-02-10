@@ -23,7 +23,7 @@ import classes from './page.module.css';
 interface _CareerResponse extends Career {
   tags: Category[];
 }
-type CareerResponse = Array<_CareerResponse>;
+type CareerResponse = Array<_CareerResponse> | null;
 
 export const metadata: Metadata = {
   title: 'All Careers',
@@ -37,7 +37,7 @@ const Page = async () => {
 
   return (
     <Stack>
-      {careers.map(data => {
+      {careers?.map(data => {
         const {
           _id,
           name,

@@ -34,7 +34,7 @@ import { Category, Project } from '~/schema';
 interface _ProjectResponse extends Project {
   tags: Category[];
 }
-type ProjectResponse = Array<_ProjectResponse>;
+type ProjectResponse = Array<_ProjectResponse> | null;
 
 export const metadata: Metadata = {
   title: 'All Projects',
@@ -47,7 +47,7 @@ const Page = async () => {
   return (
     <Box>
       <Stack>
-        {projects.map(data => {
+        {projects?.map(data => {
           const {
             name,
             _id,
@@ -176,10 +176,9 @@ const Page = async () => {
                   <Group justify="space-between">
                     {buttonDetails.map(({ tip, icon, url, visibility }) => {
                       const shouldShow = !visibility && url;
+                      const link = shouldShow ? '' : ' - Link Unavailable';
 
-                      const label = `${tip}${
-                        shouldShow ? '' : ' - Link Unavailable'
-                      }`;
+                      const label = `${tip}${link}`;
                       const inner = (
                         <ActionIcon
                           disabled={!shouldShow}

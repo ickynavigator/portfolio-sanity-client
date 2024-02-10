@@ -19,8 +19,8 @@ import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
 import { Certificate } from '~/schema';
 
-interface _CertificateResponse extends Certificate {}
-type CertificateResponse = Array<_CertificateResponse>;
+type _CertificateResponse = Certificate;
+type CertificateResponse = Array<_CertificateResponse> | null;
 
 export const metadata: Metadata = {
   title: 'All Certificates',
@@ -35,7 +35,7 @@ const Page = async () => {
   return (
     <Center>
       <Stack w="fit-content">
-        {certificates.map(
+        {certificates?.map(
           ({
             _id,
             idx,

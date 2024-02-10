@@ -43,7 +43,7 @@ const getSocialIcons = async (showOGsourceLink: boolean) => {
   }
 
   const client = getClient();
-  const socialLinks = await client.fetch<SocialLink[]>(AllSocialLinks);
+  const socialLinks = (await client.fetch<SocialLink[]>(AllSocialLinks)) ?? [];
   return insert(socialLinks, Math.floor(socialLinks.length / 2), ...postItems);
 };
 
