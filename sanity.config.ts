@@ -1,6 +1,5 @@
 import { visionTool } from '@sanity/vision';
 import { defineConfig } from 'sanity';
-import { vercelDeployTool } from 'sanity-plugin-vercel-deploy';
 import { structureTool } from 'sanity/structure';
 import { config } from '~/sanity/sanity.config';
 import schema from '~/sanity/schemas';
@@ -44,7 +43,6 @@ const sanityConfig = defineConfig({
           ]),
     }),
     visionTool({ defaultApiVersion }),
-    vercelDeployTool(),
   ],
 });
 
