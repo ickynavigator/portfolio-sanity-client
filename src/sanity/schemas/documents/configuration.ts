@@ -13,7 +13,7 @@ export default defineType({
         'The name of the website owner. Displayed in the header and the SEO info',
       codegen: { required: true },
       validation: Rule => Rule.required(),
-      initialValue: 'Obi Fortune',
+      initialValue: 'John Doe',
     }),
     defineField({
       name: 'showOriginalSourceLink',
