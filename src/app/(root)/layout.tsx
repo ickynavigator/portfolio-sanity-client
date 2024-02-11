@@ -22,7 +22,7 @@ export async function generateMetadata(
   const data = await client.fetch<PersonalInfoResponse>(ProfileDetails);
   const projectConfig = await getConfig();
 
-  const img = urlForImage(data.image);
+  const img = urlForImage(data?.image);
   const ogImages = (await parent).openGraph?.images || [];
   const twitterImages = (await parent).twitter?.images || [];
 

@@ -30,7 +30,11 @@ interface PersonalInfoResponse extends PersonalInfo {
 
 const Page = async () => {
   const client = getClient();
-  const data = await client.fetch<PersonalInfoResponse>(ProfileDetails);
+  const data = await client.fetch<PersonalInfoResponse | null>(ProfileDetails);
+
+  if (!data) {
+    return null;
+  }
 
   const { name, title, jobStatus, image, jobVisibility, CV, bio, skills } =
     data;
