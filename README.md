@@ -12,6 +12,25 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+### Setting up the sanity project
+
+You need to create a sanity project to work with this portfolio. This can be done by running this in the root of the app
+
+```bash
+npm -y create sanity@latest
+```
+
+This will prompt you to do a few things
+
+1. Setup your sanity account or Login if you already have one
+1. Create a new project
+   -  You can use the default dataset config(make sure to add the new dataset name in the environment variables if you decide to use a custom one)
+1. Don't add configuration files (this has already been done for you)
+1. Select  `clean project with no predefined schemas`
+   - You can delete the newly created sanity changes
+1. Go to the [sanity dashboard](https://www.sanity.io/manage) and select your project to view your project ID and other details
+
+
 ### Environment Variables
 
 Fill up the .env file with the variables in the .env.example
