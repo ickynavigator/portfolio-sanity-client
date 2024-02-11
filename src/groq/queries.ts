@@ -5,10 +5,10 @@ import { groq } from 'next-sanity';
  * Uses the most recent personalInfo document
  */
 export const ProfileDetails = groq`
-  *[_type == "personalInfo"]{
+  *[_type == "personalInfo"] | order(_createdAt desc) {
     ...,
     "skills": skillTags[]->
-  } | order(_updatedAt desc) [0]
+  }[0]
 `;
 export const AllSocialLinks = groq`
   *[_type == "personalInfo"] | order(_updatedAt desc) [0].socialLinks
@@ -17,16 +17,16 @@ export const AllCertificates = groq`
   *[_type == "certificate" && certificateHide == false] | order(startDate desc)
 `;
 export const AllProjectDetails = groq`
-  *[_type == "project" && projectHide == false]{
+  *[_type == "project" && projectHide == false] | order(_updatedAt desc) {
     ...,
     "tags": categories[]->
-  } | order(_updatedAt desc)
+  }
 `;
 export const AllCareers = groq`
-  *[_type == "career" && careerHide == false]{
+  *[_type == "career" && careerHide == false] | order(startDate desc) {
     ...,
     "tags": skillTags[]->
-  } | order(startDate desc)
+  }
 `;
 export const ProjectConfig = groq`
   *[_type == "configuration"] | order(_updatedAt desc) [0]
