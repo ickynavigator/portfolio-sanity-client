@@ -41,12 +41,6 @@ The Sanity project id is the id linked with the sanity project. It should be on 
 NEXT_PUBLIC_SANITY_PROJECT_ID =
 ```
 
-This is the ID of the profile you want to use for the site. You can find this by going to your Sanity Studio and running this query in the GROQ console: `*[_type == "personalInfo"]{ _id }`
-
-```bash
-NEXT_PUBLIC_PROFILE_ID =
-```
-
 Sanity Api version. It defaults to `2021-10-21`
 
 ```bash

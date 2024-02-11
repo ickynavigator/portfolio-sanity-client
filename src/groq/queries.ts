@@ -1,18 +1,18 @@
 import { groq } from 'next-sanity';
-import client from '../env/client.mjs';
 
-const profileID = `"${client.NEXT_PUBLIC_PROFILE_ID}"`;
-
+/**
+ * All the profile details for the website
+ * Uses the most recent personalInfo document
+ */
 export const ProfileDetails = groq`
-  *[_type == "personalInfo" && _id == ${profileID}]{
+  *[_type == "personalInfo"]{
     ...,
     "skills": skillTags[]->
-  }[0]
+  } | order(_updatedAt desc) [0]
 `;
 export const AllSocialLinks = groq`
-  *[_type == "personalInfo" && _id == ${profileID}]{
-    socialLinks
-  }[0].socialLinks`;
+  *[_type == "personalInfo"] | order(_updatedAt desc) [0].socialLinks
+`;
 export const AllCertificates = groq`
   *[_type == "certificate" && certificateHide == false] | order(startDate desc)
 `;
