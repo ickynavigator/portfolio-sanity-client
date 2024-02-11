@@ -1,12 +1,13 @@
 import '@mantine/carousel/styles.css';
 import '@mantine/core/styles.css';
 
-import { Container, Stack } from '@mantine/core';
+import { Anchor, Container, Stack, Text, Title } from '@mantine/core';
 import { Metadata, ResolvingMetadata } from 'next';
+import Link from 'next/link';
 import Footer from '~/components/Footer';
 import Header from '~/components/Header';
 import { ProfileDetails } from '~/groq/queries';
-import { getConfig } from '~/lib/project.config';
+import { getConfig, isProjectSetup } from '~/lib/project.config';
 import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
 import { PersonalInfo } from '~/schema';
@@ -34,31 +35,31 @@ export async function generateMetadata(
 
   return {
     title: {
-      template: `%s | ${projectConfig.name}'s Portfolio`,
-      default: `${projectConfig.name}'s Portfolio`,
+      template: `%s | ${projectConfig?.name}'s Portfolio`,
+      default: `${projectConfig?.name}'s Portfolio`,
     },
     keywords: ['PORTFOLIO', 'DEVELOPER', 'NEXTJS', 'REACTJS', 'SANITY'],
     robots: 'index, follow',
-    description: `${projectConfig.name}'s Portfolio. Built with Next.js and Sanity.`,
+    description: `${projectConfig?.name}'s Portfolio. Built with Next.js and Sanity.`,
     creator: 'Obi Fortune',
     authors: [{ name: 'Obi Fortune', url: 'https://obifortune.com' }],
     openGraph: {
       type: 'website',
       title: {
-        template: `%s | ${projectConfig.name}'s Portfolio`,
-        default: `${projectConfig.name}'s Portfolio`,
+        template: `%s | ${projectConfig?.name}'s Portfolio`,
+        default: `${projectConfig?.name}'s Portfolio`,
       },
-      description: `${projectConfig.name}'s Portfolio. Built with Next.js and Sanity.`,
+      description: `${projectConfig?.name}'s Portfolio. Built with Next.js and Sanity.`,
       url: `/`,
       images: ogImages,
     },
     twitter: {
       card: 'player',
       title: {
-        template: `%s | ${projectConfig.name}'s Portfolio`,
-        default: `${projectConfig.name}'s Portfolio`,
+        template: `%s | ${projectConfig?.name}'s Portfolio`,
+        default: `${projectConfig?.name}'s Portfolio`,
       },
-      description: `${projectConfig.name}'s Portfolio. Built with Next.js and Sanity.`,
+      description: `${projectConfig?.name}'s Portfolio. Built with Next.js and Sanity.`,
       creator: '@obifortunebleh',
       creatorId: '1467726470533754880',
       site: `/`,
@@ -68,6 +69,24 @@ export async function generateMetadata(
 }
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
+  const _isProjectSetup = await isProjectSetup();
+  if (!_isProjectSetup) {
+    return (
+      <Stack h="100%" justify="space-around" align="center">
+        <Title order={1}>
+          Project configuration not found or Personal Info not created
+        </Title>
+        <Text>
+          Go to{' '}
+          <Anchor component={Link} href="/studio">
+            /studio
+          </Anchor>{' '}
+          to setup
+        </Text>
+      </Stack>
+    );
+  }
+
   const projectConfig = await getConfig();
 
   return (
