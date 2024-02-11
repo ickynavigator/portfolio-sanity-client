@@ -25,7 +25,7 @@ import { getClient } from '~/sanity/sanity.server';
 import { Category, PersonalInfo } from '~/schema';
 
 interface PersonalInfoResponse extends PersonalInfo {
-  skills: Category[];
+  skills: Category[] | undefined;
 }
 
 const Page = async () => {
@@ -117,7 +117,7 @@ const Page = async () => {
             </Button>
           )}
 
-          {skills.length > 0 && (
+          {skills != null && skills.length > 0 && (
             <>
               <Title order={2} mb="sm" ta="right">
                 Skills
