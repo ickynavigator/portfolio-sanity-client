@@ -12,7 +12,7 @@ export default defineType({
       codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
-    { title: 'Hide URL', name: 'visibility', type: 'boolean' },
+    defineField({ title: 'Hide URL', name: 'visibility', type: 'boolean' }),
   ],
 
   initialValue: () => ({
