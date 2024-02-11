@@ -1,7 +1,7 @@
 import { visionTool } from '@sanity/vision';
 import { defineConfig } from 'sanity';
 import { vercelDeployTool } from 'sanity-plugin-vercel-deploy';
-import { deskTool } from 'sanity/desk';
+import { structureTool } from 'sanity/structure';
 import { config } from '~/sanity/sanity.config';
 import schema from '~/sanity/schemas';
 
@@ -15,7 +15,37 @@ const sanityConfig = defineConfig({
   schema: {
     types: schema,
   },
-  plugins: [deskTool(), visionTool({ defaultApiVersion }), vercelDeployTool()],
+  plugins: [
+    structureTool({
+      structure: S =>
+        S.list()
+          .title('Portfolio')
+          .items([
+            S.listItem()
+              .title('Configuration')
+              .child(
+                S.document()
+                  .schemaType('configuration')
+                  .documentId('configuration'),
+              ),
+            S.listItem()
+              .title('Personal info')
+              .child(
+                S.document()
+                  .schemaType('personalInfo')
+                  .documentId('personalInfo'),
+              ),
+            ...S.documentTypeListItems().filter(
+              listItem =>
+                !['configuration', 'personalInfo'].includes(
+                  `${listItem.getId()}`,
+                ),
+            ),
+          ]),
+    }),
+    visionTool({ defaultApiVersion }),
+    vercelDeployTool(),
+  ],
 });
 
 export default sanityConfig;

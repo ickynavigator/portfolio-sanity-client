@@ -6,7 +6,7 @@ import { Metadata, ResolvingMetadata } from 'next';
 import Footer from '~/components/Footer';
 import Header from '~/components/Header';
 import { ProfileDetails } from '~/groq/queries';
-import projectConfig from '~/lib/project.config';
+import { getConfig } from '~/lib/project.config';
 import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
 import { PersonalInfo } from '~/schema';
@@ -19,6 +19,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const client = getClient();
   const data = await client.fetch<PersonalInfoResponse>(ProfileDetails);
+  const projectConfig = await getConfig();
 
   const img = urlForImage(data.image);
   const ogImages = (await parent).openGraph?.images || [];
@@ -66,10 +67,12 @@ export async function generateMetadata(
   };
 }
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = async ({ children }: { children: React.ReactNode }) => {
+  const projectConfig = await getConfig();
+
   return (
     <Stack h="100%" justify="space-between" align="center">
-      <Header />
+      <Header projectConfig={projectConfig} />
 
       <Container w="100%">{children}</Container>
 

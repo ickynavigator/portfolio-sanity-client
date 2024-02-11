@@ -11,7 +11,7 @@ import { AllSocialLinks } from '~/groq/queries';
 import { insert } from '~/helpers';
 import { getClient } from '~/sanity/sanity.server';
 import { SocialLink } from '~/schema';
-import projectConfig from '../lib/project.config';
+import { getConfig } from '../lib/project.config';
 
 const SocialLinksIcons = (name: string) => {
   switch (name) {
@@ -48,6 +48,7 @@ const getSocialIcons = async (showOGsourceLink: boolean) => {
 };
 
 const Footer = async () => {
+  const projectConfig = await getConfig();
   const links = await getSocialIcons(projectConfig.showOriginalSourceLink);
 
   return (

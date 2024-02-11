@@ -2,6 +2,7 @@ import author from './author';
 import career from './career';
 import category from './category';
 import certificate from './certificate';
+import configuration from './configuration';
 import contactForms from './contactForms';
 import personalInfo from './personalInfo';
 import project from './project';
@@ -14,4 +15,5 @@ export default [
   category,
   author,
   career,
+  configuration,
 ];

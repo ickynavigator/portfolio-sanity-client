@@ -488,6 +488,87 @@ export interface Career extends SanityDocument {
   skillTags: Array<SanityKeyedReference<Category>>;
 }
 
+/**
+ * Configuration
+ *
+ *
+ */
+export interface Configuration extends SanityDocument {
+  _type: 'configuration';
+
+  /**
+   * Name — `string`
+   *
+   * The name of the website owner. Displayed in the header and the SEO info
+   */
+  name: string;
+
+  /**
+   * Show Original Source Link — `boolean`
+   *
+   * Should a link to the original source code be shown in the portfolio
+   */
+  showOriginalSourceLink: boolean;
+
+  /**
+   * Mail Information — `object`
+   *
+   * Can leave `from` and `to` as empty strings if SMTP is not setup
+   */
+  mailInfo?: {
+    _type: 'mailInfo';
+    /**
+     * From — `string`
+     *
+     * The email address to send from
+     */
+    from?: string;
+
+    /**
+     * To — `string`
+     *
+     * The email address to send to
+     */
+    to?: string;
+  };
+
+  /**
+   * Page Setup — `object`
+   *
+   * Setup the pages to be displayed
+   */
+  PageSetup: {
+    _type: 'PageSetup';
+    /**
+     * Show Career Link — `boolean`
+     *
+     * Show career page link
+     */
+    showCareerLink: boolean;
+
+    /**
+     * Show Certificate Link — `boolean`
+     *
+     * Show certificates page link
+     */
+    showCertificateLink: boolean;
+
+    /**
+     * Show Contact Link — `boolean`
+     *
+     * Show contact page link
+     */
+    showContactLink: boolean;
+
+    /**
+     * Show Project Link — `boolean`
+     *
+     * Show projects page link
+     */
+    showProjectLink: boolean;
+  };
+}
+
 export type BlockContent = Array<
   | SanityKeyed<SanityBlock>
   | SanityKeyed<{
@@ -563,4 +644,5 @@ export type Documents =
   | ContactForms
   | Category
   | Author
-  | Career;
+  | Career
+  | Configuration;

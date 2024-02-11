@@ -4,12 +4,13 @@ import { render } from '@react-email/render';
 import Mail from 'nodemailer/lib/mailer';
 import server from '~/env/server.mjs';
 import getTransporter from '~/lib/mail';
-import projectConfig from '~/lib/project.config';
+import { getConfig } from '~/lib/project.config';
 import { ContactForms } from '~/schema';
 import { EmailContact } from '~/templates';
 
 export const sendMail = async (emailHtml: string, options?: Mail.Options) => {
-  if (!projectConfig.mailInfo.from || !projectConfig.mailInfo.to) return;
+  const projectConfig = await getConfig();
+  if (!projectConfig.mailInfo?.from || !projectConfig.mailInfo?.to) return;
 
   if (
     server.SMTP_USER === undefined ||

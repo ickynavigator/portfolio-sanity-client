@@ -13,30 +13,35 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import projectConfig from '../lib/project.config';
+import { Configuration } from '~/schema';
 import classes from './Header.module.css';
 import ThemeSwitcher from './ThemeSwitcher';
 
-const { name } = projectConfig;
 const navMenuLinks = [
   { title: 'Projects', href: '/projects' },
   { title: 'Career', href: '/career' },
   { title: 'Contact', href: '/contact' },
   { title: 'Certificates', href: '/certificates' },
 ];
-const linksToShow = navMenuLinks.filter(link => {
-  if (!projectConfig.showCareerLink && link.href === '/career') return null;
-  if (!projectConfig.showCertificateLink && link.href === '/certificates')
-    return null;
-  if (!projectConfig.showContactLink && link.href === '/contact') return null;
-  if (!projectConfig.showProjectLink && link.href === '/projects') return null;
 
-  return link;
-});
+interface HeaderProps {
+  projectConfig: Configuration;
+}
 
-const Header = () => {
+const Header = (props: HeaderProps) => {
+  const { projectConfig } = props;
   const pathname = usePathname();
   const [opened, { toggle, close }] = useDisclosure(false);
+  const linksToShow = navMenuLinks.filter(link => {
+    const { PageSetup: pageSetup } = projectConfig;
+    if (!pageSetup.showCareerLink && link.href === '/career') return null;
+    if (!pageSetup.showCertificateLink && link.href === '/certificates')
+      return null;
+    if (!pageSetup.showContactLink && link.href === '/contact') return null;
+    if (!pageSetup.showProjectLink && link.href === '/projects') return null;
+
+    return link;
+  });
 
   const Links = linksToShow.map(link => {
     return (
@@ -58,7 +63,7 @@ const Header = () => {
         <Group>
           <ThemeSwitcher />
           <Anchor component={Link} href="/" underline="never">
-            <Title>{name}</Title>
+            <Title>{projectConfig.name}</Title>
           </Anchor>
         </Group>
 

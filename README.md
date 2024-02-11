@@ -57,7 +57,7 @@ SMTP_PASS =
 
 ### Project config
 
-Go to [Project Config](./src/lib/project.config.ts) to update the app configuration.
+Go to the studio at `/studio` to setup the project configuration.
 
 ### Setup Revalidation
 

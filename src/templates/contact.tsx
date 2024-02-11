@@ -4,7 +4,6 @@ import {
   Container,
   Font,
   Head,
-  Hr,
   Html,
   Preview,
   Row,
@@ -12,7 +11,6 @@ import {
   Text,
 } from '@react-email/components';
 import { CSSProperties } from 'react';
-import projectConfig from '~/lib/project.config';
 import { ContactForms } from '~/schema';
 
 const styles = {
@@ -102,10 +100,6 @@ export const EmailContact = ({ name, email, message }: IEmailContact) => {
               </Button>
             </Row>
           </Section>
-
-          <Hr style={styles.hr} />
-
-          <Section>{projectConfig.name}</Section>
         </Container>
       </Body>
     </Html>

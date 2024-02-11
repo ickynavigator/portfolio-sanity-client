@@ -28,3 +28,6 @@ export const AllCareers = groq`
     "tags": skillTags[]->
   } | order(startDate desc)
 `;
+export const ProjectConfig = groq`
+  *[_type == "configuration"] | order(_updatedAt desc) [0]
+`;
