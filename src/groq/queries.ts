@@ -13,10 +13,10 @@ export const AllSocialLinks = groq`
   *[_type == "personalInfo" && _id == ${profileID}]{
     socialLinks
   }[0].socialLinks`;
-export const AllCertificates = groq`
+export const AllCertificates = `
   *[_type == "certificate" && certificateHide == false] | order(startDate desc)
 `;
-export const AllProjectDetails = groq`
+export const AllProjectDetails = `
   *[_type == "project" && projectHide == false]{
     ...,
     "tags": categories[]->

@@ -1,8 +1,8 @@
 import { Badge } from '@mantine/core';
-import { Category } from '../../schema';
+import { SanityValues } from '../../sanity.config';
 
 interface Props {
-  tags?: Category[];
+  tags?: Pick<SanityValues['category'], '_id' | 'title'>[] | null;
 }
 const CategoryList = (props: Props) => {
   const { tags } = props;

@@ -1,4 +1,8 @@
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import {
+  defineArrayMember,
+  defineField,
+  defineType,
+} from '@sanity-typed/types';
 
 export default defineType({
   name: 'career',
@@ -96,7 +100,12 @@ export default defineType({
       name: 'skillTags',
       title: 'Skills',
       type: 'array',
-      of: [defineArrayMember({ type: 'reference', to: { type: 'category' } })],
+      of: [
+        defineArrayMember({
+          type: 'reference',
+          to: [{ type: 'category' as const }],
+        }),
+      ],
       codegen: { required: true },
       validation: Rule => Rule.unique(),
     }),

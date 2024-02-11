@@ -28,9 +28,12 @@
     "@mantine/form": "^7.5.1",
     "@mantine/hooks": "^7.5.1",
     "@next/env": "^14.1.0",
+    "@portabletext-typed/react": "^1.0.4",
     "@portabletext/react": "^3.0.11",
     "@react-email/components": "^0.0.14",
     "@react-email/render": "^0.0.12",
+    "@sanity-typed/next-sanity": "^2.1.1",
+    "@sanity-typed/types": "^6.3.2",
     "@sanity/client": "^6.12.3",
     "@sanity/icons": "2.10.1",
     "@sanity/image-url": "^1.0.2",
@@ -42,6 +45,7 @@
     "@vercel/analytics": "^1.1.2",
     "clsx": "^2.1.0",
     "embla-carousel-react": "^7.1.0",
+    "groqd": "^0.15.10",
     "next": "^14.1.0",
     "next-sanity": "7.0.17",
     "next-sanity-image": "^6.1.1",
@@ -77,6 +81,6 @@
     "postcss-preset-mantine": "^1.13.0",
     "postcss-simple-vars": "^7.0.1",
     "prettier": "^3.2.4",
-    "typescript": "5.3.3"
+    "typescript": "5.2.2"
   }
 }

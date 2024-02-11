@@ -26,7 +26,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import CategoryList from '~/components/CategoryList';
 import EnhancedPortableText from '~/components/EnhancedPortableText';
-import { AllProjectDetails } from '~/groq/queries';
 import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
 import { Category, Project } from '~/schema';
@@ -42,7 +41,24 @@ export const metadata: Metadata = {
 
 const Page = async () => {
   const client = getClient();
-  const projects = await client.fetch<ProjectResponse>(AllProjectDetails);
+  const projects = await client.fetch(q =>
+    q.star
+      .filterByType('project')
+      .filterBy('projectHide == "false"')
+      .order('_updatedAt desc')
+      .projection(p => ({
+        name: true,
+        _id: true,
+        sourceUrl: true,
+        projectUrl: true,
+        body: true,
+        profileStatus: true,
+        projectIssuer: true,
+        projectImage: true,
+        // projectHide: true,
+        tags: p.projection('categories[]').deref(),
+      })),
+  );
 
   return (
     <Box>

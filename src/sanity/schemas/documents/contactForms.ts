@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineField, defineType } from '@sanity-typed/types';
 import CheckIcon from '../components/checkIcon';
 
 export default defineType({
