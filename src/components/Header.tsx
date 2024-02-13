@@ -71,7 +71,13 @@ const Header = (props: HeaderProps) => {
           {Links}
         </Group>
 
-        <Burger opened={opened} onClick={toggle} hiddenFrom="md" size="sm" />
+        <Burger
+          opened={opened}
+          onClick={toggle}
+          hiddenFrom="md"
+          size="sm"
+          aria-label="Burger for profile links"
+        />
         <Drawer
           opened={opened}
           onClose={close}
