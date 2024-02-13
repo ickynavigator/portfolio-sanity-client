@@ -1,4 +1,5 @@
 import { createEnv } from '@t3-oss/env-nextjs';
+import { vercel } from '@t3-oss/env-nextjs/presets';
 import { z } from 'zod';
 
 const env = createEnv({
@@ -14,8 +15,9 @@ const env = createEnv({
     SANITY_API_TOKEN: z.string().min(1).optional(),
     SANITY_REVALIDATE_SECRET: z.string().min(1).default('SECRET'),
 
-    VERCEL_URL: z.string().min(1).default('localhost:3000'),
+    VERCEL_URL: z.string().min(1).default('https://localhost:3000'),
   },
+  extends: [vercel],
   experimental__runtimeEnv: {
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
