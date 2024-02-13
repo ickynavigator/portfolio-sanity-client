@@ -6,13 +6,14 @@ import { Metadata, ResolvingMetadata } from 'next';
 import Link from 'next/link';
 import Footer from '~/components/Footer';
 import Header from '~/components/Header';
+import env from '~/env/server.mjs';
 import { ProfileDetails } from '~/groq/queries';
 import { getConfig, isProjectSetup } from '~/lib/project.config';
 import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
 import { PersonalInfo } from '~/schema';
 
-interface PersonalInfoResponse extends PersonalInfo {}
+type PersonalInfoResponse = PersonalInfo;
 
 export async function generateMetadata(
   _: undefined,
@@ -34,6 +35,7 @@ export async function generateMetadata(
   }
 
   return {
+    metadataBase: new URL(env.VERCEL_URL),
     title: {
       template: `%s | ${projectConfig?.name}'s Portfolio`,
       default: `${projectConfig?.name}'s Portfolio`,
