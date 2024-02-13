@@ -38,7 +38,6 @@
     "**/*.ts",
     "**/*.tsx",
     "env/server.mjs",
-    "env/client.mjs",
     ".next/types/**/*.ts",
     "postcss.config.cjs"
   ],

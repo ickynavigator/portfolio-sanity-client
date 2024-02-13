@@ -6,7 +6,7 @@ loadEnvConfig(__dirname, process.env.NODE_ENV !== 'production', {
   error: console.error,
 });
 
-const { default: env } = await import('~/env/client.mjs');
+const { default: env } = await import('~/env/server.mjs');
 const projectId = env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = env.NEXT_PUBLIC_SANITY_DATASET;
 

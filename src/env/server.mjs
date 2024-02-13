@@ -2,6 +2,11 @@ import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
 
 const env = createEnv({
+  client: {
+    NEXT_PUBLIC_SANITY_DATASET: z.string().default('production'),
+    NEXT_PUBLIC_SANITY_PROJECT_ID: z.string(),
+    NEXT_PUBLIC_SANITY_API_VERSION: z.string().default('2021-10-21'),
+  },
   server: {
     SMTP_SERVICE: z.string().min(1).optional(),
     SMTP_USER: z.string().min(1).optional(),
@@ -11,13 +16,10 @@ const env = createEnv({
 
     VERCEL_URL: z.string().min(1).default('localhost:3000'),
   },
-  runtimeEnv: {
-    SMTP_SERVICE: process.env.SMTP_SERVICE,
-    SMTP_USER: process.env.SMTP_USER,
-    SMTP_PASS: process.env.SMTP_PASS,
-    SANITY_API_TOKEN: process.env.SANITY_API_TOKEN,
-    SANITY_REVALIDATE_SECRET: process.env.SANITY_REVALIDATE_SECRET,
-    VERCEL_URL: process.env.VERCEL_URL,
+  experimental__runtimeEnv: {
+    NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
+    NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    NEXT_PUBLIC_SANITY_API_VERSION: process.env.NEXT_PUBLIC_SANITY_API_VERSION,
   },
 });
 
