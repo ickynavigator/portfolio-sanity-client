@@ -15,7 +15,7 @@ const env = createEnv({
     SANITY_API_TOKEN: z.string().min(1).optional(),
     SANITY_REVALIDATE_SECRET: z.string().min(1).default('SECRET'),
 
-    VERCEL_URL: z.string().min(1).default('https://localhost:3000'),
+    VERCEL_URL: z.string().min(1).default('localhost:3000'),
   },
   extends: [vercel],
   experimental__runtimeEnv: {
