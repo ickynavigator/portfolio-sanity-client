@@ -32,7 +32,7 @@ export async function generateMetadata(
   }
 
   return {
-    metadataBase: new URL(env.VERCEL_URL),
+    metadataBase: new URL(`https://${env.VERCEL_URL}`),
     title: {
       template: `%s | ${projectConfig?.name}'s Portfolio`,
       default: `${projectConfig?.name}'s Portfolio`,
