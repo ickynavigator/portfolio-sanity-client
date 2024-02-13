@@ -1,6 +1,3 @@
-import '@mantine/carousel/styles.css';
-import '@mantine/core/styles.css';
-
 import { Anchor, Container, Stack, Text, Title } from '@mantine/core';
 import { Metadata, ResolvingMetadata } from 'next';
 import Link from 'next/link';
