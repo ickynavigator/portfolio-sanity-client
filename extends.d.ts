@@ -5,4 +5,8 @@ declare module 'sanity' {
     /** Required for codegen */
     codegen?: { required: boolean };
   }
+  interface FieldDefinitionBase {
+    /** Required for codegen */
+    codegen?: { required: boolean };
+  }
 }
