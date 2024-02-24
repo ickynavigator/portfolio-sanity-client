@@ -204,6 +204,20 @@ export interface Project extends SanityDocument {
   };
 
   /**
+   * Project Images — `array`
+   *
+   *
+   */
+  projectImages?: Array<
+    SanityKeyed<{
+      _type: 'image';
+      asset: SanityReference<SanityImageAsset>;
+      crop?: SanityImageCrop;
+      hotspot?: SanityImageHotspot;
+    }>
+  >;
+
+  /**
    * Categories — `array`
    *
    *

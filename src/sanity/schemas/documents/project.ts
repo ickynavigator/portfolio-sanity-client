@@ -60,6 +60,15 @@ export default defineType({
       title: 'Project Image',
       type: 'image',
       options: { hotspot: true },
+      deprecated: { reason: 'Use the "projectImages" field instead' },
+      readOnly: true,
+      hidden: ({ value }) => value === undefined,
+    }),
+    defineField({
+      name: 'projectImages',
+      title: 'Project Images',
+      type: 'array',
+      of: [defineArrayMember({ type: 'image', options: { hotspot: true } })],
     }),
     defineField({
       name: 'categories',
