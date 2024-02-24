@@ -69,6 +69,9 @@ export default defineType({
       title: 'Project Images',
       type: 'array',
       of: [defineArrayMember({ type: 'image', options: { hotspot: true } })],
+      codegen: { required: true },
+      validation: Rule => Rule.required(),
+      initialValue: [],
     }),
     defineField({
       name: 'categories',

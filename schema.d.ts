@@ -208,7 +208,7 @@ export interface Project extends SanityDocument {
    *
    *
    */
-  projectImages?: Array<
+  projectImages: Array<
     SanityKeyed<{
       _type: 'image';
       asset: SanityReference<SanityImageAsset>;
