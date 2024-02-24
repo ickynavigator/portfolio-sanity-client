@@ -97,6 +97,8 @@ const Page = async () => {
             }
           })();
 
+          const isMultipleImages = projectImages?.length > 1;
+
           return (
             <Card
               shadow="sm"
@@ -108,7 +110,12 @@ const Page = async () => {
             >
               <Stack>
                 <CardSection>
-                  <Carousel withControls={false}>
+                  <Carousel
+                    withControls={isMultipleImages}
+                    draggable={isMultipleImages}
+                    loop
+                    withIndicators={isMultipleImages}
+                  >
                     {projectImages?.map(i => (
                       <CarouselSlide key={i.asset._ref}>
                         <Image
