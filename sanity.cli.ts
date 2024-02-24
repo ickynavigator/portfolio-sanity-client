@@ -6,8 +6,7 @@ loadEnvConfig(__dirname, process.env.NODE_ENV !== 'production', {
   error: console.error,
 });
 
-const { default: env } = await import('~/env/client.mjs');
-const projectId = env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-const dataset = env.NEXT_PUBLIC_SANITY_DATASET;
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
 
 export default defineCliConfig({ api: { projectId, dataset } });
