@@ -1,3 +1,5 @@
+import '@mantine/carousel/styles.css';
+
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import {
   ActionIcon,

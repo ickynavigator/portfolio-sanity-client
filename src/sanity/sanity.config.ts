@@ -1,4 +1,4 @@
-import client from '../env/client.mjs';
+import env from '../env/server.mjs';
 
 export const config = {
   /*
@@ -8,9 +8,9 @@ export const config = {
    *
    * https://nextjs.org/docs/basic-features/environment-variables
    */
-  dataset: client.NEXT_PUBLIC_SANITY_DATASET,
-  projectId: client.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  apiVersion: client.NEXT_PUBLIC_SANITY_API_VERSION,
+  dataset: env.NEXT_PUBLIC_SANITY_DATASET,
+  projectId: env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  apiVersion: env.NEXT_PUBLIC_SANITY_API_VERSION,
   /*
    * Set useCdn to `false` if your application require the freshest possible
    * data always (potentially slightly slower and a bit more expensive).
