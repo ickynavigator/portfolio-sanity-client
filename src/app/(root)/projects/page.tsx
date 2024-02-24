@@ -58,7 +58,7 @@ const Page = async () => {
             body,
             profileStatus,
             projectIssuer,
-            projectImage,
+            projectImages,
             tags,
           } = data;
 
@@ -109,17 +109,15 @@ const Page = async () => {
               <Stack>
                 <CardSection>
                   <Carousel withControls={false}>
-                    {[projectImage].map((i, ind) =>
-                      i ? (
-                        <CarouselSlide key={i.asset._ref}>
-                          <Image
-                            src={urlForImage(i)}
-                            alt={`${name} - ${ind}`}
-                            width="100%"
-                          />
-                        </CarouselSlide>
-                      ) : null,
-                    )}
+                    {projectImages?.map(i => (
+                      <CarouselSlide key={i.asset._ref}>
+                        <Image
+                          src={urlForImage(i)}
+                          alt={`${name} - ${i._key}`}
+                          width="100%"
+                        />
+                      </CarouselSlide>
+                    ))}
                   </Carousel>
                 </CardSection>
 
