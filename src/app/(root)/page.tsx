@@ -69,12 +69,14 @@ const Page = async () => {
 
   return (
     <Stack align="center" gap="xs">
-      <Center style={{ overflow: 'hidden', borderRadius: '50%' }}>
+      <Center>
         <Image
-          src={urlForImage(image)}
+          src={urlForImage(data.image)}
           alt={name}
           component={NextImage}
           priority
+          radius="50%"
+          w={picSize.width}
           {...picSize}
         />
       </Center>
@@ -86,22 +88,17 @@ const Page = async () => {
         {title}
       </Title>
       {jobVisibility && (
-        <>
-          <Title order={3} ta="center" c="dimmed">
-            Job Status
-          </Title>
-          <Alert color={jobStatusCheck.color} radius="xl" fz="sm">
-            <Center>
-              <Group>
-                <Text size="sm">{jobStatusCheck.message}</Text>
-                {jobStatusCheck.icon}
-              </Group>
-            </Center>
-          </Alert>
-        </>
+        <Alert color={jobStatusCheck.color} radius="xl" fz="sm" p="xs">
+          <Center>
+            <Group>
+              <Text size="sm">{jobStatusCheck.message}</Text>
+              {jobStatusCheck.icon}
+            </Group>
+          </Center>
+        </Alert>
       )}
-      <Center>
-        <Box>
+      <Center w="100%">
+        <Box w="100%">
           <Title order={2} mb="sm" ta="right">
             Bio
           </Title>
