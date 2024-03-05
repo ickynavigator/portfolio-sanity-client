@@ -44,19 +44,19 @@ const Page = async () => {
   const projects = await client.fetch(q =>
     q.star
       .filterByType('project')
-      .filterBy('projectHide == "false"')
+      // .filterBy('projectHide == false')
       .order('_updatedAt desc')
-      .projection(p => ({
-        name: true,
+      .project(p => ({
+        // name: true,
         _id: true,
-        sourceUrl: true,
-        projectUrl: true,
-        body: true,
-        profileStatus: true,
-        projectIssuer: true,
-        projectImage: true,
+        // sourceUrl: true,
+        // projectUrl: true,
+        // body: true,
+        // profileStatus: true,
+        // projectIssuer: true,
+        // projectImage: true,
         // projectHide: true,
-        tags: p.projection('categories[]').deref(),
+        // tags: p.projection('categories[]').deref(),
       })),
   );
 
