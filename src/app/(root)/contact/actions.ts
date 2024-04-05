@@ -1,7 +1,9 @@
 'use server';
 
-import { mailContactForm } from '~/lib/actions/mail';
+import { render } from '@react-email/render';
 import { createContactMessage } from '~/lib/actions/sanity';
+import Mailer from '~/lib/mail';
+import { EmailContact } from '~/templates';
 
 interface IFormSubmit {
   name: string;
@@ -15,9 +17,12 @@ const formSubmit = async (values: IFormSubmit) => {
     ...values,
   });
 
-  const mailForm = await mailContactForm(sanityForm);
+  const mailer = new Mailer();
+  await mailer.sendMail(render(EmailContact(values)), {
+    subject: `New Contact Form from ${values.name}`,
+  });
 
-  return { sanityForm, mailForm };
+  return { sanityForm };
 };
 
 export default formSubmit;

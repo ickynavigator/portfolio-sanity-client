@@ -60,7 +60,7 @@ const styles = {
   },
 } satisfies Record<string, CSSProperties>;
 
-interface IEmailContact extends ContactForms {}
+type IEmailContact = Pick<ContactForms, 'name' | 'email' | 'message'>;
 
 export const EmailContact = ({ name, email, message }: IEmailContact) => {
   const dryrun = process.env.NODE_ENV !== 'production';
