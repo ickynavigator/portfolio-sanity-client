@@ -16,14 +16,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "codegen": "sanity-codegen && prettier -w schema.d.ts"
+    "typegen": "npm run typegen:extract && npm run typegen:generate",
+    "typegen:extract": "sanity schema extract --enforce-required-fields --path sanity.schema.json",
+    "typegen:generate": "sanity typegen generate && prettier -w ./sanity.d.ts",
+    "postinstall": "npm run typegen"
   },
   "dependencies": {
     "@mantine/carousel": "^7.7.1",
     "@mantine/core": "^7.7.1",
     "@mantine/form": "^7.7.1",
     "@mantine/hooks": "^7.7.1",
-    "@next/env": "^14.1.4",
     "@portabletext/react": "^3.0.15",
     "@react-email/components": "^0.0.16",
     "@react-email/render": "^0.0.12",
@@ -48,7 +50,6 @@
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "sanity": "3.36.4",
-    "sanity-codegen": "^0.9.8",
     "sharp": "^0.33.3",
     "styled-components": "^6.1.8",
     "zod": "^3.22.4"
