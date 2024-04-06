@@ -31,12 +31,7 @@ import EnhancedPortableText from '~/components/EnhancedPortableText';
 import { AllProjectDetails } from '~/groq/queries';
 import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
-import { Category, Project } from '~/schema';
-
-interface _ProjectResponse extends Project {
-  tags: Category[];
-}
-type ProjectResponse = Array<_ProjectResponse> | null;
+import { AllProjectDetailsResult } from '~/schema';
 
 export const metadata: Metadata = {
   title: 'All Projects',
@@ -44,7 +39,8 @@ export const metadata: Metadata = {
 
 const Page = async () => {
   const client = getClient();
-  const projects = await client.fetch<ProjectResponse>(AllProjectDetails);
+  const projects =
+    await client.fetch<AllProjectDetailsResult>(AllProjectDetails);
 
   return (
     <Box>
@@ -117,7 +113,7 @@ const Page = async () => {
                     withIndicators={isMultipleImages}
                   >
                     {projectImages?.map(i => (
-                      <CarouselSlide key={i.asset._ref}>
+                      <CarouselSlide key={i?.asset?._ref}>
                         <Image
                           src={urlForImage(i)}
                           alt={`${name} - ${i._key}`}
@@ -136,7 +132,7 @@ const Page = async () => {
                   </Box>
 
                   <Group gap="sm">
-                    <CategoryList tags={tags} />
+                    <CategoryList tags={tags ?? []} />
                   </Group>
 
                   {projectIssuer && (

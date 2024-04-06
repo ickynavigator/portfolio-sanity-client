@@ -8,17 +8,25 @@ import { ProfileDetails } from '~/groq/queries';
 import { getConfig, isProjectSetup } from '~/lib/project.config';
 import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
-import { PersonalInfo } from '~/schema';
-
-type PersonalInfoResponse = PersonalInfo;
+import { ProfileDetailsResult } from '~/schema';
 
 export async function generateMetadata(
   _: undefined,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const client = getClient();
-  const data = await client.fetch<PersonalInfoResponse>(ProfileDetails);
+  const data = await client.fetch<ProfileDetailsResult>(ProfileDetails);
   const projectConfig = await getConfig();
+
+  const baseMetaData: Metadata = {
+    metadataBase: new URL(`https://${env.VERCEL_URL}`),
+    keywords: ['PORTFOLIO', 'DEVELOPER', 'NEXTJS', 'REACTJS', 'SANITY'],
+    robots: 'index, follow',
+    creator: 'Obi Fortune',
+    authors: [{ name: 'Obi Fortune', url: 'https://obifortune.com' }],
+  };
+
+  if (data === null) return baseMetaData;
 
   const img = urlForImage(data?.image);
   const ogImages = (await parent).openGraph?.images || [];
@@ -32,16 +40,12 @@ export async function generateMetadata(
   }
 
   return {
-    metadataBase: new URL(`https://${env.VERCEL_URL}`),
+    ...baseMetaData,
     title: {
       template: `%s | ${projectConfig?.name}'s Portfolio`,
       default: `${projectConfig?.name}'s Portfolio`,
     },
-    keywords: ['PORTFOLIO', 'DEVELOPER', 'NEXTJS', 'REACTJS', 'SANITY'],
-    robots: 'index, follow',
     description: `${projectConfig?.name}'s Portfolio. Built with Next.js and Sanity.`,
-    creator: 'Obi Fortune',
-    authors: [{ name: 'Obi Fortune', url: 'https://obifortune.com' }],
     openGraph: {
       type: 'website',
       title: {
@@ -69,7 +73,9 @@ export async function generateMetadata(
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
   const _isProjectSetup = await isProjectSetup();
-  if (!_isProjectSetup) {
+  const projectConfig = await getConfig();
+
+  if (!_isProjectSetup || !projectConfig) {
     return (
       <Stack h="100%" justify="space-around" align="center">
         <Title order={1}>
@@ -85,8 +91,6 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
       </Stack>
     );
   }
-
-  const projectConfig = await getConfig();
 
   return (
     <Stack h="100%" justify="space-between" align="center">

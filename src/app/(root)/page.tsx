@@ -22,15 +22,11 @@ import EnhancedPortableText from '~/components/EnhancedPortableText';
 import { ProfileDetails } from '~/groq/queries';
 import { getUrlFromId, urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
-import { Category, PersonalInfo } from '~/schema';
-
-interface PersonalInfoResponse extends PersonalInfo {
-  skills: Category[] | undefined;
-}
+import { ProfileDetailsResult } from '~/schema';
 
 const Page = async () => {
   const client = getClient();
-  const data = await client.fetch<PersonalInfoResponse | null>(ProfileDetails);
+  const data = await client.fetch<ProfileDetailsResult>(ProfileDetails);
 
   if (!data) {
     return null;
@@ -71,7 +67,7 @@ const Page = async () => {
     <Stack align="center" gap="xs">
       <Center>
         <Image
-          src={urlForImage(data.image)}
+          src={urlForImage(data?.image)}
           alt={name}
           component={NextImage}
           priority
@@ -104,7 +100,7 @@ const Page = async () => {
           </Title>
           <EnhancedPortableText value={bio} />
 
-          {CV?.asset._ref && (
+          {CV?.asset?._ref && (
             <Button
               component={Link}
               href={getUrlFromId(CV.asset._ref)}

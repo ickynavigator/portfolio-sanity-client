@@ -17,13 +17,8 @@ import { AllCareers } from '~/groq/queries';
 import { formatDate } from '~/lib/format';
 import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
-import { Career, Category } from '~/schema';
+import { AllCareersResult } from '~/schema';
 import classes from './page.module.css';
-
-interface _CareerResponse extends Career {
-  tags: Category[];
-}
-type CareerResponse = Array<_CareerResponse> | null;
 
 export const metadata: Metadata = {
   title: 'All Careers',
@@ -31,7 +26,7 @@ export const metadata: Metadata = {
 
 const Page = async () => {
   const client = getClient();
-  const careers = await client.fetch<CareerResponse>(AllCareers);
+  const careers = await client.fetch<AllCareersResult>(AllCareers);
 
   const imageSize = { width: 80, height: 80 };
 
@@ -93,7 +88,7 @@ const Page = async () => {
               <Divider />
 
               <Group gap="sm">
-                <CategoryList tags={tags} />
+                <CategoryList tags={tags ?? []} />
               </Group>
             </Stack>
           </Card>

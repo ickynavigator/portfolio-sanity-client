@@ -23,7 +23,7 @@ export default class Mailer {
   async sendMail(html: string, options?: Mail.Options) {
     const projectConfig = await getConfig();
 
-    if (!projectConfig.mailInfo?.from || !projectConfig.mailInfo?.to) return;
+    if (!projectConfig?.mailInfo?.from || !projectConfig?.mailInfo?.to) return;
 
     if (
       server.SMTP_USER === undefined ||

@@ -484,12 +484,14 @@ export type ProfileDetailsResult = {
   }> | null;
 } | null;
 // Variable: AllSocialLinks
-// Query:   *[_type == "personalInfo"] | order(_updatedAt desc) [0].socialLinks
-export type AllSocialLinksResult = Array<
-  {
-    _key: string;
-  } & SocialLink
-> | null;
+// Query:   coalesce(*[_type == "personalInfo"] | order(_updatedAt desc) [2].socialLinks, [])
+export type AllSocialLinksResult =
+  | Array<
+      {
+        _key: string;
+      } & SocialLink
+    >
+  | Array<never>;
 // Variable: AllCertificates
 // Query:   *[_type == "certificate" && certificateHide == false] | order(startDate desc)
 export type AllCertificatesResult = Array<{

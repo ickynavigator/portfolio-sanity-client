@@ -4,20 +4,22 @@ import {
   ProjectInfoName,
 } from '~/groq/queries';
 import { getClient } from '~/sanity/sanity.server';
-import { Configuration } from '~/schema';
+import {
+  ProjectConfigNameResult,
+  ProjectConfigResult,
+  ProjectInfoNameResult,
+} from '~/schema';
 
 export const getConfig = async () => {
-  return getClient().fetch<Configuration>(ProjectConfig);
+  return getClient().fetch<ProjectConfigResult>(ProjectConfig);
 };
 
 export const isProjectSetup = async () => {
   const client = getClient();
-  const projectConfig = await client.fetch<{ name: string } | null>(
-    ProjectConfigName,
-  );
-  const projectInfo = await client.fetch<{ name: string } | null>(
-    ProjectInfoName,
-  );
+  const projectConfig =
+    await client.fetch<ProjectConfigNameResult>(ProjectConfigName);
+  const projectInfo =
+    await client.fetch<ProjectInfoNameResult>(ProjectInfoName);
 
   return projectConfig !== null && projectInfo !== null;
 };
