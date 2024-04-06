@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -24,12 +20,8 @@
       }
     ],
     "paths": {
-      "~/*": [
-        "./src/*"
-      ],
-      "~/schema": [
-        "./schema.d.ts"
-      ]
+      "~/*": ["./src/*"],
+      "~/schema": ["./sanity.d.ts"]
     }
   },
   "include": [
@@ -42,7 +34,5 @@
     ".next/types/**/*.ts",
     "postcss.config.cjs"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
