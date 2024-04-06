@@ -9,14 +9,12 @@ export default defineType({
       name: 'careerHide',
       title: 'Hide Career',
       type: 'boolean',
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'employmentType',
       title: 'Employment Type',
       type: 'string',
-      codegen: { required: true },
       validation: Rule => Rule.required(),
       options: {
         list: [
@@ -35,14 +33,13 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      codegen: { required: true },
+
       validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'name',
       title: 'Company Name',
       type: 'string',
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
@@ -62,22 +59,18 @@ export default defineType({
         ],
         layout: 'dropdown',
       },
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'companyLogo',
       title: 'Company Logo',
       type: 'image',
-      //   codegen: { required: true },
-      //   validation: Rule => Rule.required(),
       options: { hotspot: true },
     }),
     defineField({
       name: 'startDate',
       title: 'Start Date',
       type: 'date',
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
@@ -89,7 +82,6 @@ export default defineType({
       name: 'description',
       title: 'Description',
       type: 'blockContent',
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
@@ -97,7 +89,6 @@ export default defineType({
       title: 'Skills',
       type: 'array',
       of: [defineArrayMember({ type: 'reference', to: { type: 'category' } })],
-      codegen: { required: true },
       validation: Rule => Rule.unique(),
     }),
   ],

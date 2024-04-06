@@ -9,14 +9,12 @@ export default defineType({
       name: 'projectHide',
       title: 'Hide Project',
       type: 'boolean',
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'name',
       title: 'Project Name',
       type: 'string',
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
@@ -24,14 +22,12 @@ export default defineType({
       title: 'Slug',
       type: 'slug',
       options: { source: 'name', maxLength: 96 },
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
@@ -69,7 +65,6 @@ export default defineType({
       title: 'Project Images',
       type: 'array',
       of: [defineArrayMember({ type: 'image', options: { hotspot: true } })],
-      codegen: { required: true },
       validation: Rule => Rule.required(),
       initialValue: [],
     }),
@@ -84,7 +79,6 @@ export default defineType({
       name: 'profileStatus',
       title: 'Profile Status',
       type: 'string',
-      codegen: { required: true },
       validation: Rule => Rule.required(),
       options: {
         list: [

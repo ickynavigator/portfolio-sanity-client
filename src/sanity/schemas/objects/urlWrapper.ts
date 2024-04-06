@@ -9,7 +9,6 @@ export default defineType({
       title: 'URL',
       name: 'url',
       type: 'url',
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({ title: 'Hide URL', name: 'visibility', type: 'boolean' }),

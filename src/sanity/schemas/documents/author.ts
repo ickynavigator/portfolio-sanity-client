@@ -9,7 +9,6 @@ export default defineType({
       name: 'name',
       title: 'Name',
       type: 'string',
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
@@ -17,7 +16,6 @@ export default defineType({
       title: 'Slug',
       type: 'slug',
       options: { source: 'name', maxLength: 96 },
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({

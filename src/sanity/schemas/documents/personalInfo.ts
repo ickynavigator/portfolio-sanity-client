@@ -9,7 +9,7 @@ export default defineType({
       name: 'name',
       title: 'Name',
       type: 'string',
-      codegen: { required: true },
+
       validation: Rule => Rule.required(),
     }),
     defineField({
@@ -17,21 +17,18 @@ export default defineType({
       title: 'Slug',
       type: 'slug',
       options: { source: 'name', maxLength: 96 },
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
       title: 'Show Job Status',
       name: 'jobVisibility',
       type: 'boolean',
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
@@ -46,7 +43,6 @@ export default defineType({
         ],
         layout: 'radio',
       },
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({ name: 'CV', title: 'Curriculum Vitae', type: 'file' }),
@@ -60,14 +56,12 @@ export default defineType({
       title: 'Image',
       type: 'image',
       options: { hotspot: true },
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'bio',
       title: 'Bio',
       type: 'blockContent',
-      codegen: { required: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
