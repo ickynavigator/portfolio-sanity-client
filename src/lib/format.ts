@@ -5,5 +5,3 @@ export const formatDate = (date: string) => {
     timeZone: 'UTC',
   }).format(new Date(date));
 };
-
-export default {};

@@ -23,5 +23,3 @@ export const isProjectSetup = async () => {
 
   return projectConfig !== null && projectInfo !== null;
 };
-
-export default {};

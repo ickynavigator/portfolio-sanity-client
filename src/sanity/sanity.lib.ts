@@ -4,7 +4,7 @@ import { config } from '~/sanity/sanity.config';
 import { SanityImageCrop, SanityImageHotspot } from '~/schema';
 
 const { dataset, projectId } = config;
-export const imageBuilder = createImageUrlBuilder({ projectId, dataset });
+const imageBuilder = createImageUrlBuilder({ projectId, dataset });
 
 type Image = {
   [key: string]: unknown;
@@ -13,7 +13,7 @@ type Image = {
   hotspot?: SanityImageHotspot;
 };
 
-export const getBuiltImage = (source?: Image) => {
+const getBuiltImage = (source?: Image) => {
   if (!source) {
     return undefined;
   }

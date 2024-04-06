@@ -4,7 +4,7 @@ import { SanityDocumentStub } from 'next-sanity';
 import { getClient } from '~/sanity/sanity.server';
 import { ContactForms } from '~/schema';
 
-export const postToSanity = async <
+const postToSanity = async <
   D extends SanityDocumentStub<Record<string, any>> = any,
 >(
   data: D,

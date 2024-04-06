@@ -18,5 +18,3 @@ export const config = {
    */
   useCdn: process.env.NODE_ENV === 'production',
 };
-
-export default { config };

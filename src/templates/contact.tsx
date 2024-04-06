@@ -105,5 +105,3 @@ export const EmailContact = ({ name, email, message }: IEmailContact) => {
     </Html>
   );
 };
-
-export default EmailContact;

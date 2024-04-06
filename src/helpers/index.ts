@@ -11,5 +11,3 @@ export const insert = <T = any>(
   // part of the array after the specified index
   ...arr.slice(index),
 ];
-
-export default {};

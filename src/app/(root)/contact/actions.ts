@@ -3,7 +3,7 @@
 import { render } from '@react-email/render';
 import { createContactMessage } from '~/lib/actions/sanity';
 import Mailer from '~/lib/mail';
-import { EmailContact } from '~/templates';
+import { EmailContact } from '~/templates/contact';
 
 interface IFormSubmit {
   name: string;

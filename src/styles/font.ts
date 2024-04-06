@@ -7,5 +7,3 @@ export const bricolageGrotesque = BricolageGrotesque({
   adjustFontFallback: false,
   preload: true,
 });
-
-export default {};
