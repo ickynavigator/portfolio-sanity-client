@@ -62,18 +62,12 @@ dependencies:
   embla-carousel-react:
     specifier: ^8.0.0
     version: 8.0.0(react@18.2.0)
-  nanoid:
-    specifier: ^5.0.6
-    version: 5.0.6
   next:
     specifier: ^14.1.4
     version: 14.1.4(@babel/core@7.24.4)(react-dom@18.2.0)(react@18.2.0)
   next-sanity:
     specifier: 8.5.2
     version: 8.5.2(@sanity/client@6.15.9)(@sanity/icons@2.11.6)(@sanity/types@3.36.4)(@sanity/ui@2.0.14)(next@14.1.4)(react@18.2.0)(sanity@3.36.4)(styled-components@6.1.8)
-  next-sanity-image:
-    specifier: ^6.1.1
-    version: 6.1.1(@sanity/client@6.15.9)(next@14.1.4)(react@18.2.0)
   nodemailer:
     specifier: ^6.9.13
     version: 6.9.13
@@ -83,9 +77,6 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
-  react-is:
-    specifier: ^18.2.0
-    version: 18.2.0
   sanity:
     specifier: 3.36.4
     version: 3.36.4(@types/node@20.12.4)(@types/react@18.2.74)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8)
@@ -7489,19 +7480,6 @@ packages:
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
-
-  /next-sanity-image@6.1.1(@sanity/client@6.15.9)(next@14.1.4)(react@18.2.0):
-    resolution: {integrity: sha512-mLRiatJW3TZoD3VlUCci4lOxW9lKOl0bxDsYtk/JRqKZo25QJqPXNV7aoD+lmjEFf6RO2eW7uJ57QeI20mPhOA==}
-    peerDependencies:
-      '@sanity/client': ^5.0.0 || ^6.0.0
-      next: ^13.0.0 || ^14.0.0
-      react: ^18.0.0
-    dependencies:
-      '@sanity/client': 6.15.9
-      '@sanity/image-url': 1.0.2
-      next: 14.1.4(@babel/core@7.24.4)(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-    dev: false
 
   /next-sanity@8.5.2(@sanity/client@6.15.9)(@sanity/icons@2.11.6)(@sanity/types@3.36.4)(@sanity/ui@2.0.14)(next@14.1.4)(react@18.2.0)(sanity@3.36.4)(styled-components@6.1.8):
     resolution: {integrity: sha512-fjrLCd1xsTZTVbUQ9l/QG9ovw3FEvfXa7GH/362PcMdY4BOCYNw9nJ7Z/f8wzIcmNryObR9AqAAWX08YxMqerQ==}
