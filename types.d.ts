@@ -14,4 +14,6 @@ type Prettify<T> = {
 /**
  * Returns the base schema type (without the sanity document)
  */
-type DeEnhanced<D> = Omit<D, keyof import('sanity-codegen').SanityDocument>;
+type DeEnhanced<D> = Omit<D, keyof import('next-sanity').SanityDocument> & {
+  _type: string;
+};
