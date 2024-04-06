@@ -19,6 +19,7 @@ const formSubmit = async (values: IFormSubmit) => {
 
   const mailer = new Mailer();
   await mailer.sendMail(render(EmailContact(values)), {
+    replyTo: values.email,
     subject: `New Contact Form from ${values.name}`,
   });
 
