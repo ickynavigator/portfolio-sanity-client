@@ -1,9 +1,17 @@
 import createImageUrlBuilder from '@sanity/image-url';
-import type { Image } from 'sanity';
+import type { Reference } from 'sanity';
 import { config } from '~/sanity/sanity.config';
+import { SanityImageCrop, SanityImageHotspot } from '~/schema';
 
 const { dataset, projectId } = config;
 export const imageBuilder = createImageUrlBuilder({ projectId, dataset });
+
+type Image = {
+  [key: string]: unknown;
+  asset?: Reference;
+  crop?: SanityImageCrop;
+  hotspot?: SanityImageHotspot;
+};
 
 export const getBuiltImage = (source?: Image) => {
   if (!source) {
