@@ -31,3 +31,9 @@ export const AllCareers = groq`
 export const ProjectConfig = groq`
   *[_type == "configuration"] | order(_updatedAt desc) [0]
 `;
+export const ProjectConfigName = groq`
+  *[_type == "configuration"] | order(_updatedAt desc) [0].name
+`;
+export const ProjectInfoName = groq`
+  *[_type == "personalInfo"] | order(_updatedAt desc) [0].name
+`;

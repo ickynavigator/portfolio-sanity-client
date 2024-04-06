@@ -1,11 +1,13 @@
 import { nanoid } from 'nanoid';
+import { groq } from 'next-sanity';
 import createClient from '../client';
 import { Project } from '../../../schema';
 
 const client = createClient();
 
 const fetchDocuments = () => {
-  return client.fetch<Project[]>(`*[_type == "project"]`);
+  const fetchDocumentsQuery = groq`*[_type == "project"]`;
+  return client.fetch<Project[]>(fetchDocumentsQuery);
 };
 
 const migrateBatch = async () => {
