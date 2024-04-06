@@ -18,6 +18,7 @@ export default class Mailer {
 
   private destroy() {
     this.transporter?.close();
+    this.transporter = undefined;
   }
 
   async sendMail(html: string, options?: Mail.Options) {
