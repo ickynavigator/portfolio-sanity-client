@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import { groq } from 'next-sanity';
 import createClient from '../client';
 import { Project } from '../../../sanity.d';
@@ -27,7 +26,7 @@ const migrateBatch = async () => {
         id: doc._id,
         set: {
           projectImages: doc?.projectImage
-            ? [{ ...doc.projectImage, _key: nanoid() }]
+            ? [{ ...doc.projectImage, _key: crypto.randomUUID() }]
             : [],
         },
         unset: ['projectImage'],
