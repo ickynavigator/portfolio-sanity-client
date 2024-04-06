@@ -1,5 +1,5 @@
 import { Badge } from '@mantine/core';
-import { Category } from '../../schema';
+import { Category } from '~/schema';
 
 interface Props {
   tags?: Category[];
