@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import { groq } from 'next-sanity';
 import createClient from '../client';
-import { Project } from '../../../schema';
+import { Project } from '../../../sanity.d';
 
 const client = createClient();
 
