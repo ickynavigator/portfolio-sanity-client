@@ -11,7 +11,7 @@ export const ProfileDetails = groq`
   }[0]
 `;
 export const AllSocialLinks = groq`
-  coalesce(*[_type == "personalInfo"] | order(_updatedAt desc) [2].socialLinks, [])
+  coalesce(*[_type == "personalInfo"] | order(_updatedAt desc) [0].socialLinks, [])
 `;
 export const AllCertificates = groq`
   *[_type == "certificate" && certificateHide == false] | order(startDate desc)
