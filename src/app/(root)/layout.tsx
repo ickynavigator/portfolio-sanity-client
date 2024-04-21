@@ -1,6 +1,6 @@
 import { Anchor, Container, Stack, Text, Title } from '@mantine/core';
 import { Metadata, ResolvingMetadata } from 'next';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import Footer from '~/components/Footer';
 import Header from '~/components/Header';
 import env from '~/env/server.mjs';

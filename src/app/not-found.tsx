@@ -8,7 +8,7 @@ import {
   Title,
   rem,
 } from '@mantine/core';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import classes from './error.module.css';
 
 const NotFoundPage = () => {
