@@ -25,7 +25,6 @@ import {
   IconX,
 } from '@tabler/icons-react';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import CategoryList from '~/components/CategoryList';
 import EnhancedPortableText from '~/components/EnhancedPortableText';
 import { AllProjectDetails } from '~/groq/queries';
@@ -142,7 +141,6 @@ const Page = async () => {
                           Project comissioned by:
                           {projectIssuer.link ? (
                             <Anchor
-                              component={Link}
                               href={projectIssuer.link}
                               td="underline"
                               size="sm"
@@ -195,9 +193,7 @@ const Page = async () => {
                         <Tooltip label={label} key={`${_id}-${tip}`} withArrow>
                           {shouldShow ? (
                             <Anchor
-                              component={Link}
                               href={url}
-                              passHref
                               key={url}
                               target="_blank"
                               aria-label={`${name} ${tip}`}

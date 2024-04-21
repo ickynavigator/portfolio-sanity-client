@@ -6,7 +6,6 @@ import {
   IconBrandTwitter,
   IconCode,
 } from '@tabler/icons-react';
-import Link from 'next/link';
 import { AllSocialLinks } from '~/groq/queries';
 import { insert } from '~/helpers';
 import { getClient } from '~/sanity/sanity.server';
@@ -61,7 +60,7 @@ const Footer = async () => {
             <ActionIcon
               variant="subtle"
               aria-label={`Link for ${name}`}
-              component={Link}
+              component="a"
               href={link}
             >
               {SocialLinksIcons(iconName)}

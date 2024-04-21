@@ -1,5 +1,6 @@
 import {
   Alert,
+  Anchor,
   Box,
   Button,
   Center,
@@ -16,7 +17,6 @@ import {
   IconX,
 } from '@tabler/icons-react';
 import NextImage from 'next/image';
-import Link from 'next/link';
 import CategoryList from '~/components/CategoryList';
 import EnhancedPortableText from '~/components/EnhancedPortableText';
 import { ProfileDetails } from '~/groq/queries';
@@ -102,9 +102,8 @@ const Page = async () => {
 
           {CV?.asset?._ref && (
             <Button
-              component={Link}
+              component="a"
               href={getUrlFromId(CV.asset._ref)}
-              passHref
               target="_blank"
               leftSection={<IconFileDownload className="mr-1" />}
               variant="outline"

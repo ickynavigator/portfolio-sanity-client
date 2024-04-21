@@ -12,7 +12,6 @@ import {
 } from '@mantine/core';
 import { Metadata } from 'next';
 import NextImage from 'next/image';
-import Link from 'next/link';
 import { AllCertificates } from '~/groq/queries';
 import { formatDate } from '~/lib/format';
 import { urlForImage } from '~/sanity/sanity.lib';
@@ -83,9 +82,8 @@ const Page = async () => {
 
                       {certificateLink && (
                         <Button
-                          component={Link}
+                          component="a"
                           href={certificateLink}
-                          passHref
                           target="_blank"
                           variant="outline"
                           fullWidth
