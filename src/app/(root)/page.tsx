@@ -1,6 +1,5 @@
 import {
   Alert,
-  Anchor,
   Box,
   Button,
   Center,
@@ -32,8 +31,7 @@ const Page = async () => {
     return null;
   }
 
-  const { name, title, jobStatus, image, jobVisibility, CV, bio, skills } =
-    data;
+  const { name, title, jobStatus, jobVisibility, CV, bio, skills } = data;
 
   const picSize = { width: 160, height: 160 };
   const jobStatusCheck = (() => {

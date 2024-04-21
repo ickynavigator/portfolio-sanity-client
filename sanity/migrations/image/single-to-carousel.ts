@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { groq } from 'next-sanity';
 import createClient from '../client';
 import { Project } from '../../../sanity.d';
@@ -13,11 +14,10 @@ const migrateBatch = async () => {
   const documents = await fetchDocuments();
   if (documents.length === 0) {
     console.warn('No documents to convert!');
-    return null;
+    return;
   }
 
   const mutations = documents.map(doc => {
-    // eslint-disable-next-line no-console
     console.info(`Migrating document - id: ${doc._id}`);
 
     return {
@@ -40,10 +40,7 @@ const migrateBatch = async () => {
 
   await transactions.commit();
 
-  // eslint-disable-next-line no-console
   console.log('Migration complete!');
-
-  return null;
 };
 
 migrateBatch().catch((err: any) => {
