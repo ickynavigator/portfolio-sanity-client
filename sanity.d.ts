@@ -484,7 +484,7 @@ export type ProfileDetailsResult = {
   }> | null;
 } | null;
 // Variable: AllSocialLinks
-// Query:   coalesce(*[_type == "personalInfo"] | order(_updatedAt desc) [2].socialLinks, [])
+// Query:   coalesce(*[_type == "personalInfo"] | order(_updatedAt desc) [0].socialLinks, [])
 export type AllSocialLinksResult =
   | Array<
       {
@@ -661,3 +661,6 @@ export type ProjectConfigNameResult = string | null;
 // Variable: ProjectInfoName
 // Query:   *[_type == "personalInfo"] | order(_updatedAt desc) [0].name
 export type ProjectInfoNameResult = string | null;
+// Variable: CVReference
+// Query:   *[_type == "personalInfo"] | order(_updatedAt desc) [0].CV.asset._ref
+export type CVReferenceResult = string | null;

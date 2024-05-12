@@ -37,3 +37,6 @@ export const ProjectConfigName = groq`
 export const ProjectInfoName = groq`
   *[_type == "personalInfo"] | order(_updatedAt desc) [0].name
 `;
+export const CVReference = groq`
+  *[_type == "personalInfo"] | order(_updatedAt desc) [0].CV.asset._ref
+`;
