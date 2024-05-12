@@ -33,6 +33,6 @@ export const urlForImage = (source?: Image) => {
 
 export const getUrlFromId = (ref: string) => {
   // eslint-disable-next-line no-unused-vars
-  const [_file, id, extension] = ref.split('-');
+  const [, id, extension] = ref.split('-');
   return `https://cdn.sanity.io/files/${projectId}/${dataset}/${id}.${extension}`;
 };

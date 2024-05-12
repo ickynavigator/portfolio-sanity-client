@@ -1,5 +1,4 @@
 import { MetadataRoute } from 'next';
-import env from '~/env/server.mjs';
 import { getBaseURL } from '~/lib/general';
 
 export default function sitemap(): MetadataRoute.Sitemap {
