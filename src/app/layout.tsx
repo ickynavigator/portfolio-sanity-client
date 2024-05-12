@@ -13,12 +13,14 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <ViewTransitions>
       <html lang="en">
         <head>
-          <ColorSchemeScript />
+          <ColorSchemeScript defaultColorScheme="auto" />
           <link rel="shortcut icon" href="/favicon.ico" />
         </head>
 
         <body>
-          <MantineProvider theme={theme}>{children}</MantineProvider>
+          <MantineProvider defaultColorScheme="auto" theme={theme}>
+            {children}
+          </MantineProvider>
           <Analytics />
           <SpeedInsights />
         </body>
