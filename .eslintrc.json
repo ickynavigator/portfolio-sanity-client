@@ -19,22 +19,37 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 12,
+    "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "eslint-plugin-css-modules"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "eslint-plugin-css-modules"
+  ],
   "rules": {
-    "import/prefer-default-export": ["off"],
-    "no-use-before-define": ["off"],
+    "import/prefer-default-export": [
+      "off"
+    ],
+    "no-use-before-define": [
+      "off"
+    ],
     "@typescript-eslint/no-use-before-define": "off",
-    "arrow-body-style": ["off"],
+    "arrow-body-style": [
+      "off"
+    ],
     "no-console": [
       "error",
       {
-        "allow": ["warn", "error"]
+        "allow": [
+          "warn",
+          "error"
+        ]
       }
     ],
-    "no-underscore-dangle": ["off"],
+    "no-underscore-dangle": [
+      "off"
+    ],
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -45,7 +60,9 @@
         "tsx": "never"
       }
     ],
-    "jsx-a11y/label-has-associated-control": ["off"],
+    "jsx-a11y/label-has-associated-control": [
+      "off"
+    ],
     "react/function-component-definition": [
       2,
       {
@@ -53,23 +70,43 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "react/require-default-props": ["off"],
+    "react/require-default-props": [
+      "off"
+    ],
     "react/jsx-filename-extension": [
       2,
       {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
       }
     ],
-    "react/react-in-jsx-scope": ["off"],
-    "react/jsx-props-no-spreading": ["off"],
-    "react/prop-types": ["off"]
+    "react/react-in-jsx-scope": [
+      "off"
+    ],
+    "react/jsx-props-no-spreading": [
+      "off"
+    ],
+    "react/prop-types": [
+      "off"
+    ],
+    "no-undef": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error"
   },
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx"],
+      "files": [
+        "*.ts",
+        "*.mts",
+        "*.cts",
+        "*.tsx"
+      ],
       "rules": {
-        "no-undef": "off",
-        "no-unused-vars": "off"
+        "no-undef": "off"
       }
     }
   ]
