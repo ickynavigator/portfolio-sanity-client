@@ -2,34 +2,48 @@
 
 import {
   ActionIcon,
+  Loader,
+  rem,
   useComputedColorScheme,
   useMantineColorScheme,
 } from '@mantine/core';
+import { useMounted } from '@mantine/hooks';
 import { IconMoonStars, IconSun } from '@tabler/icons-react';
-import cx from 'clsx';
-import classes from './ThemeSwitcher.module.css';
+import TransitionGroup from '~/components/TransitionGroup';
+
+const size = rem(16);
+const iconStyles = { stroke: 1.5, style: { width: size, height: size } };
 
 const ThemeSwitcher = () => {
-  const { setColorScheme } = useMantineColorScheme({
+  const mounted = useMounted();
+
+  const { toggleColorScheme } = useMantineColorScheme({
     keepTransitions: true,
   });
-  const computedColorScheme = useComputedColorScheme('light', {
-    getInitialValueInEffect: true,
+
+  const computedColorScheme = useComputedColorScheme('dark', {
+    getInitialValueInEffect: false,
   });
-  const toggleColorScheme = () => {
-    setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light');
-  };
+
+  const isDarkMode = computedColorScheme === 'dark';
 
   return (
     <ActionIcon
       onClick={toggleColorScheme}
       size="md"
       aria-label="Toggle color scheme"
-      color={computedColorScheme === 'dark' ? 'yellow' : 'gray'}
+      color={isDarkMode ? 'yellow' : 'gray'}
       variant="outline"
     >
-      <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
-      <IconMoonStars className={cx(classes.icon, classes.dark)} stroke={1.5} />
+      {mounted ? (
+        <TransitionGroup
+          status={isDarkMode}
+          initial={<IconMoonStars {...iconStyles} />}
+          final={<IconSun {...iconStyles} />}
+        />
+      ) : (
+        <Loader size={size} />
+      )}
     </ActionIcon>
   );
 };
