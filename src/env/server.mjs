@@ -7,6 +7,7 @@ const env = createEnv({
     NEXT_PUBLIC_SANITY_DATASET: z.string().default('production'),
     NEXT_PUBLIC_SANITY_PROJECT_ID: z.string(),
     NEXT_PUBLIC_SANITY_API_VERSION: z.string().default('2021-10-21'),
+    NEXT_PUBLIC_SITE_URL: z.string().url().optional(),
   },
   server: {
     SMTP_SERVICE: z.string().min(1).optional(),
@@ -17,7 +18,7 @@ const env = createEnv({
 
     VERCEL_URL: z.string().min(1).default('localhost:3000'),
   },
-  extends: [vercel],
+  extends: [vercel()],
   experimental__runtimeEnv: {
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,

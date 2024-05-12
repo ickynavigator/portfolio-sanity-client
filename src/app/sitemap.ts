@@ -1,11 +1,6 @@
 import { MetadataRoute } from 'next';
 import env from '~/env/server.mjs';
-
-const getBaseURL = () => {
-  const baseURL = new URL(`https://${env.VERCEL_URL}`);
-
-  return baseURL;
-};
+import { getBaseURL } from '~/lib/general';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseURL = getBaseURL().toString();

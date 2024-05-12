@@ -3,8 +3,8 @@ import { Metadata, ResolvingMetadata } from 'next';
 import { Link } from 'next-view-transitions';
 import Footer from '~/components/Footer';
 import Header from '~/components/Header';
-import env from '~/env/server.mjs';
 import { ProfileDetails } from '~/groq/queries';
+import { getBaseURL } from '~/lib/general';
 import { getConfig, isProjectSetup } from '~/lib/project.config';
 import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
@@ -19,7 +19,7 @@ export async function generateMetadata(
   const projectConfig = await getConfig();
 
   const baseMetaData: Metadata = {
-    metadataBase: new URL(`https://${env.VERCEL_URL}`),
+    metadataBase: getBaseURL(),
     keywords: ['PORTFOLIO', 'DEVELOPER', 'NEXTJS', 'REACTJS', 'SANITY'],
     robots: 'index, follow',
     creator: 'Obi Fortune',
