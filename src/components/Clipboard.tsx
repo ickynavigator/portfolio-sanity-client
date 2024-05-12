@@ -27,7 +27,7 @@ const ClipboardButton = (props: ClipboardButtonProps) => {
           >
             <TransitionGroup
               status={copied}
-              transitionType="fade-vertical"
+              timer={timer}
               initial={<IconCopy size={size} />}
               final={<IconCopyCheck size={size} />}
             />

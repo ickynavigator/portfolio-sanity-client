@@ -1,92 +1,64 @@
-import { Box, Transition, type MantineTransition } from '@mantine/core';
+import { Box, Transition, MANTINE_TRANSITIONS, rem } from '@mantine/core';
+
+type MantineTransitionName = keyof typeof MANTINE_TRANSITIONS;
+type MantineTransitionStyles =
+  (typeof MANTINE_TRANSITIONS)[MantineTransitionName];
+
+const Transitions = {
+  sliding: {
+    in: { opacity: 1, transform: `translate(-50%, calc(-50% + ${rem(1)}))` },
+    out: { opacity: 0, transform: 'translate(-50%, -200%)' },
+    common: {
+      transformOrigin: 'center',
+      top: '50%',
+      left: '50%',
+      position: 'absolute',
+    },
+    transitionProperty: 'transform, opacity',
+  },
+} as const satisfies Record<string, MantineTransitionStyles>;
 
 interface ITransitionProps {
   show: boolean;
   timer: number;
   children: React.ReactNode;
-  transition?: MantineTransition;
+  transition?: keyof typeof Transitions;
 }
 
 const TransitionButton = (props: ITransitionProps) => {
-  const { show, timer, children, transition = 'fade' } = props;
+  const { show, timer, children, transition = 'sliding' } = props;
 
   return (
     <Transition
       mounted={show}
-      transition={transition}
+      transition={Transitions[transition]}
       duration={timer}
       timingFunction="ease"
     >
-      {style => (
-        <Box
-          style={style}
-          ml="auto"
-          mr="auto"
-          left={0}
-          right={0}
-          pos="absolute"
-        >
-          {children}
-        </Box>
-      )}
+      {style => <Box style={style}>{children}</Box>}
     </Transition>
   );
 };
-
-const Transitions = {
-  'fade-horizontal': { initial: 'fade-left', final: 'fade-right' },
-  'fade-vertical': { initial: 'fade-up', final: 'fade-down' },
-
-  'slide-horizontal': { initial: 'slide-left', final: 'slide-right' },
-  'slide-vertical': { initial: 'slide-up', final: 'slide-down' },
-} as const satisfies Record<
-  string,
-  { initial: MantineTransition; final: MantineTransition }
->;
-
 interface ITransitionGroupProps {
   initial: React.ReactNode;
   final: React.ReactNode;
 
   timer?: number;
-
   status: boolean;
 
-  transitionType?: keyof typeof Transitions;
-  reverse?: boolean;
+  transition?: keyof typeof Transitions;
 }
 
 const TransitionGroup = (props: ITransitionGroupProps) => {
-  const {
-    initial,
-    final,
-    status,
-    transitionType = 'fade-horizontal',
-    reverse = false,
-    timer = 1000,
-  } = props;
-
-  const selectedTransition = Transitions[transitionType];
-
-  const [initialTransition, finalTransition] = reverse
-    ? [selectedTransition.final, selectedTransition.initial]
-    : [selectedTransition.initial, selectedTransition.final];
+  const { initial, final, status, transition, timer = 1000 } = props;
 
   return (
     <>
-      <TransitionButton
-        show={!status}
-        timer={timer}
-        transition={initialTransition}
-      >
+      <TransitionButton show={!status} timer={timer} transition={transition}>
         {initial}
       </TransitionButton>
 
-      <TransitionButton
-        show={status}
-        timer={timer}
-        transition={finalTransition}
-      >
+      <TransitionButton show={status} timer={timer} transition={transition}>
         {final}
       </TransitionButton>
     </>
