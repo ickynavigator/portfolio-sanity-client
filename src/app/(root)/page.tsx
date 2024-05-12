@@ -2,6 +2,7 @@ import {
   Alert,
   Box,
   Button,
+  ButtonGroup,
   Center,
   Group,
   Image,
@@ -17,8 +18,10 @@ import {
 } from '@tabler/icons-react';
 import NextImage from 'next/image';
 import CategoryList from '~/components/CategoryList';
+import ClipboardButton from '~/components/Clipboard';
 import EnhancedPortableText from '~/components/EnhancedPortableText';
 import { ProfileDetails } from '~/groq/queries';
+import { getBaseURL } from '~/lib/general';
 import { getUrlFromId, urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
 import { ProfileDetailsResult } from '~/schema';
@@ -99,16 +102,23 @@ const Page = async () => {
           <EnhancedPortableText value={bio} />
 
           {CV?.asset?._ref && (
-            <Button
-              component="a"
-              href={getUrlFromId(CV.asset._ref)}
-              target="_blank"
-              leftSection={<IconFileDownload className="mr-1" />}
-              variant="outline"
-              mt="sm"
-            >
-              Download my CV
-            </Button>
+            <ButtonGroup mt="md">
+              <Button
+                component="a"
+                href={getUrlFromId(CV.asset._ref)}
+                target="_blank"
+                leftSection={<IconFileDownload size={16} />}
+                variant="outline"
+              >
+                Download my CV
+              </Button>
+
+              <ClipboardButton
+                text={`${getBaseURL().toString()}/cv`}
+                tooltip="Copy link to URL"
+                size={16}
+              />
+            </ButtonGroup>
           )}
 
           {skills != null && skills.length > 0 && (
