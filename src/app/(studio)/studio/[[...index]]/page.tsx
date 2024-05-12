@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next';
-import { metadata as studioMetadata } from 'next-sanity/studio/metadata';
-import { viewport as studioViewport } from 'next-sanity/studio/viewport';
+import {
+  metadata as studioMetadata,
+  viewport as studioViewport,
+} from 'next-sanity/studio';
 
 import Studio from '~/app/(studio)/studio/[[...index]]/studio';
 
