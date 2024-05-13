@@ -420,7 +420,7 @@ export type SanityAssetSourceData = {
 
 export type Slug = {
   _type: 'slug';
-  current?: string;
+  current: string;
   source?: string;
 };
 export declare const internalGroqTypeReferenceTo: unique symbol;
@@ -483,6 +483,7 @@ export type ProfileDetailsResult = {
     slug: Slug;
   }> | null;
 } | null;
+
 // Variable: AllSocialLinks
 // Query:   coalesce(*[_type == "personalInfo"] | order(_updatedAt desc) [0].socialLinks, [])
 export type AllSocialLinksResult =
@@ -492,6 +493,7 @@ export type AllSocialLinksResult =
       } & SocialLink
     >
   | Array<never>;
+
 // Variable: AllCertificates
 // Query:   *[_type == "certificate" && certificateHide == false] | order(startDate desc)
 export type AllCertificatesResult = Array<{
@@ -519,6 +521,7 @@ export type AllCertificatesResult = Array<{
   endDate?: string;
   certificateLink?: string;
 }>;
+
 // Variable: AllProjectDetails
 // Query:   *[_type == "project" && projectHide == false] | order(_updatedAt desc) {    ...,    "tags": categories[]->  }
 export type AllProjectDetailsResult = Array<{
@@ -582,6 +585,7 @@ export type AllProjectDetailsResult = Array<{
     slug: Slug;
   }> | null;
 }>;
+
 // Variable: AllCareers
 // Query:   *[_type == "career" && careerHide == false] | order(startDate desc) {    ...,    "tags": skillTags[]->  }
 export type AllCareersResult = Array<{
@@ -634,6 +638,7 @@ export type AllCareersResult = Array<{
     slug: Slug;
   }> | null;
 }>;
+
 // Variable: ProjectConfig
 // Query:   *[_type == "configuration"] | order(_updatedAt desc) [0]
 export type ProjectConfigResult = {
@@ -655,12 +660,71 @@ export type ProjectConfigResult = {
     showProjectLink: boolean;
   };
 } | null;
+
 // Variable: ProjectConfigName
 // Query:   *[_type == "configuration"] | order(_updatedAt desc) [0].name
 export type ProjectConfigNameResult = string | null;
+
 // Variable: ProjectInfoName
 // Query:   *[_type == "personalInfo"] | order(_updatedAt desc) [0].name
 export type ProjectInfoNameResult = string | null;
+
 // Variable: CVReference
 // Query:   *[_type == "personalInfo"] | order(_updatedAt desc) [0].CV.asset._ref
 export type CVReferenceResult = string | null;
+
+// Source: ./sanity/migrations/image/single-to-carousel.ts
+// Variable: fetchDocumentsQuery
+// Query: *[_type == "project"]
+export type FetchDocumentsQueryResult = Array<{
+  _id: string;
+  _type: 'project';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  projectHide: boolean;
+  name: string;
+  slug: Slug;
+  body: BlockContent;
+  projectUrl?: UrlWrapper;
+  sourceUrl?: UrlWrapper;
+  projectIssuer?: IssuerWrapper;
+  externalAuthors?: Array<{
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: 'author';
+  }>;
+  projectImage?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  projectImages: Array<{
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+    _key: string;
+  }>;
+  categories?: Array<{
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: 'category';
+  }>;
+  profileStatus: 'abandoned' | 'completed' | 'ongoing';
+}>;
