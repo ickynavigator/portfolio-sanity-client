@@ -3,6 +3,7 @@
 import {
   ActionIcon,
   Loader,
+  ThemeIcon,
   rem,
   useComputedColorScheme,
   useMantineColorScheme,
@@ -27,7 +28,7 @@ const ThemeSwitcher = () => {
 
   const isDarkMode = computedColorScheme === 'dark';
 
-  return (
+  return mounted ? (
     <ActionIcon
       onClick={toggleColorScheme}
       size="md"
@@ -35,16 +36,16 @@ const ThemeSwitcher = () => {
       color={isDarkMode ? 'yellow' : 'gray'}
       variant="outline"
     >
-      {mounted ? (
-        <TransitionGroup
-          status={isDarkMode}
-          initial={<IconMoonStars {...iconStyles} />}
-          final={<IconSun {...iconStyles} />}
-        />
-      ) : (
-        <Loader size={size} />
-      )}
+      <TransitionGroup
+        status={isDarkMode}
+        initial={<IconMoonStars {...iconStyles} />}
+        final={<IconSun {...iconStyles} />}
+      />
     </ActionIcon>
+  ) : (
+    <ThemeIcon variant="outline" size="md">
+      <Loader size={size} type="dots" />
+    </ThemeIcon>
   );
 };
 
