@@ -24,11 +24,10 @@ import { ProfileDetails } from '~/groq/queries';
 import { getBaseURL } from '~/lib/general';
 import { getUrlFromId, urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
-import { ProfileDetailsResult } from '~/schema';
 
 const Page = async () => {
   const client = getClient();
-  const data = await client.fetch<ProfileDetailsResult>(ProfileDetails);
+  const data = await client.fetch(ProfileDetails);
 
   if (!data) {
     return null;

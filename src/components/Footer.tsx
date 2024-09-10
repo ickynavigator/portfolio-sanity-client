@@ -9,8 +9,8 @@ import {
 import { AllSocialLinks } from '~/groq/queries';
 import { insert } from '~/helpers';
 import { getClient } from '~/sanity/sanity.server';
-import { AllSocialLinksResult, SocialLink } from '~/schema';
-import { getConfig } from '../lib/project.config';
+import { SocialLink } from '~/schema';
+import { getConfig } from '~/lib/project.config';
 
 const SocialLinksIcons = (name: string) => {
   switch (name) {
@@ -42,7 +42,7 @@ const getSocialIcons = async (showOGsourceLink: boolean) => {
   }
 
   const client = getClient();
-  const socialLinks = await client.fetch<AllSocialLinksResult>(AllSocialLinks);
+  const socialLinks = await client.fetch(AllSocialLinks);
   return insert(socialLinks, Math.floor(socialLinks.length / 2), ...postItems);
 };
 

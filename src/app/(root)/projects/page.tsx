@@ -30,7 +30,6 @@ import EnhancedPortableText from '~/components/EnhancedPortableText';
 import { AllProjectDetails } from '~/groq/queries';
 import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
-import { AllProjectDetailsResult } from '~/schema';
 
 export const metadata: Metadata = {
   title: 'All Projects',
@@ -38,8 +37,7 @@ export const metadata: Metadata = {
 
 const Page = async () => {
   const client = getClient();
-  const projects =
-    await client.fetch<AllProjectDetailsResult>(AllProjectDetails);
+  const projects = await client.fetch(AllProjectDetails);
 
   return (
     <Box>

@@ -1,11 +1,10 @@
 import { CVReference } from '~/groq/queries';
 import { getUrlFromId } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
-import { CVReferenceResult } from '~/schema';
 
 export async function GET() {
   try {
-    const ref = await getClient().fetch<CVReferenceResult>(CVReference);
+    const ref = await getClient().fetch(CVReference);
 
     if (!ref) return new Response('No CV found', { status: 404 });
 

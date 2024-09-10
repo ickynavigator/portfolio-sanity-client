@@ -16,7 +16,6 @@ import { AllCertificates } from '~/groq/queries';
 import { formatDate } from '~/lib/format';
 import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
-import { AllCertificatesResult } from '~/schema';
 
 export const metadata: Metadata = {
   title: 'All Certificates',
@@ -24,8 +23,7 @@ export const metadata: Metadata = {
 
 const Page = async () => {
   const client = getClient();
-  const certificates =
-    await client.fetch<AllCertificatesResult>(AllCertificates);
+  const certificates = await client.fetch(AllCertificates);
 
   const picSize = { width: 150, height: 150 };
 

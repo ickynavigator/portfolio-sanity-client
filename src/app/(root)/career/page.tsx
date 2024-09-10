@@ -17,8 +17,7 @@ import { AllCareers } from '~/groq/queries';
 import { formatDate } from '~/lib/format';
 import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
-import { AllCareersResult } from '~/schema';
-import classes from './page.module.css';
+import classes from '~/app/(root)/career/page.module.css';
 
 export const metadata: Metadata = {
   title: 'All Careers',
@@ -26,7 +25,7 @@ export const metadata: Metadata = {
 
 const Page = async () => {
   const client = getClient();
-  const careers = await client.fetch<AllCareersResult>(AllCareers);
+  const careers = await client.fetch(AllCareers);
 
   const imageSize = { width: 80, height: 80 };
 

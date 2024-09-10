@@ -8,14 +8,13 @@ import { getBaseURL } from '~/lib/general';
 import { getConfig, isProjectSetup } from '~/lib/project.config';
 import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
-import { ProfileDetailsResult } from '~/schema';
 
 export async function generateMetadata(
   _: undefined,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const client = getClient();
-  const data = await client.fetch<ProfileDetailsResult>(ProfileDetails);
+  const data = await client.fetch(ProfileDetails);
   const projectConfig = await getConfig();
 
   const baseMetaData: Metadata = {

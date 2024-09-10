@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
-import { groq } from 'next-sanity';
+import { defineQuery } from 'next-sanity';
 import createClient from '../client';
-import { FetchDocumentsQueryResult } from '../../../sanity.d';
 
 const client = createClient();
 
-const fetchDocuments = () => {
-  const fetchDocumentsQuery = groq`*[_type == "project"]`;
-  return client.fetch<FetchDocumentsQueryResult>(fetchDocumentsQuery);
+const fetchDocuments = async () => {
+  const fetchDocumentsQuery = defineQuery(`*[_type == "project"]`);
+  const documents = await client.fetch(fetchDocumentsQuery);
+  return documents;
 };
 
 const migrateBatch = async () => {
