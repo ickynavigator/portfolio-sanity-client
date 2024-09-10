@@ -1,6 +1,6 @@
 'use server';
 
-import { render } from '@react-email/render';
+import { render } from '@react-email/components';
 import { createContactMessage } from '~/lib/actions/sanity';
 import Mailer from '~/lib/mail';
 import { EmailContact } from '~/templates/contact';
@@ -18,7 +18,10 @@ const formSubmit = async (values: IFormSubmit) => {
   });
 
   const mailer = new Mailer();
-  await mailer.sendMail(render(EmailContact(values)), {
+  const html = await render(EmailContact(values), {
+    pretty: false,
+  });
+  await mailer.sendMail(html, {
     replyTo: values.email,
     subject: `New Contact Form from ${values.name}`,
   });

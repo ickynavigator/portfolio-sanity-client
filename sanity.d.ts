@@ -451,7 +451,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/groq/queries.ts
 // Variable: ProfileDetails
-// Query:   *[_type == "personalInfo"] | order(_createdAt desc) {    ...,    "skills": skillTags[]->  }[0]
+// Query: *[_type == "personalInfo"] | order(_createdAt desc) {    ...,    "skills": skillTags[]->  }[0]
 export type ProfileDetailsResult = {
   _id: string;
   _type: 'personalInfo';
@@ -508,7 +508,7 @@ export type ProfileDetailsResult = {
   }> | null;
 } | null;
 // Variable: AllSocialLinks
-// Query:   coalesce(*[_type == "personalInfo"] | order(_updatedAt desc) [0].socialLinks, [])
+// Query: coalesce(*[_type == "personalInfo"] | order(_updatedAt desc) [0].socialLinks, [])
 export type AllSocialLinksResult =
   | Array<
       {
@@ -517,7 +517,7 @@ export type AllSocialLinksResult =
     >
   | Array<never>;
 // Variable: AllCertificates
-// Query:   *[_type == "certificate" && certificateHide == false] | order(startDate desc)
+// Query: *[_type == "certificate" && certificateHide == false] | order(startDate desc)
 export type AllCertificatesResult = Array<{
   _id: string;
   _type: 'certificate';
@@ -544,7 +544,7 @@ export type AllCertificatesResult = Array<{
   certificateLink?: string;
 }>;
 // Variable: AllProjectDetails
-// Query:   *[_type == "project" && projectHide == false] | order(_updatedAt desc) {    ...,    "tags": categories[]->  }
+// Query: *[_type == "project" && projectHide == false] | order(_updatedAt desc) {    ...,    "tags": categories[]->  }
 export type AllProjectDetailsResult = Array<{
   _id: string;
   _type: 'project';
@@ -607,7 +607,7 @@ export type AllProjectDetailsResult = Array<{
   }> | null;
 }>;
 // Variable: AllCareers
-// Query:   *[_type == "career" && careerHide == false] | order(startDate desc) {    ...,    "tags": skillTags[]->  }
+// Query: *[_type == "career" && careerHide == false] | order(startDate desc) {    ...,    "tags": skillTags[]->  }
 export type AllCareersResult = Array<{
   _id: string;
   _type: 'career';
@@ -659,7 +659,7 @@ export type AllCareersResult = Array<{
   }> | null;
 }>;
 // Variable: ProjectConfig
-// Query:   *[_type == "configuration"] | order(_updatedAt desc) [0]
+// Query: *[_type == "configuration"] | order(_updatedAt desc) [0]
 export type ProjectConfigResult = {
   _id: string;
   _type: 'configuration';
@@ -680,14 +680,15 @@ export type ProjectConfigResult = {
   };
 } | null;
 // Variable: ProjectConfigName
-// Query:   *[_type == "configuration"] | order(_updatedAt desc) [0].name
+// Query: *[_type == "configuration"] | order(_updatedAt desc) [0].name
 export type ProjectConfigNameResult = string | null;
 // Variable: ProjectInfoName
-// Query:   *[_type == "personalInfo"] | order(_updatedAt desc) [0].name
+// Query: *[_type == "personalInfo"] | order(_updatedAt desc) [0].name
 export type ProjectInfoNameResult = string | null;
 // Variable: CVReference
-// Query:   *[_type == "personalInfo"] | order(_updatedAt desc) [0].CV.asset._ref
+// Query: *[_type == "personalInfo"] | order(_updatedAt desc) [0].CV.asset._ref
 export type CVReferenceResult = string | null;
+
 // Source: ./sanity/migrations/image/single-to-carousel.ts
 // Variable: fetchDocumentsQuery
 // Query: *[_type == "project"]
@@ -743,3 +744,20 @@ export type FetchDocumentsQueryResult = Array<{
   }>;
   profileStatus: 'abandoned' | 'completed' | 'ongoing';
 }>;
+
+// Query TypeMap
+import '@sanity/client';
+declare module '@sanity/client' {
+  interface SanityQueries {
+    '\n  *[_type == "personalInfo"] | order(_createdAt desc) {\n    ...,\n    "skills": skillTags[]->\n  }[0]\n': ProfileDetailsResult;
+    '\n  coalesce(*[_type == "personalInfo"] | order(_updatedAt desc) [0].socialLinks, [])\n': AllSocialLinksResult;
+    '\n  *[_type == "certificate" && certificateHide == false] | order(startDate desc)\n': AllCertificatesResult;
+    '\n  *[_type == "project" && projectHide == false] | order(_updatedAt desc) {\n    ...,\n    "tags": categories[]->\n  }\n': AllProjectDetailsResult;
+    '\n  *[_type == "career" && careerHide == false] | order(startDate desc) {\n    ...,\n    "tags": skillTags[]->\n  }\n': AllCareersResult;
+    '\n  *[_type == "configuration"] | order(_updatedAt desc) [0]\n': ProjectConfigResult;
+    '\n  *[_type == "configuration"] | order(_updatedAt desc) [0].name\n': ProjectConfigNameResult;
+    '\n  *[_type == "personalInfo"] | order(_updatedAt desc) [0].name\n': ProjectInfoNameResult;
+    '\n  *[_type == "personalInfo"] | order(_updatedAt desc) [0].CV.asset._ref\n': CVReferenceResult;
+    '*[_type == "project"]': FetchDocumentsQueryResult;
+  }
+}
