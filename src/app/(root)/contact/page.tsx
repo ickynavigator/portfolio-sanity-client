@@ -14,7 +14,7 @@ import {
   IconAlertCircleFilled,
   IconCircleCheckFilled,
 } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useTransition } from 'react';
 import { z } from 'zod';
 import useAlertManager from '~/hooks/useAlertManager';
 import formSubmit from './actions';
@@ -38,27 +38,27 @@ const Page = () => {
   const [formSuccess, toggleFormSuccess] = useAlertManager(false);
   const [formError, toggleFormError] = useAlertManager(false);
 
-  const [loading, setLoading] = useState(false);
+  const [isPending, startTransition] = useTransition();
+
+  const handleSubmit = (values: typeof form.values) => {
+    startTransition(async () => {
+      toggleFormSuccess(false);
+      toggleFormError(false);
+
+      try {
+        await formSubmit(values);
+
+        form.reset();
+        toggleFormSuccess(true);
+      } catch (e) {
+        console.error('from client', e);
+        toggleFormError(true);
+      }
+    });
+  };
 
   return (
-    <form
-      onSubmit={form.onSubmit(async values => {
-        toggleFormSuccess(false);
-        toggleFormError(false);
-
-        try {
-          setLoading(true);
-          await formSubmit(values);
-
-          form.reset();
-          toggleFormSuccess(true);
-        } catch (error) {
-          toggleFormError(true);
-        } finally {
-          setLoading(false);
-        }
-      })}
-    >
+    <form onSubmit={form.onSubmit(handleSubmit)}>
       <Title order={2} mb="sm" ta="right">
         Contact Me
       </Title>
@@ -97,7 +97,7 @@ const Page = () => {
           {...form.getInputProps('message')}
         />
         <Group justify="flex-end">
-          <Button type="submit" variant="outline" loading={loading}>
+          <Button type="submit" variant="outline" loading={isPending}>
             Send
           </Button>
         </Group>
