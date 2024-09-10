@@ -12,7 +12,8 @@
     "eslint-config-next",
     "airbnb",
     "plugin:import/typescript",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:next-on-pages/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -25,7 +26,8 @@
   "plugins": [
     "react",
     "@typescript-eslint",
-    "eslint-plugin-css-modules"
+    "eslint-plugin-css-modules",
+    "next-on-pages"
   ],
   "rules": {
     "import/prefer-default-export": [

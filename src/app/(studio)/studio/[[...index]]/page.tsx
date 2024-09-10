@@ -23,4 +23,5 @@ const Page = () => {
   return <Studio />;
 };
 
+export const runtime = 'edge';
 export default Page;
