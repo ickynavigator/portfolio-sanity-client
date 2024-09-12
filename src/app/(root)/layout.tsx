@@ -82,7 +82,7 @@ export async function generateMetadata(
   };
 }
 
-const Layout = async ({ children }: { children: React.ReactNode }) => {
+const InnerLayout = async ({ children }: PropsWithChildren) => {
   const _isProjectSetup = await isProjectSetup();
   const projectConfig = await getConfig();
 
@@ -111,6 +111,20 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
 
       <Footer />
     </Stack>
+  );
+};
+
+const Layout = ({ children }: PropsWithChildren) => {
+  return (
+    <ViewTransitions>
+      <head>
+        <ColorSchemeScript defaultColorScheme="auto" />
+      </head>
+
+      <MantineProvider defaultColorScheme="auto" theme={theme}>
+        <InnerLayout>{children}</InnerLayout>
+      </MantineProvider>
+    </ViewTransitions>
   );
 };
 

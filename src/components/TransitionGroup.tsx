@@ -1,4 +1,5 @@
 import { Box, Transition, MANTINE_TRANSITIONS, rem } from '@mantine/core';
+import type { PropsWithChildren } from 'react';
 
 type MantineTransitionName = keyof typeof MANTINE_TRANSITIONS;
 type MantineTransitionStyles =
@@ -21,11 +22,10 @@ const Transitions = {
 interface ITransitionProps {
   show: boolean;
   timer: number;
-  children: React.ReactNode;
   transition?: keyof typeof Transitions;
 }
 
-const TransitionButton = (props: ITransitionProps) => {
+const TransitionButton = (props: PropsWithChildren<ITransitionProps>) => {
   const { show, timer, children, transition = 'sliding' } = props;
 
   return (
