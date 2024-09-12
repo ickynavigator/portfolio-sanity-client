@@ -1,14 +1,11 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+import type { PropsWithChildren } from 'react';
 
 export const metadata: Metadata = {
   title: `Contact Me`,
 };
 
-interface ILayoutProps {
-  children: React.ReactNode;
-}
-
-const Layout = ({ children }: ILayoutProps) => {
+const Layout = ({ children }: PropsWithChildren) => {
   return children;
 };
 

@@ -1,13 +1,25 @@
-import { Anchor, Container, Stack, Text, Title } from '@mantine/core';
-import { Metadata, ResolvingMetadata } from 'next';
-import { Link } from 'next-view-transitions';
+import '~/app/(root)/layout.styles.css';
+
+import {
+  Anchor,
+  ColorSchemeScript,
+  Container,
+  MantineProvider,
+  Stack,
+  Text,
+  Title,
+} from '@mantine/core';
+import type { Metadata, ResolvingMetadata } from 'next';
+import { Link, ViewTransitions } from 'next-view-transitions';
 import Footer from '~/components/Footer';
 import Header from '~/components/Header';
 import { ProfileDetails } from '~/groq/queries';
 import { getBaseURL } from '~/lib/general';
+import theme from '~/lib/mantine.config';
 import { getConfig, isProjectSetup } from '~/lib/project.config';
 import { urlForImage } from '~/sanity/sanity.lib';
 import { getClient } from '~/sanity/sanity.server';
+import type { PropsWithChildren } from 'react';
 
 export async function generateMetadata(
   _: undefined,

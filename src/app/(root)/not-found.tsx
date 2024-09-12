@@ -9,7 +9,7 @@ import {
   rem,
 } from '@mantine/core';
 import { Link } from 'next-view-transitions';
-import classes from './error.module.css';
+import classes from '~/app/(root)/error.module.css';
 
 const NotFoundPage = () => {
   return (
