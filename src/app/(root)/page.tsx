@@ -95,7 +95,7 @@ const Page = async () => {
       )}
       <Center w="100%">
         <Box w="100%">
-          <Title order={2} mb="sm" ta="right">
+          <Title order={2} mb="sm" mt="xl" ta="right" td="underline double">
             Bio
           </Title>
           <EnhancedPortableText value={bio} />
@@ -122,7 +122,7 @@ const Page = async () => {
 
           {skills != null && skills.length > 0 && (
             <>
-              <Title order={2} mb="sm" ta="right">
+              <Title order={2} mb="sm" mt="xl" ta="right" td="underline double">
                 Skills
               </Title>
 
