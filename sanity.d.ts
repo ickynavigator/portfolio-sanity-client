@@ -745,6 +745,73 @@ export type FetchDocumentsQueryResult = Array<{
   profileStatus: 'abandoned' | 'completed' | 'ongoing';
 }>;
 
+// Source: ./sanity/export/project/fetch-all.ts
+// Variable: fetchProjectQuery
+// Query: *[_type == "project"]
+export type FetchProjectQueryResult = Array<{
+  _id: string;
+  _type: 'project';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  projectHide: boolean;
+  name: string;
+  slug: Slug;
+  body: BlockContent;
+  projectUrl?: UrlWrapper;
+  sourceUrl?: UrlWrapper;
+  projectIssuer?: IssuerWrapper;
+  externalAuthors?: Array<{
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: 'author';
+  }>;
+  projectImage?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  projectImages: Array<{
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+    _key: string;
+  }>;
+  categories?: Array<{
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: 'category';
+  }>;
+  profileStatus: 'abandoned' | 'completed' | 'ongoing';
+}>;
+// Variable: fetchCategoriesQuery
+// Query: *[_type == "category"]
+export type FetchCategoriesQueryResult = Array<{
+  _id: string;
+  _type: 'category';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+}>;
+
 // Query TypeMap
 import '@sanity/client';
 declare module '@sanity/client' {
@@ -758,6 +825,9 @@ declare module '@sanity/client' {
     '\n  *[_type == "configuration"] | order(_updatedAt desc) [0].name\n': ProjectConfigNameResult;
     '\n  *[_type == "personalInfo"] | order(_updatedAt desc) [0].name\n': ProjectInfoNameResult;
     '\n  *[_type == "personalInfo"] | order(_updatedAt desc) [0].CV.asset._ref\n': CVReferenceResult;
-    '*[_type == "project"]': FetchDocumentsQueryResult;
+    '*[_type == "project"]':
+      | FetchDocumentsQueryResult
+      | FetchProjectQueryResult;
+    '*[_type == "category"]': FetchCategoriesQueryResult;
   }
 }

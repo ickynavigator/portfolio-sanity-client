@@ -112,7 +112,7 @@ pnpm run codegen
 
 
 <details>
-  <summary>Migration Scripts</summary>
+  <summary>Sanity Scripts</summary>
   
   ### Project Image to Project Images
   The project type originally used a single image object instead of an array of images (silly right?). I created a small script to convert the image from a single item to an array containing that item. The image type has already been deprecated, hidden and marked as readonly.
@@ -120,4 +120,12 @@ pnpm run codegen
   ```bash
   bun sanity/migrations/image/single-to-carousel.ts
   ```
+
+  ### Project Export
+  This script exports the project data to a json file. It is used to backup the data in case of any issues.
+  [script here](sanity/export/project/fetch-all.ts)
+  ```bash
+  bun sanity/export/project/fetch-all.ts
+  ```
+
 </details>
