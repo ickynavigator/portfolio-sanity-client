@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { defineQuery } from 'next-sanity';
-import createClient from '../client';
+import createClient from '../../client';
 
 const client = createClient();
 
@@ -10,7 +10,7 @@ const fetchDocuments = async () => {
   return documents;
 };
 
-const migrateBatch = async () => {
+const main = async () => {
   const documents = await fetchDocuments();
   if (documents.length === 0) {
     console.warn('No documents to convert!');
@@ -43,7 +43,7 @@ const migrateBatch = async () => {
   console.log('Migration complete!');
 };
 
-migrateBatch().catch((err: any) => {
+main().catch((err: any) => {
   console.error(JSON.stringify(err, null, 2));
 
   process.exit(1);
