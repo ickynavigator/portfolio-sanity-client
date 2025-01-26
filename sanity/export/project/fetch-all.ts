@@ -14,7 +14,30 @@ const storeData = async (data: unknown, prefix: string) => {
 };
 
 const fetchAndStoreDocuments = async () => {
-  const fetchProjectQuery = defineQuery(`*[_type == "project"]`);
+  const fetchProjectQuery = defineQuery(`*[_type == "project"] {
+    "body": body,
+    "title": name,
+    "role": "Developer",
+    "status": profileStatus,
+    "archived": false,
+    "hidden": projectHide,
+    "description": name,
+    "slug": slug.current,
+    "tags": coalesce(categories[]->slug.current, []),
+    "links": [
+      select(projectUrl != null => {
+        "display": "View Project",
+        "url": projectUrl.url,
+        "hidden": projectUrl.visibility,
+      }),
+      select(sourceUrl != null => {
+        "display": "View Source",
+        "url": sourceUrl.url,
+        "hidden": sourceUrl.visibility,
+      })
+    ][@ != null],
+    "images": projectImages[].asset->,
+  }`);
   const documents = await client.fetch(fetchProjectQuery);
 
   await storeData(documents, 'project');
@@ -22,20 +45,10 @@ const fetchAndStoreDocuments = async () => {
   return documents;
 };
 
-const fetchAndStoreDerefedCategories = async () => {
-  const fetchCategoriesQuery = defineQuery(`*[_type == "category"]`);
-  const categories = await client.fetch(fetchCategoriesQuery);
-
-  await storeData(categories, 'category');
-
-  return categories;
-};
-
 const main = async () => {
   console.log('Starting import...');
 
   await fetchAndStoreDocuments();
-  await fetchAndStoreDerefedCategories();
 
   console.log('Import Complete!');
 };

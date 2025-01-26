@@ -689,6 +689,55 @@ export type ProjectInfoNameResult = string | null;
 // Query: *[_type == "personalInfo"] | order(_updatedAt desc) [0].CV.asset._ref
 export type CVReferenceResult = string | null;
 
+// Source: ./sanity/export/project/fetch-all.ts
+// Variable: fetchProjectQuery
+// Query: *[_type == "project"] {    "body": body,    "title": name,    "role": "Developer",    "status": profileStatus,    "archived": false,    "hidden": projectHide,    "description": name,    "slug": slug.current,    "tags": categories[]->slug.current,    "links": [      select(projectUrl != null => {        "display": "View Project",        "url": projectUrl.url,        "hidden": projectUrl.visibility,      }),      select(sourceUrl != null => {        "display": "View Source",        "url": sourceUrl.url,        "hidden": sourceUrl.visibility,      })    ][@ != null],    "images": projectImages[].asset->,  }
+export type FetchProjectQueryResult = Array<{
+  body: BlockContent;
+  title: string;
+  role: 'Developer';
+  status: 'abandoned' | 'completed' | 'ongoing';
+  archived: false;
+  hidden: boolean;
+  description: string;
+  slug: string;
+  tags: Array<string> | null;
+  links: Array<
+    | {
+        display: 'View Project';
+        url: string | null;
+        hidden: boolean | null;
+      }
+    | {
+        display: 'View Source';
+        url: string | null;
+        hidden: boolean | null;
+      }
+  >;
+  images: Array<{
+    _id: string;
+    _type: 'sanity.imageAsset';
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    originalFilename?: string;
+    label?: string;
+    title?: string;
+    description?: string;
+    altText?: string;
+    sha1hash?: string;
+    extension?: string;
+    mimeType?: string;
+    size?: number;
+    assetId?: string;
+    uploadId?: string;
+    path?: string;
+    url?: string;
+    metadata?: SanityImageMetadata;
+    source?: SanityAssetSourceData;
+  } | null>;
+}>;
+
 // Source: ./sanity/migrations/image/single-to-carousel.ts
 // Variable: fetchDocumentsQuery
 // Query: *[_type == "project"]
@@ -745,73 +794,6 @@ export type FetchDocumentsQueryResult = Array<{
   profileStatus: 'abandoned' | 'completed' | 'ongoing';
 }>;
 
-// Source: ./sanity/export/project/fetch-all.ts
-// Variable: fetchProjectQuery
-// Query: *[_type == "project"]
-export type FetchProjectQueryResult = Array<{
-  _id: string;
-  _type: 'project';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  projectHide: boolean;
-  name: string;
-  slug: Slug;
-  body: BlockContent;
-  projectUrl?: UrlWrapper;
-  sourceUrl?: UrlWrapper;
-  projectIssuer?: IssuerWrapper;
-  externalAuthors?: Array<{
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: 'author';
-  }>;
-  projectImage?: {
-    asset?: {
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: 'image';
-  };
-  projectImages: Array<{
-    asset?: {
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: 'image';
-    _key: string;
-  }>;
-  categories?: Array<{
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: 'category';
-  }>;
-  profileStatus: 'abandoned' | 'completed' | 'ongoing';
-}>;
-// Variable: fetchCategoriesQuery
-// Query: *[_type == "category"]
-export type FetchCategoriesQueryResult = Array<{
-  _id: string;
-  _type: 'category';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  slug: Slug;
-}>;
-
 // Query TypeMap
 import '@sanity/client';
 declare module '@sanity/client' {
@@ -825,9 +807,7 @@ declare module '@sanity/client' {
     '\n  *[_type == "configuration"] | order(_updatedAt desc) [0].name\n': ProjectConfigNameResult;
     '\n  *[_type == "personalInfo"] | order(_updatedAt desc) [0].name\n': ProjectInfoNameResult;
     '\n  *[_type == "personalInfo"] | order(_updatedAt desc) [0].CV.asset._ref\n': CVReferenceResult;
-    '*[_type == "project"]':
-      | FetchDocumentsQueryResult
-      | FetchProjectQueryResult;
-    '*[_type == "category"]': FetchCategoriesQueryResult;
+    '*[_type == "project"] {\n    "body": body,\n    "title": name,\n    "role": "Developer",\n    "status": profileStatus,\n    "archived": false,\n    "hidden": projectHide,\n    "description": name,\n    "slug": slug.current,\n    "tags": categories[]->slug.current,\n    "links": [\n      select(projectUrl != null => {\n        "display": "View Project",\n        "url": projectUrl.url,\n        "hidden": projectUrl.visibility,\n      }),\n      select(sourceUrl != null => {\n        "display": "View Source",\n        "url": sourceUrl.url,\n        "hidden": sourceUrl.visibility,\n      })\n    ][@ != null],\n    "images": projectImages[].asset->,\n  }': FetchProjectQueryResult;
+    '*[_type == "project"]': FetchDocumentsQueryResult;
   }
 }
