@@ -44,7 +44,7 @@
     "next": "^14.2.35",
     "next-sanity": "9.8.8",
     "next-view-transitions": "^0.3.2",
-    "nodemailer": "^6.9.16",
+    "nodemailer": "^8.0.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sanity": "^3.62.2",
